@@ -10,7 +10,6 @@ import RadioField from 'fields/RadioField';
 import DateTimeField from 'fields/DateTimeField';
 import CheckBoxField from 'fields/CheckBoxField';
 import ToggleField from 'fields/ToggleField';
-import Toggle from 'react-toggle';
 
 import _ from 'lodash';
 
@@ -28,7 +27,6 @@ const ContactForm = (props) => {
         label="Input Text 6"
         validate={required}
         helpText="here to help"
-        defaultValue={false}
       />
 
       <Field
@@ -77,6 +75,23 @@ const ContactForm = (props) => {
         valueKey={'value'}
         label="Input Text 3"
         validate={required}
+        multiple
+        helpText="here to help"
+        options={[
+          { label: 'one', value: 1 },
+          { label: 'two', value: 2 },
+          { label: 'three', value: 3 },
+        ]}
+      />
+
+      <Field
+        name="field7"
+        component={SelectField}
+        labelKey={'label'}
+        valueKey={'value'}
+        label="Input Text 7"
+        validate={required}
+
         helpText="here to help"
         options={[
           { label: 'one', value: 1 },

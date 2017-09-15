@@ -19,9 +19,21 @@ class SelectField extends Component {
   }
 
   handleChange = (option) => {
-    const value = _.get(option, this.props.valueKey, null);
-    this.setState({ selected: value });
-    this.props.input.onChange(value);
+    if (this.props.multiple) {
+      const value = _.map(option, opt => _.get(opt, this.props.valueKey));
+      let newVals;
+      if (_.difference(this.state.selected, value).length) {
+        newVals = _.intersection(this.state.selected, value);
+      } else {
+        newVals = _.union(this.state.selected, value);
+      }
+      this.setState({ selected: newVals });
+      this.props.input.onChange(newVals);
+    } else {
+      const value = _.get(option, this.props.valueKey, null);
+      this.setState({ selected: value });
+      this.props.input.onChange(value);
+    }
   }
   render() {
     const {
@@ -30,10 +42,13 @@ class SelectField extends Component {
       valueKey,
       label,
       helpText,
+      multiple,
       input: { name, onChange, onFocus, onBlur, ...inputProps },
       meta: { touched, error, warning },
       ...props
     } = this.props;
+    const multi = !!multiple;
+    const joinValues = !!multiple;
     const { value } = inputProps;
     let errorMessage;
     let validationState;
@@ -64,6 +79,8 @@ class SelectField extends Component {
           labelKey={labelKey}
           valueKey={valueKey}
           onFocus={onFocus}
+          multi={multi}
+          joinValues={joinValues}
           onBlur={this.handleBlur}
           {...props}
         />
