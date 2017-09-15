@@ -1,0 +1,69 @@
+.Select-control {
+    width: 100%;
+    height: 34px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.has-feedback .Select-control, .has-feedback .Select--multi .Select-value {
+    padding-right: 42.5px;
+}
+
+.has-success .Select-control,
+.has-success .Select--multi .Select-value,
+.has-success .Select--multi .Select-value-icon  {
+    border-color: #3c763d;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.has-error .Select-control,
+.has-error .Select--multi .Select-value,
+.has-error .Select--multi .Select-value-icon   {
+    border-color: #a94442;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.has-warning .Select-control,
+.has-warning .Select--multi .Select-value,
+.has-warning .Select--multi .Select-value-icon  {
+    border-color: #8a6d3b;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.Select--multi .Select-value,
+.Select--multi .Select-value-icon:hover,
+.Select--multi .Select-value-icon:focus {
+  color: #000;
+
+}
+
+.has-success .Select--multi .Select-value,
+.has-success .Select--multi .Select-value-icon:hover,
+.has-success .Select--multi .Select-value-icon:focus {
+  background-color: rgba(60,118,61, 0.08);
+}
+
+.has-error .Select--multi .Select-value,
+.has-error .Select--multi .Select-value-icon:hover,
+.has-error .Select--multi .Select-value-icon:focus {
+  background-color: rgba(169,68,66, 0.08);
+}
+
+.has-warning .Select--multi .Select-value,
+.has-warning .Select--multi .Select-value-icon:hover,
+.has-warning .Select--multi .Select-value-icon:focus {
+  background-color: rgba(138,109,59, 0.08);
+}

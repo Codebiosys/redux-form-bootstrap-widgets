@@ -3,7 +3,6 @@ import { render } from 'react-dom';
 import App from 'App';
 
 import 'bootstrap/dist/css/bootstrap.css';
-import 'style.css';
 
 import 'manifest.json';
 

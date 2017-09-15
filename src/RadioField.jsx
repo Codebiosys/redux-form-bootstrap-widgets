@@ -1,39 +1,34 @@
 import React from 'react';
-import { FormGroup, ControlLabel, FormControl, HelpBlock, InputGroup, Radio } from 'react-bootstrap';
 import _ from 'lodash';
+
+import {
+  FormGroup,
+  ControlLabel,
+  HelpBlock,
+  InputGroup,
+  Radio } from 'react-bootstrap';
+
+import validationMessage from 'utils';
+
+import 'bootstrap/dist/css/bootstrap.css';
 
 const RadioField = ({
   label,
   options,
   helpText,
-  inline,
-  input: { name, onBlur, ...inputProps },
-  meta: { touched, error, warning },
+  input: { name, onBlur, value, ...inputProps },
+  meta,
   ...props
 }) => {
-  let errorMessage;
-  let validationState;
-  if (touched && !error && !warning) {
-    validationState = 'success';
-  } else if (touched) {
-    if (error) {
-      validationState = 'error';
-    } else {
-      validationState = 'warning';
-    }
-    errorMessage = (<HelpBlock>{error || warning}</HelpBlock>);
-  }
+  const { validationState, errorMessage } = validationMessage(meta);
+
   const handleClick = (event) => {
-    if (event.target.value === inputProps.value) {
+    if (event.target.value === value) {
       inputProps.onChange(null);
     }
+    onBlur();
   };
 
-  const handleBlur = (event) => {
-    if (inputProps.value) {
-      onBlur(event);
-    }
-  };
   return (
     <FormGroup
       controlId={name}
@@ -46,11 +41,11 @@ const RadioField = ({
             <Radio
               name={name}
               {...inputProps}
-              inline={inline}
-              checked={`${option.value}` === `${inputProps.value}`}
+              checked={`${option.value}` === `${value}`}
               value={option.value}
-              onBlur={handleBlur}
+              onBlur={() => onBlur()}
               onClick={handleClick}
+              {...props}
             >
               {option.label}
             </Radio>
@@ -64,4 +59,7 @@ const RadioField = ({
   );
 };
 
+RadioField.propTypes = {
+  ...Radio.propTypes,
+};
 export default RadioField;
