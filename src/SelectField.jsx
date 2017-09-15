@@ -16,6 +16,8 @@ const SelectField = ({
   valueKey,
   input: { name, onChange, onFocus, onBlur, value, ...inputProps },
   meta,
+  options,
+  loadOptions,
   ...props
 }) => {
   const handleChange = (selected) => {
@@ -44,7 +46,7 @@ const SelectField = ({
       validationState={validationState}
     >
       <ControlLabel>{label}</ControlLabel>
-      <Select
+      {options ? (<Select
         name={name}
         value={value}
         valueKey={valueKey}
@@ -55,8 +57,23 @@ const SelectField = ({
         inputProps={inputProps}
         multi={!!multiple}
         joinValues={!!multiple}
+        options={options}
         {...props}
-      />
+      />) : (<Select.Async
+        name={name}
+        value={value}
+        valueKey={valueKey}
+        autoBlur
+        onChange={handleChange}
+        onFocus={onFocus}
+        onBlur={() => onBlur()}
+        inputProps={inputProps}
+        multi={!!multiple}
+        joinValues={!!multiple}
+        loadOptions={loadOptions}
+        {...props}
+      />)
+    }
       {errorMessage}
       <HelpBlock>{helpText}</HelpBlock>
     </FormGroup>

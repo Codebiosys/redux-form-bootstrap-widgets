@@ -97,6 +97,23 @@ const ContactForm = () => (
     />
 
     <Field
+      name="field8"
+      component={SelectField}
+      labelKey={'label'}
+      valueKey={'value'}
+      label="Input Text 8"
+      validate={required}
+
+      helpText="here to help"
+      loadOptions={input => Promise.resolve({
+        options: [
+          { label: 'one', value: 1 },
+          { label: 'two', value: 2 },
+          { label: 'three', value: 3 },
+        ],
+      })}
+    />
+    <Field
       name="field2"
       component={TextField}
       label="Input Text 2"
