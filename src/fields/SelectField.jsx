@@ -8,30 +8,24 @@ import 'react-select/dist/react-select.css';
 
 class SelectField extends Component {
 
-  state = { selected: undefined }
-
-  componentWillReceiveProps = (nextProps) => {
-    this.setState({ selected: _.get(nextProps, 'input.value', null) });
-  }
-
   handleBlur = (event) => {
-    this.props.input.onBlur(this.state.selected);
+    this.props.input.onBlur(this.props.input.value);
   }
 
   handleChange = (option) => {
     if (this.props.multiple) {
       const value = _.map(option, opt => _.get(opt, this.props.valueKey));
       let newVals;
-      if (_.difference(this.state.selected, value).length) {
-        newVals = _.intersection(this.state.selected, value);
+      if (_.difference(this.props.input.value, value).length) {
+        newVals = _.intersection(this.props.input.value, value);
       } else {
-        newVals = _.union(this.state.selected, value);
+        newVals = _.union(this.props.input.value, value);
       }
-      this.setState({ selected: newVals });
+      // this.setState({ selected: newVals });
       this.props.input.onChange(newVals);
     } else {
       const value = _.get(option, this.props.valueKey, null);
-      this.setState({ selected: value });
+      // this.setState({ selected: value });
       this.props.input.onChange(value);
     }
   }
