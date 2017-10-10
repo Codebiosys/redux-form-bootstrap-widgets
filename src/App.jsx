@@ -21,15 +21,14 @@ const ContactForm = () => (
     <Field
       name="field6"
       component={ToggleField}
-      label="Input Text 6"
-      validate={required}
+      label="Toggle Field"
       helpText="here to help"
     />
 
     <Field
       name="field5"
       component={CheckBoxField}
-      label="Input Text 5"
+      label="Checkbox Field"
       validate={required}
       helpText="here to help"
       inline
@@ -43,7 +42,7 @@ const ContactForm = () => (
     <Field
       name="field4"
       component={DateTimeField}
-      label="Input Text 4"
+      label="Date Field"
       validate={required}
       helpText="here to help"
       dateFormat="DD/MMM/YYYY"
@@ -53,7 +52,7 @@ const ContactForm = () => (
     <Field
       name="field1"
       component={RadioField}
-      label="Input Text 3"
+      label="Radio Field"
       validate={required}
       helpText="here to help"
 
@@ -69,7 +68,7 @@ const ContactForm = () => (
       component={SelectField}
       labelKey={'label'}
       valueKey={'value'}
-      label="Input Text 3"
+      label="Multi select Field"
       validate={required}
       multiple
       helpText="here to help"
@@ -85,7 +84,7 @@ const ContactForm = () => (
       component={SelectField}
       labelKey={'label'}
       valueKey={'value'}
-      label="Input Text 7"
+      label="Select Field"
       validate={required}
 
       helpText="here to help"
@@ -101,9 +100,8 @@ const ContactForm = () => (
       component={SelectField}
       labelKey={'label'}
       valueKey={'value'}
-      label="Input Text 8"
+      label="Async Select field"
       validate={required}
-
       helpText="here to help"
       loadOptions={input => Promise.resolve({
         options: [
@@ -116,12 +114,23 @@ const ContactForm = () => (
     <Field
       name="field2"
       component={TextField}
-      label="Input Text 2"
+      label="Text Field"
       type="text"
-      validate={required}
+      warn={required}
       addOnAfter={(<InputGroup.Addon>.00</InputGroup.Addon>)}
 
     />
+    <Field
+      name="field12"
+      component={TextField}
+      label="Password Field"
+      type="password"
+      validate={required}
+    />
+    <h1>text area</h1>
+    <h1>rich text</h1>
+    <h1>typeahead creatable</h1>
+    <h2>mark fields as required.</h2>
   </Form>
   );
 

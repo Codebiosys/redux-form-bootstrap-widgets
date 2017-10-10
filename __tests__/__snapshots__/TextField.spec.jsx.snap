@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Filtering Text Field renders 1`] = `
+<FormGroup
+  bsClass="form-group"
+  controlId="fieldName"
+>
+  <ControlLabel
+    bsClass="control-label"
+    srOnly={false}
+  >
+    Text Test
+  </ControlLabel>
+  <InputGroup
+    bsClass="input-group"
+  >
+    <FormControl
+      bsClass="form-control"
+      componentClass="input"
+      name="fieldName"
+      style={
+        Object {
+          "zIndex": "0",
+        }
+      }
+    />
+    <InputGroupButton
+      bsClass="input-group-btn"
+    >
+      <Button
+        active={false}
+        block={false}
+        bsClass="btn"
+        bsStyle="default"
+        disabled={true}
+        onClick={[Function]}
+        style={
+          Object {
+            "zIndex": "0",
+          }
+        }
+      >
+        <Glyphicon
+          bsClass="glyphicon"
+          glyph="remove"
+        />
+      </Button>
+    </InputGroupButton>
+  </InputGroup>
+  <HelpBlock
+    bsClass="help-block"
+  />
+</FormGroup>
+`;
