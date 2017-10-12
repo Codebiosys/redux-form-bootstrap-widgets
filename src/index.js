@@ -1,6 +1,7 @@
-export CheckBoxField from './CheckBoxField';
-export DateTimeField from './DateTimeField';
-export RadioField from './RadioField';
-export SelectField from './SelectField';
-export TextField from './TextField';
-export ToggleField from './ToggleField';
+
+export { default as TextField } from './TextField';
+export { default as CheckBoxField } from './CheckBoxField';
+export { default as DateTimeField } from './DateTimeField';
+export { default as RadioField } from './RadioField';
+export { default as SelectField } from './SelectField';
+export { default as ToggleField } from './ToggleField';

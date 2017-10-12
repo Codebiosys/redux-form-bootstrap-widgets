@@ -56,7 +56,7 @@ const SelectField = ({
         onBlur={() => onBlur()}
         inputProps={inputProps}
         multi={!!multiple}
-        joinValues={!!multiple}
+        joinValues
         options={options}
         {...props}
       />) : (<Select.Async
@@ -69,7 +69,7 @@ const SelectField = ({
         onBlur={() => onBlur()}
         inputProps={inputProps}
         multi={!!multiple}
-        joinValues={!!multiple}
+        joinValues
         loadOptions={loadOptions}
         {...props}
       />)

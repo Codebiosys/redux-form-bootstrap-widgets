@@ -12,12 +12,13 @@ config.plugins = config.plugins.concat([
      }
   }),
   new webpack.optimize.UglifyJsPlugin({
-      compress: {
-          warnings: false,
-      },
-      output: {
-          comments: false,
-      }})
+      compressor: {
+        pure_getters: true,
+        unsafe: true,
+        unsafe_comps: true,
+        warnings: false
+      }
+    })
 ]);
 
 module.exports = config;
