@@ -3,11 +3,14 @@
   "presets": ["env", "es2015", "stage-0", "react"],
   "env": {
     "test": {
-      "presets": ["env", "es2015", "stage-0", "react", "jest"],
+      "presets": ["jest"],
       "plugins": ["transform-es2015-modules-commonjs", "transform-class-properties"]
     },
     "dev": {
-      "presets": ["env", "es2015", "stage-0", "react", "react-hmre"],
+      "presets": ["react-hmre"],
+    },
+    "production": {
+      "plugins": ["transform-react-remove-prop-types"]
     }
   }
 }
