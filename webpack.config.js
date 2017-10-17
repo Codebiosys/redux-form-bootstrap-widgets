@@ -32,7 +32,13 @@
          commonjs: ['react-dom'],
          amd: 'react-dom',
        },
-       'bootstrap': 'bootstrap'
+       'bootstrap': 'bootstrap',
+       "lodash": 'lodash',
+       "moment": 'moment',
+       "react-datetime":'react-datetime',
+       "react-toggle": 'react-toggle',
+       "react-select": 'react-select',
+       "react-bootstrap":'react-bootstrap'
      },
 
    module: {

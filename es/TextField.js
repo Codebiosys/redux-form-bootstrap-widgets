@@ -29,13 +29,41 @@ var TextField = function TextField(_ref) {
       meta = _ref.meta,
       addOnBefore = _ref.addOnBefore,
       addOnAfter = _ref.addOnAfter,
-      props = _objectWithoutProperties(_ref, ['label', 'helpText', 'input', 'meta', 'addOnBefore', 'addOnAfter']);
+      type = _ref.type,
+      props = _objectWithoutProperties(_ref, ['label', 'helpText', 'input', 'meta', 'addOnBefore', 'addOnAfter', 'type']);
 
   var name = input.name;
 
   var _validationMessage = (0, _utils2.default)(meta),
       validationState = _validationMessage.validationState,
       errorMessage = _validationMessage.errorMessage;
+
+  var typeConfig = {};
+  var inputStyle = { zIndex: '0' };
+  var groupStyle = {};
+
+  if (type && type !== 'textarea') {
+    typeConfig.type = type;
+  } else if (type && type === 'textarea') {
+    typeConfig.componentClass = 'textarea';
+    groupStyle.width = '100%';
+  }
+
+  var ClearButton = React.createElement(
+    _reactBootstrap.InputGroup.Button,
+    null,
+    React.createElement(
+      _reactBootstrap.Button,
+      {
+        style: { zIndex: '0' },
+        onClick: function () {
+          return input.onChange(null);
+        },
+        disabled: !input.value
+      },
+      React.createElement(_reactBootstrap.Glyphicon, { glyph: 'remove' })
+    )
+  );
 
   return React.createElement(
     _reactBootstrap.FormGroup,
@@ -50,27 +78,13 @@ var TextField = function TextField(_ref) {
     ),
     React.createElement(
       _reactBootstrap.InputGroup,
-      null,
+      { style: groupStyle },
       addOnBefore,
       React.createElement(_reactBootstrap.FormControl, _extends({
-        style: { zIndex: '0' }
-      }, input, props)),
+        style: inputStyle
+      }, typeConfig, input, props)),
       addOnAfter,
-      React.createElement(
-        _reactBootstrap.InputGroup.Button,
-        null,
-        React.createElement(
-          _reactBootstrap.Button,
-          {
-            style: { zIndex: '0' },
-            onClick: function () {
-              return input.onChange(null);
-            },
-            disabled: !input.value
-          },
-          React.createElement(_reactBootstrap.Glyphicon, { glyph: 'remove' })
-        )
-      )
+      typeConfig.componentClass ? '' : ClearButton
     ),
     errorMessage,
     React.createElement(
