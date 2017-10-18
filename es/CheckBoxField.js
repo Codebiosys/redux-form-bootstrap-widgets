@@ -24,14 +24,14 @@ require('bootstrap/dist/css/bootstrap.css');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 var CheckBoxField = function CheckBoxField(_ref) {
   var label = _ref.label,
       helpText = _ref.helpText,
       meta = _ref.meta,
+      valueKey = _ref.valueKey,
+      labelKey = _ref.labelKey,
       _ref$input = _ref.input,
       name = _ref$input.name,
       value = _ref$input.value,
@@ -39,18 +39,21 @@ var CheckBoxField = function CheckBoxField(_ref) {
       onChange = _ref$input.onChange,
       onBlur = _ref$input.onBlur,
       options = _ref.options,
-      props = _objectWithoutProperties(_ref, ['label', 'helpText', 'meta', 'input', 'options']);
+      props = _objectWithoutProperties(_ref, ['label', 'helpText', 'meta', 'valueKey', 'labelKey', 'input', 'options']);
 
   var _validationMessage = (0, _utils2.default)(meta),
       validationState = _validationMessage.validationState,
       errorMessage = _validationMessage.errorMessage;
 
+  var checkValueKey = valueKey || 'value';
+  var checkLabelKey = labelKey || 'label';
+
   var checkboxes = options.map(function (_ref2, index) {
-    var checkLabel = _ref2.label,
-        checkValue = _ref2.value;
+    var checkLabel = _ref2[checkLabelKey],
+        checkValue = _ref2[checkValueKey];
 
     var handleChange = function handleChange(event) {
-      var arr = [].concat(_toConsumableArray(value));
+      var arr = _lodash2.default.toArray(value);
       if (event.target.checked) {
         arr = _lodash2.default.union(value, [checkValue]);
       } else {
@@ -66,8 +69,8 @@ var CheckBoxField = function CheckBoxField(_ref) {
     return React.createElement(
       _reactBootstrap.Checkbox,
       _extends({
-        key: name + '[' + index + ']' // eslint-disable-line
-        , name: name + '[' + index + ']',
+        key: name + '_' + index // eslint-disable-line
+        , name: name + '_' + index,
         value: checkValue,
         checked: _lodash2.default.find(value, checkValue),
         onChange: handleChange,

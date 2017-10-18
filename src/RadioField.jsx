@@ -18,14 +18,16 @@ const RadioField = ({
   helpText,
   input: { name, onBlur, value, ...inputProps },
   meta,
+  valueKey,
+  labelKey,
   ...props
 }) => {
   const { validationState, errorMessage } = validationMessage(meta);
-
+  const radioValueKey = valueKey || 'value';
+  const radioLabelKey = labelKey || 'label';
   const handleClick = (event) => {
-    if (event.target.value === value) {
-      inputProps.onChange(null);
-    }
+    const changeValue = event.target.value === value ? null : event.target.value;
+    inputProps.onChange(changeValue);
     onBlur();
   };
 
@@ -37,17 +39,17 @@ const RadioField = ({
       <ControlLabel>{label}</ControlLabel>
       <InputGroup>
         {_.map(options, option => (
-          <div key={`${name}--${option.value}`}>
+          <div key={`${name}_${option[radioValueKey]}`}>
             <Radio
               name={name}
               {...inputProps}
-              checked={`${option.value}` === `${value}`}
-              value={option.value}
+              checked={`${option[radioValueKey]}` === `${value}`}
+              value={option[radioValueKey]}
               onBlur={() => onBlur()}
               onClick={handleClick}
               {...props}
             >
-              {option.label}
+              {option[radioLabelKey]}
             </Radio>
             {option.description}
           </div>

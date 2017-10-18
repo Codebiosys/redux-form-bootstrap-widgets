@@ -20,19 +20,16 @@ const SelectField = ({
   loadOptions,
   ...props
 }) => {
+  const selectValueKey = valueKey || 'value';
+
   const handleChange = (selected) => {
     const selectedList = _.castArray(selected);
-    const selectedVals = _.map(selectedList, opt => _.get(opt, valueKey));
+    const selectedVals = _.map(selectedList, opt => _.get(opt, selectValueKey));
     let changed;
     if (!multiple) {
-      changed = _.get(_.head(selectedList), valueKey, null);
+      changed = _.get(_.head(selectedList), selectValueKey, null);
     } else {
-      if (_.difference(value, selectedVals).length) {
-        changed = _.intersection(value, selectedVals);
-      } else {
-        changed = _.union(value, selectedVals);
-      }
-      changed = changed.length ? changed : null;
+      changed = selectedVals.length ? selectedVals : null;
     }
     onChange(changed);
   };
@@ -49,7 +46,7 @@ const SelectField = ({
       {options ? (<Select
         name={name}
         value={value}
-        valueKey={valueKey}
+        valueKey={selectValueKey}
         autoBlur
         onChange={handleChange}
         onFocus={onFocus}
@@ -62,7 +59,7 @@ const SelectField = ({
       />) : (<Select.Async
         name={name}
         value={value}
-        valueKey={valueKey}
+        valueKey={selectValueKey}
         autoBlur
         onChange={handleChange}
         onFocus={onFocus}

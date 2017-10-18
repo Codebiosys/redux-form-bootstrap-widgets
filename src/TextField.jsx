@@ -19,31 +19,52 @@ const TextField = ({
   meta,
   addOnBefore,
   addOnAfter,
+  type,
+  componentClass,
   ...props
 }) => {
-  const { name } = input;
+  const { name, onChange } = input;
   const { validationState, errorMessage } = validationMessage(meta);
+
+  const typeConfig = {};
+  const inputStyle = { zIndex: '0' };
+  const groupStyle = {};
+
+  if (type === 'textarea' || componentClass === 'textarea') {
+    typeConfig.componentClass = 'textarea';
+    groupStyle.width = '100%';
+  } else if (type) {
+    typeConfig.type = type;
+  }
+
+  const clearContent = () => onChange(null);
+
+  const ClearButton = (
+    <InputGroup.Button>
+      <Button
+        style={{ zIndex: '0' }}
+        onClick={clearContent}
+        disabled={!input.value}
+      ><Glyphicon glyph="remove" /></Button>
+    </InputGroup.Button>
+  );
+
   return (
     <FormGroup
       controlId={name}
       validationState={validationState}
     >
       <ControlLabel>{label}</ControlLabel>
-      <InputGroup>
-        {addOnBefore}
+      <InputGroup style={groupStyle}>
+        {typeConfig.componentClass ? '' : addOnBefore }
         <FormControl
-          style={{ zIndex: '0' }}
+          style={inputStyle}
+          {...typeConfig}
           {...input}
           {...props}
         />
-        {addOnAfter}
-        <InputGroup.Button>
-          <Button
-            style={{ zIndex: '0' }}
-            onClick={() => input.onChange(null)}
-            disabled={!input.value}
-          ><Glyphicon glyph="remove" /></Button>
-        </InputGroup.Button>
+        {typeConfig.componentClass ? '' : addOnAfter }
+        {typeConfig.componentClass ? '' : ClearButton }
       </InputGroup>
       {errorMessage}
       <HelpBlock>{helpText}</HelpBlock>
