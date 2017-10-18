@@ -80589,7 +80589,7 @@ var RadioField = function RadioField(_ref) {
   var handleClick = function handleClick(event) {
     var changeValue = event.target.value === value ? null : event.target.value;
     inputProps.onChange(changeValue);
-    // onBlur();
+    _onBlur();
   };
 
   return _react2.default.createElement(
@@ -80698,21 +80698,18 @@ var SelectField = function SelectField(_ref) {
       loadOptions = _ref.loadOptions,
       props = _objectWithoutProperties(_ref, ['label', 'helpText', 'multiple', 'valueKey', 'input', 'meta', 'options', 'loadOptions']);
 
+  var selectValueKey = valueKey || 'value';
+
   var handleChange = function handleChange(selected) {
     var selectedList = _lodash2.default.castArray(selected);
     var selectedVals = _lodash2.default.map(selectedList, function (opt) {
-      return _lodash2.default.get(opt, valueKey);
+      return _lodash2.default.get(opt, selectValueKey);
     });
     var changed = void 0;
     if (!multiple) {
-      changed = _lodash2.default.get(_lodash2.default.head(selectedList), valueKey, null);
+      changed = _lodash2.default.get(_lodash2.default.head(selectedList), selectValueKey, null);
     } else {
-      if (_lodash2.default.difference(value, selectedVals).length) {
-        changed = _lodash2.default.intersection(value, selectedVals);
-      } else {
-        changed = _lodash2.default.union(value, selectedVals);
-      }
-      changed = changed.length ? changed : null;
+      changed = selectedVals.length ? selectedVals : null;
     }
     onChange(changed);
   };
@@ -80735,7 +80732,7 @@ var SelectField = function SelectField(_ref) {
     options ? _react2.default.createElement(_reactSelect2.default, _extends({
       name: name,
       value: value,
-      valueKey: valueKey,
+      valueKey: selectValueKey,
       autoBlur: true,
       onChange: handleChange,
       onFocus: onFocus,
@@ -80749,7 +80746,7 @@ var SelectField = function SelectField(_ref) {
     }, props)) : _react2.default.createElement(_reactSelect2.default.Async, _extends({
       name: name,
       value: value,
-      valueKey: valueKey,
+      valueKey: selectValueKey,
       autoBlur: true,
       onChange: handleChange,
       onFocus: onFocus,

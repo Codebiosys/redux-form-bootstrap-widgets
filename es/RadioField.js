@@ -49,7 +49,7 @@ var RadioField = function RadioField(_ref) {
   var handleClick = function handleClick(event) {
     var changeValue = event.target.value === value ? null : event.target.value;
     inputProps.onChange(changeValue);
-    // onBlur();
+    onBlur();
   };
 
   return React.createElement(
