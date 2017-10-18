@@ -1,0 +1,369 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Radio Field renders 1`] = `
+<RadioField
+  helpText="The help Text"
+  input={
+    Object {
+      "name": "fieldName",
+      "onBlur": [Function],
+      "onChange": [Function],
+      "onFocus": [Function],
+    }
+  }
+  label="CheckBox  Test"
+  meta={
+    Object {
+      "form": "formName",
+      "pristine": false,
+    }
+  }
+  options={
+    Array [
+      Object {
+        "label": "Option 1",
+        "value": "One",
+      },
+      Object {
+        "label": "Option 2",
+        "value": "Two",
+      },
+      Object {
+        "label": "Option 3",
+        "value": "Three",
+      },
+    ]
+  }
+>
+  <FormGroup
+    bsClass="form-group"
+    controlId="fieldName"
+  >
+    <div
+      className="form-group"
+    >
+      <ControlLabel
+        bsClass="control-label"
+        srOnly={false}
+      >
+        <label
+          className="control-label"
+          htmlFor="fieldName"
+        >
+          CheckBox  Test
+        </label>
+      </ControlLabel>
+      <InputGroup
+        bsClass="input-group"
+      >
+        <span
+          className="input-group"
+        >
+          <div>
+            <Radio
+              bsClass="radio"
+              checked={false}
+              disabled={false}
+              inline={false}
+              name="fieldName"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              title=""
+              value="One"
+            >
+              <div
+                className="radio"
+              >
+                <label
+                  title=""
+                >
+                  <input
+                    checked={false}
+                    disabled={false}
+                    name="fieldName"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    type="radio"
+                    value="One"
+                  />
+                  Option 1
+                </label>
+              </div>
+            </Radio>
+          </div>
+          <div>
+            <Radio
+              bsClass="radio"
+              checked={false}
+              disabled={false}
+              inline={false}
+              name="fieldName"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              title=""
+              value="Two"
+            >
+              <div
+                className="radio"
+              >
+                <label
+                  title=""
+                >
+                  <input
+                    checked={false}
+                    disabled={false}
+                    name="fieldName"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    type="radio"
+                    value="Two"
+                  />
+                  Option 2
+                </label>
+              </div>
+            </Radio>
+          </div>
+          <div>
+            <Radio
+              bsClass="radio"
+              checked={false}
+              disabled={false}
+              inline={false}
+              name="fieldName"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              title=""
+              value="Three"
+            >
+              <div
+                className="radio"
+              >
+                <label
+                  title=""
+                >
+                  <input
+                    checked={false}
+                    disabled={false}
+                    name="fieldName"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    type="radio"
+                    value="Three"
+                  />
+                  Option 3
+                </label>
+              </div>
+            </Radio>
+          </div>
+        </span>
+      </InputGroup>
+      <HelpBlock
+        bsClass="help-block"
+      >
+        <span
+          className="help-block"
+        >
+          The help Text
+        </span>
+      </HelpBlock>
+    </div>
+  </FormGroup>
+</RadioField>
+`;
+
+exports[`The Radio Field renders with custom options 1`] = `
+<RadioField
+  helpText="The help Text"
+  input={
+    Object {
+      "name": "fieldName",
+      "onBlur": [Function],
+      "onChange": [Function],
+      "onFocus": [Function],
+    }
+  }
+  label="CheckBox  Test"
+  labelKey="foo"
+  meta={
+    Object {
+      "form": "formName",
+      "pristine": false,
+    }
+  }
+  options={
+    Array [
+      Object {
+        "bar": "One",
+        "foo": "Option 1",
+      },
+      Object {
+        "bar": "Two",
+        "foo": "Option 2",
+      },
+      Object {
+        "bar": "Three",
+        "foo": "Option 3",
+      },
+    ]
+  }
+  valueKey="bar"
+>
+  <FormGroup
+    bsClass="form-group"
+    controlId="fieldName"
+  >
+    <div
+      className="form-group"
+    >
+      <ControlLabel
+        bsClass="control-label"
+        srOnly={false}
+      >
+        <label
+          className="control-label"
+          htmlFor="fieldName"
+        >
+          CheckBox  Test
+        </label>
+      </ControlLabel>
+      <InputGroup
+        bsClass="input-group"
+      >
+        <span
+          className="input-group"
+        >
+          <div>
+            <Radio
+              bsClass="radio"
+              checked={false}
+              disabled={false}
+              inline={false}
+              name="fieldName"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              title=""
+              value="One"
+            >
+              <div
+                className="radio"
+              >
+                <label
+                  title=""
+                >
+                  <input
+                    checked={false}
+                    disabled={false}
+                    name="fieldName"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    type="radio"
+                    value="One"
+                  />
+                  Option 1
+                </label>
+              </div>
+            </Radio>
+          </div>
+          <div>
+            <Radio
+              bsClass="radio"
+              checked={false}
+              disabled={false}
+              inline={false}
+              name="fieldName"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              title=""
+              value="Two"
+            >
+              <div
+                className="radio"
+              >
+                <label
+                  title=""
+                >
+                  <input
+                    checked={false}
+                    disabled={false}
+                    name="fieldName"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    type="radio"
+                    value="Two"
+                  />
+                  Option 2
+                </label>
+              </div>
+            </Radio>
+          </div>
+          <div>
+            <Radio
+              bsClass="radio"
+              checked={false}
+              disabled={false}
+              inline={false}
+              name="fieldName"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              title=""
+              value="Three"
+            >
+              <div
+                className="radio"
+              >
+                <label
+                  title=""
+                >
+                  <input
+                    checked={false}
+                    disabled={false}
+                    name="fieldName"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    type="radio"
+                    value="Three"
+                  />
+                  Option 3
+                </label>
+              </div>
+            </Radio>
+          </div>
+        </span>
+      </InputGroup>
+      <HelpBlock
+        bsClass="help-block"
+      >
+        <span
+          className="help-block"
+        >
+          The help Text
+        </span>
+      </HelpBlock>
+    </div>
+  </FormGroup>
+</RadioField>
+`;

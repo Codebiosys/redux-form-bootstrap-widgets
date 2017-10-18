@@ -1,7 +1,7 @@
 /* eslint-disable import/first */
 
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import { InputGroup } from 'react-bootstrap';
 
 import { TextField } from 'index';

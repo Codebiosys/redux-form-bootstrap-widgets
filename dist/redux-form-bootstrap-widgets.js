@@ -77971,8 +77971,6 @@ __webpack_require__(54);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 var CheckBoxField = function CheckBoxField(_ref) {
@@ -78002,7 +78000,7 @@ var CheckBoxField = function CheckBoxField(_ref) {
         checkValue = _ref2[checkValueKey];
 
     var handleChange = function handleChange(event) {
-      var arr = [].concat(_toConsumableArray(value));
+      var arr = _lodash2.default.toArray(value);
       if (event.target.checked) {
         arr = _lodash2.default.union(value, [checkValue]);
       } else {
@@ -80578,17 +80576,20 @@ var RadioField = function RadioField(_ref) {
       value = _ref$input.value,
       inputProps = _objectWithoutProperties(_ref$input, ['name', 'onBlur', 'value']),
       meta = _ref.meta,
-      props = _objectWithoutProperties(_ref, ['label', 'options', 'helpText', 'input', 'meta']);
+      valueKey = _ref.valueKey,
+      labelKey = _ref.labelKey,
+      props = _objectWithoutProperties(_ref, ['label', 'options', 'helpText', 'input', 'meta', 'valueKey', 'labelKey']);
 
   var _validationMessage = (0, _utils2.default)(meta),
       validationState = _validationMessage.validationState,
       errorMessage = _validationMessage.errorMessage;
 
+  var radioValueKey = valueKey || 'value';
+  var radioLabelKey = labelKey || 'label';
   var handleClick = function handleClick(event) {
-    if (event.target.value === value) {
-      inputProps.onChange(null);
-    }
-    _onBlur();
+    var changeValue = event.target.value === value ? null : event.target.value;
+    inputProps.onChange(changeValue);
+    // onBlur();
   };
 
   return _react2.default.createElement(
@@ -80608,20 +80609,20 @@ var RadioField = function RadioField(_ref) {
       _lodash2.default.map(options, function (option) {
         return _react2.default.createElement(
           'div',
-          { key: name + '--' + option.value },
+          { key: name + '_' + option[radioValueKey] },
           _react2.default.createElement(
             _reactBootstrap.Radio,
             _extends({
               name: name
             }, inputProps, {
-              checked: '' + option.value === '' + value,
-              value: option.value,
+              checked: '' + option[radioValueKey] === '' + value,
+              value: option[radioValueKey],
               onBlur: function onBlur() {
                 return _onBlur();
               },
               onClick: handleClick
             }, props),
-            option.label
+            option[radioLabelKey]
           ),
           option.description
         );

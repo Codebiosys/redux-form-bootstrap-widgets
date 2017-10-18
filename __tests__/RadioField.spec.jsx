@@ -3,7 +3,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-import { CheckBoxField } from 'index';
+import { RadioField } from 'index';
 
 const fieldProps = {
   input: {
@@ -27,7 +27,7 @@ const fieldProps = {
 
 const selectedFieldProps = { ...fieldProps };
 selectedFieldProps.input = { ...fieldProps.input };
-selectedFieldProps.input.value = ['One'];
+selectedFieldProps.input.value = 'One';
 
 const customOptionFieldProps = { ...fieldProps };
 customOptionFieldProps.labelKey = 'foo';
@@ -37,11 +37,11 @@ customOptionFieldProps.options = [
   { foo: 'Option 2', bar: 'Two' },
   { foo: 'Option 3', bar: 'Three' }];
 
-describe('The Checkbox Field', () => {
+describe('The Radio Field', () => {
   let inputWrapper;
 
   beforeEach(() => {
-    inputWrapper = mount(<CheckBoxField {...fieldProps} />);
+    inputWrapper = mount(<RadioField {...fieldProps} />);
   });
 
   it('renders', () => {
@@ -49,27 +49,29 @@ describe('The Checkbox Field', () => {
   });
 
   it('renders with custom options', () => {
-    inputWrapper = mount(<CheckBoxField {...customOptionFieldProps} />);
+    inputWrapper = mount(<RadioField {...customOptionFieldProps} />);
     expect(inputWrapper).toMatchSnapshot();
   });
   it('triggers the focus when focused', () => {
-    inputWrapper.find(`input[name="${fieldProps.input.name}_0"]`).simulate('focus');
+    inputWrapper.find('input[value="One"]').simulate('focus');
     expect(fieldProps.input.onFocus).toHaveBeenCalledTimes(1);
   });
 
-  it('calls onChange and onBlur when the checkbox is selected', () => {
-    inputWrapper.find(`input[name="${fieldProps.input.name}_0"]`).simulate('change', { target: { checked: true } });
+  it('triggers the blur when blurred', () => {
+    inputWrapper.find('input[value="One"]').simulate('blur');
+    expect(fieldProps.input.onBlur).toHaveBeenCalledTimes(1);
+  });
+  it('calls onChange when the radio is selected', () => {
+    inputWrapper.find('input[value="One"]').simulate('click');
     expect(fieldProps.input.onChange).toHaveBeenCalledTimes(1);
     expect(fieldProps.input.onBlur).toHaveBeenCalledTimes(1);
-    expect(fieldProps.input.onChange).toHaveBeenCalledWith(['One']);
+    expect(fieldProps.input.onChange).toHaveBeenCalledWith('One');
   });
 
-  it('calls onChange and onBlur when the checkbox is deselected', () => {
-    inputWrapper = mount(<CheckBoxField {...selectedFieldProps} />);
-
-    inputWrapper.find(`input[name="${fieldProps.input.name}_0"]`).simulate('change', { target: { checked: false } });
+  it('clears value  when the radio is deselected', () => {
+    inputWrapper = mount(<RadioField {...selectedFieldProps} />);
+    inputWrapper.find('input[value="One"]').simulate('click');
     expect(fieldProps.input.onChange).toHaveBeenCalledTimes(1);
-    expect(fieldProps.input.onBlur).toHaveBeenCalledTimes(1);
     expect(fieldProps.input.onChange).toHaveBeenCalledWith(null);
   });
 });
