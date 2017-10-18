@@ -1,54 +1,254 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`The Filtering Text Field renders 1`] = `
-<FormGroup
-  bsClass="form-group"
-  controlId="fieldName"
->
-  <ControlLabel
-    bsClass="control-label"
-    srOnly={false}
-  >
-    Text Test
-  </ControlLabel>
-  <InputGroup
-    bsClass="input-group"
-  >
-    <FormControl
-      bsClass="form-control"
-      componentClass="input"
-      name="fieldName"
-      style={
-        Object {
-          "zIndex": "0",
-        }
-      }
-    />
-    <InputGroupButton
-      bsClass="input-group-btn"
+exports[`The Text Field displays a textarea when the type is textarea 1`] = `
+<TextField
+  addOnAfter={
+    <div
+      id="after_addon"
     >
-      <Button
-        active={false}
-        block={false}
-        bsClass="btn"
-        bsStyle="default"
-        disabled={true}
-        onClick={[Function]}
+      after
+    </div>
+  }
+  addOnBefore={
+    <div
+      id="before_addon"
+    >
+      before
+    </div>
+  }
+  helpText="The help Text"
+  input={
+    Object {
+      "name": "fieldName",
+      "onChange": [Function],
+    }
+  }
+  label="Text Test"
+  meta={
+    Object {
+      "form": "formName",
+      "pristine": false,
+    }
+  }
+  type="textarea"
+>
+  <FormGroup
+    bsClass="form-group"
+    controlId="fieldName"
+  >
+    <div
+      className="form-group"
+    >
+      <ControlLabel
+        bsClass="control-label"
+        srOnly={false}
+      >
+        <label
+          className="control-label"
+          htmlFor="fieldName"
+        >
+          Text Test
+        </label>
+      </ControlLabel>
+      <InputGroup
+        bsClass="input-group"
         style={
           Object {
-            "zIndex": "0",
+            "width": "100%",
           }
         }
       >
-        <Glyphicon
-          bsClass="glyphicon"
-          glyph="remove"
-        />
-      </Button>
-    </InputGroupButton>
-  </InputGroup>
-  <HelpBlock
-    bsClass="help-block"
-  />
-</FormGroup>
+        <span
+          className="input-group"
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        >
+          <FormControl
+            bsClass="form-control"
+            componentClass="textarea"
+            name="fieldName"
+            onChange={[Function]}
+            style={
+              Object {
+                "zIndex": "0",
+              }
+            }
+          >
+            <textarea
+              className="form-control"
+              id="fieldName"
+              name="fieldName"
+              onChange={[Function]}
+              style={
+                Object {
+                  "zIndex": "0",
+                }
+              }
+            />
+          </FormControl>
+        </span>
+      </InputGroup>
+      <HelpBlock
+        bsClass="help-block"
+      >
+        <span
+          className="help-block"
+        >
+          The help Text
+        </span>
+      </HelpBlock>
+    </div>
+  </FormGroup>
+</TextField>
+`;
+
+exports[`The Text Field renders 1`] = `
+<TextField
+  addOnAfter={
+    <div
+      id="after_addon"
+    >
+      after
+    </div>
+  }
+  addOnBefore={
+    <div
+      id="before_addon"
+    >
+      before
+    </div>
+  }
+  helpText="The help Text"
+  input={
+    Object {
+      "name": "fieldName",
+      "onChange": [Function],
+    }
+  }
+  label="Text Test"
+  meta={
+    Object {
+      "form": "formName",
+      "pristine": false,
+    }
+  }
+>
+  <FormGroup
+    bsClass="form-group"
+    controlId="fieldName"
+  >
+    <div
+      className="form-group"
+    >
+      <ControlLabel
+        bsClass="control-label"
+        srOnly={false}
+      >
+        <label
+          className="control-label"
+          htmlFor="fieldName"
+        >
+          Text Test
+        </label>
+      </ControlLabel>
+      <InputGroup
+        bsClass="input-group"
+        style={Object {}}
+      >
+        <span
+          className="input-group"
+          style={Object {}}
+        >
+          <div
+            id="before_addon"
+          >
+            before
+          </div>
+          <FormControl
+            bsClass="form-control"
+            componentClass="input"
+            name="fieldName"
+            onChange={[Function]}
+            style={
+              Object {
+                "zIndex": "0",
+              }
+            }
+          >
+            <input
+              className="form-control"
+              id="fieldName"
+              name="fieldName"
+              onChange={[Function]}
+              style={
+                Object {
+                  "zIndex": "0",
+                }
+              }
+            />
+          </FormControl>
+          <div
+            id="after_addon"
+          >
+            after
+          </div>
+          <InputGroupButton
+            bsClass="input-group-btn"
+          >
+            <span
+              className="input-group-btn"
+            >
+              <Button
+                active={false}
+                block={false}
+                bsClass="btn"
+                bsStyle="default"
+                disabled={true}
+                onClick={[Function]}
+                style={
+                  Object {
+                    "zIndex": "0",
+                  }
+                }
+              >
+                <button
+                  className="btn btn-default"
+                  disabled={true}
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "zIndex": "0",
+                    }
+                  }
+                  type="button"
+                >
+                  <Glyphicon
+                    bsClass="glyphicon"
+                    glyph="remove"
+                  >
+                    <span
+                      className="glyphicon glyphicon-remove"
+                    />
+                  </Glyphicon>
+                </button>
+              </Button>
+            </span>
+          </InputGroupButton>
+        </span>
+      </InputGroup>
+      <HelpBlock
+        bsClass="help-block"
+      >
+        <span
+          className="help-block"
+        >
+          The help Text
+        </span>
+      </HelpBlock>
+    </div>
+  </FormGroup>
+</TextField>
 `;

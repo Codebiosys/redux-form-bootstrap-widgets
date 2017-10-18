@@ -20,27 +20,30 @@ const TextField = ({
   addOnBefore,
   addOnAfter,
   type,
+  componentClass,
   ...props
 }) => {
-  const { name } = input;
+  const { name, onChange } = input;
   const { validationState, errorMessage } = validationMessage(meta);
 
   const typeConfig = {};
   const inputStyle = { zIndex: '0' };
   const groupStyle = {};
 
-  if (type && type !== 'textarea') {
-    typeConfig.type = type;
-  } else if (type && type === 'textarea') {
+  if (type === 'textarea' || componentClass === 'textarea') {
     typeConfig.componentClass = 'textarea';
     groupStyle.width = '100%';
+  } else if (type) {
+    typeConfig.type = type;
   }
+
+  const clearContent = () => onChange(null);
 
   const ClearButton = (
     <InputGroup.Button>
       <Button
         style={{ zIndex: '0' }}
-        onClick={() => input.onChange(null)}
+        onClick={clearContent}
         disabled={!input.value}
       ><Glyphicon glyph="remove" /></Button>
     </InputGroup.Button>
@@ -53,17 +56,16 @@ const TextField = ({
     >
       <ControlLabel>{label}</ControlLabel>
       <InputGroup style={groupStyle}>
-        {addOnBefore}
+        {typeConfig.componentClass ? '' : addOnBefore }
         <FormControl
           style={inputStyle}
           {...typeConfig}
           {...input}
           {...props}
         />
-        {addOnAfter}
+        {typeConfig.componentClass ? '' : addOnAfter }
         {typeConfig.componentClass ? '' : ClearButton }
       </InputGroup>
-
       {errorMessage}
       <HelpBlock>{helpText}</HelpBlock>
     </FormGroup>

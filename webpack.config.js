@@ -19,27 +19,6 @@
        extensions: ['.js', '.jsx'],
        modules: [pathAppRoot, 'node_modules']
      },
-     externals: {
-       react: {
-         root: 'React',
-         commonjs2: 'react',
-         commonjs: ['react'],
-         amd: 'react',
-       },
-       'react-dom': {
-         root: 'ReactDOM',
-         commonjs2: 'react-dom',
-         commonjs: ['react-dom'],
-         amd: 'react-dom',
-       },
-       'bootstrap': 'bootstrap',
-       "lodash": 'lodash',
-       "moment": 'moment',
-       "react-datetime":'react-datetime',
-       "react-toggle": 'react-toggle',
-       "react-select": 'react-select',
-       "react-bootstrap":'react-bootstrap'
-     },
 
    module: {
     rules: [
@@ -98,6 +77,27 @@
  };
 
  if (process.env.NODE_ENV === 'production') {
+   config.externals = {
+        react: {
+          root: 'React',
+          commonjs2: 'react',
+          commonjs: ['react'],
+          amd: 'react',
+        },
+        'react-dom': {
+          root: 'ReactDOM',
+          commonjs2: 'react-dom',
+          commonjs: ['react-dom'],
+          amd: 'react-dom',
+        },
+        'bootstrap': 'bootstrap',
+        "lodash": 'lodash',
+        "moment": 'moment',
+        "react-datetime":'react-datetime',
+        "react-toggle": 'react-toggle',
+        "react-select": 'react-select',
+        "react-bootstrap":'react-bootstrap'
+      };
    config.plugins.push(
      new webpack.optimize.UglifyJsPlugin({
        compressor: {
