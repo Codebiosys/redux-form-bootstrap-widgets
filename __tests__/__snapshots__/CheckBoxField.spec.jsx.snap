@@ -11,7 +11,7 @@ exports[`The Checkbox Field renders 1`] = `
       "onFocus": [Function],
     }
   }
-  label="CheckBox  Test"
+  label="Checkbox Test"
   meta={
     Object {
       "form": "formName",
@@ -50,7 +50,7 @@ exports[`The Checkbox Field renders 1`] = `
           className="control-label"
           htmlFor="fieldName"
         >
-          CheckBox  Test
+          Checkbox Test
         </label>
       </ControlLabel>
       <InputGroup
@@ -170,7 +170,7 @@ exports[`The Checkbox Field renders with custom options 1`] = `
       "onFocus": [Function],
     }
   }
-  label="CheckBox  Test"
+  label="Checkbox Test"
   labelKey="foo"
   meta={
     Object {
@@ -211,7 +211,7 @@ exports[`The Checkbox Field renders with custom options 1`] = `
           className="control-label"
           htmlFor="fieldName"
         >
-          CheckBox  Test
+          Checkbox Test
         </label>
       </ControlLabel>
       <InputGroup

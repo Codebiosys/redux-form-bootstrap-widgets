@@ -16,7 +16,7 @@ const fieldProps = {
     form: 'formName',
     pristine: false,
   },
-  label: 'CheckBox  Test',
+  label: 'Radio Test',
   helpText: 'The help Text',
   options: [
     { label: 'Option 1', value: 'One' },

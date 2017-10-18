@@ -11,7 +11,7 @@ exports[`The Radio Field renders 1`] = `
       "onFocus": [Function],
     }
   }
-  label="CheckBox  Test"
+  label="Radio Test"
   meta={
     Object {
       "form": "formName",
@@ -50,7 +50,7 @@ exports[`The Radio Field renders 1`] = `
           className="control-label"
           htmlFor="fieldName"
         >
-          CheckBox  Test
+          Radio Test
         </label>
       </ControlLabel>
       <InputGroup
@@ -194,7 +194,7 @@ exports[`The Radio Field renders with custom options 1`] = `
       "onFocus": [Function],
     }
   }
-  label="CheckBox  Test"
+  label="Radio Test"
   labelKey="foo"
   meta={
     Object {
@@ -235,7 +235,7 @@ exports[`The Radio Field renders with custom options 1`] = `
           className="control-label"
           htmlFor="fieldName"
         >
-          CheckBox  Test
+          Radio Test
         </label>
       </ControlLabel>
       <InputGroup
