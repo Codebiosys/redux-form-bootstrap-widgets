@@ -14,39 +14,45 @@ const CheckBoxField = ({
   label,
   helpText,
   meta,
+  valueKey,
+  labelKey,
   input: { name, value, onFocus, onChange, onBlur },
   options,
   ...props
 }) => {
   const { validationState, errorMessage } = validationMessage(meta);
 
-  const checkboxes = options.map(({ label: checkLabel, value: checkValue }, index) => {
-    const handleChange = (event) => {
-      let arr = [...value];
-      if (event.target.checked) {
-        arr = _.union(value, [checkValue]);
-      } else {
-        arr = _.filter(arr, val => val !== checkValue);
-      }
-      arr = arr.length ? arr : null;
-      onBlur();
-      return onChange(arr);
-    };
+  const checkValueKey = valueKey || 'value';
+  const checkLabelKey = labelKey || 'label';
 
-    return (
-      <Checkbox
-        key={`${name}[${index}]`} // eslint-disable-line
-        name={`${name}[${index}]`}
-        value={checkValue}
-        checked={_.find(value, checkValue)}
-        onChange={handleChange}
-        onFocus={onFocus}
-        {...props}
-      >
-        {checkLabel}
-      </Checkbox>
-    );
-  });
+  const checkboxes = options.map(
+    ({ [checkLabelKey]: checkLabel, [checkValueKey]: checkValue }, index) => {
+      const handleChange = (event) => {
+        let arr = _.toArray(value);
+        if (event.target.checked) {
+          arr = _.union(value, [checkValue]);
+        } else {
+          arr = _.filter(arr, val => val !== checkValue);
+        }
+        arr = arr.length ? arr : null;
+        onBlur();
+        return onChange(arr);
+      };
+
+      return (
+        <Checkbox
+        key={`${name}_${index}`} // eslint-disable-line
+          name={`${name}_${index}`}
+          value={checkValue}
+          checked={_.find(value, checkValue)}
+          onChange={handleChange}
+          onFocus={onFocus}
+          {...props}
+        >
+          {checkLabel}
+        </Checkbox>
+      );
+    });
 
   return (
     <FormGroup

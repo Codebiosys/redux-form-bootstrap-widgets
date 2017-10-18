@@ -32,6 +32,8 @@ var CheckBoxField = function CheckBoxField(_ref) {
   var label = _ref.label,
       helpText = _ref.helpText,
       meta = _ref.meta,
+      valueKey = _ref.valueKey,
+      labelKey = _ref.labelKey,
       _ref$input = _ref.input,
       name = _ref$input.name,
       value = _ref$input.value,
@@ -39,15 +41,18 @@ var CheckBoxField = function CheckBoxField(_ref) {
       onChange = _ref$input.onChange,
       onBlur = _ref$input.onBlur,
       options = _ref.options,
-      props = _objectWithoutProperties(_ref, ['label', 'helpText', 'meta', 'input', 'options']);
+      props = _objectWithoutProperties(_ref, ['label', 'helpText', 'meta', 'valueKey', 'labelKey', 'input', 'options']);
 
   var _validationMessage = (0, _utils2.default)(meta),
       validationState = _validationMessage.validationState,
       errorMessage = _validationMessage.errorMessage;
 
+  var checkValueKey = valueKey || 'value';
+  var checkLabelKey = labelKey || 'label';
+
   var checkboxes = options.map(function (_ref2, index) {
-    var checkLabel = _ref2.label,
-        checkValue = _ref2.value;
+    var checkLabel = _ref2[checkLabelKey],
+        checkValue = _ref2[checkValueKey];
 
     var handleChange = function handleChange(event) {
       var arr = [].concat(_toConsumableArray(value));
@@ -66,8 +71,8 @@ var CheckBoxField = function CheckBoxField(_ref) {
     return React.createElement(
       _reactBootstrap.Checkbox,
       _extends({
-        key: name + '[' + index + ']' // eslint-disable-line
-        , name: name + '[' + index + ']',
+        key: name + '_' + index // eslint-disable-line
+        , name: name + '_' + index,
         value: checkValue,
         checked: _lodash2.default.find(value, checkValue),
         onChange: handleChange,
