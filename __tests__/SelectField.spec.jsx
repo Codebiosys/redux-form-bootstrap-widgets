@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { mount } from 'enzyme';
+import { omit } from 'lodash';
 import Select from 'react-select';
 import { SelectField } from 'index';
 
@@ -70,6 +71,17 @@ describe('The Select Field', () => {
     expect(inputWrapper).toMatchSnapshot();
   });
 
+
+  it('has a label when there is a label', () => {
+    expect(inputWrapper.find('ControlLabel').text()).toEqual(fieldProps.label);
+  });
+
+  it('does not have a label when there is no label', () => {
+    const noLabelFieldProps = omit(fieldProps, ['label']);
+    const inputWrapperNoLabel = mount(<SelectField {...noLabelFieldProps} />);
+    expect(inputWrapperNoLabel.find('ControlLabel').isEmpty()).toBe(true);
+  });
+
   it('renders with custom options', () => {
     inputWrapper = mount(<SelectField {...customOptionFieldProps} />);
     expect(inputWrapper).toMatchSnapshot();
@@ -129,5 +141,14 @@ describe('The Select Field', () => {
   it('triggers the onChange with null when value is emtry', () => {
     multipleWrapper.find(Select).prop('onChange')([]);
     expect(multipleFieldProps.input.onChange).toHaveBeenCalledWith(null);
+  });
+
+  it('calls custom validator when the toogle is toggled', () => {
+    const customValidator = jest.fn(() => ({ validationState: null, errorMessage: null }));
+    const validatorProps = { ...fieldProps, customValidation: customValidator };
+    const inputWrapperValidated = mount(<SelectField {...validatorProps} />);
+
+    inputWrapperValidated.find(`input[name="${fieldProps.input.name}"]`).simulate('change', { target: { value: 'Three' } });
+    expect(customValidator).toHaveBeenCalledTimes(1);
   });
 });

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { mount } from 'enzyme';
-
+import { omit } from 'lodash';
 import { RadioField } from 'index';
 
 const fieldProps = {
@@ -48,6 +48,16 @@ describe('The Radio Field', () => {
     expect(inputWrapper).toMatchSnapshot();
   });
 
+  it('has a label when there is a label', () => {
+    expect(inputWrapper.find('ControlLabel').text()).toEqual(fieldProps.label);
+  });
+
+  it('does not have a label when there is no label', () => {
+    const noLabelFieldProps = omit(fieldProps, ['label']);
+    const inputWrapperNoLabel = mount(<RadioField {...noLabelFieldProps} />);
+    expect(inputWrapperNoLabel.find('ControlLabel').isEmpty()).toBe(true);
+  });
+
   it('renders with custom options', () => {
     inputWrapper = mount(<RadioField {...customOptionFieldProps} />);
     expect(inputWrapper).toMatchSnapshot();
@@ -73,5 +83,14 @@ describe('The Radio Field', () => {
     inputWrapper.find('input[value="One"]').simulate('click');
     expect(fieldProps.input.onChange).toHaveBeenCalledTimes(1);
     expect(fieldProps.input.onChange).toHaveBeenCalledWith(null);
+  });
+
+  it('calls custom validator when the toogle is toggled', () => {
+    const customValidator = jest.fn(() => ({ validationState: null, errorMessage: null }));
+    const validatorProps = { ...fieldProps, customValidation: customValidator };
+    const inputWrapperValidated = mount(<RadioField {...validatorProps} />);
+
+    inputWrapperValidated.find('input[value="One"]').simulate('click');
+    expect(customValidator).toHaveBeenCalledTimes(1);
   });
 });

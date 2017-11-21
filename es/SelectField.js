@@ -39,6 +39,7 @@ var SelectField = function SelectField(_ref) {
       helpText = _ref.helpText,
       multiple = _ref.multiple,
       valueKey = _ref.valueKey,
+      customValidation = _ref.customValidation,
       _ref$input = _ref.input,
       name = _ref$input.name,
       onChange = _ref$input.onChange,
@@ -49,7 +50,7 @@ var SelectField = function SelectField(_ref) {
       options = _ref.options,
       loadOptions = _ref.loadOptions,
       inputProps = _objectWithoutProperties(_ref.input, ['name', 'onChange', 'onFocus', 'onBlur', 'value']),
-      props = _objectWithoutProperties(_ref, ['label', 'helpText', 'multiple', 'valueKey', 'input', 'meta', 'options', 'loadOptions']);
+      props = _objectWithoutProperties(_ref, ['label', 'helpText', 'multiple', 'valueKey', 'customValidation', 'input', 'meta', 'options', 'loadOptions']);
 
   var selectValueKey = valueKey || 'value';
 
@@ -67,9 +68,9 @@ var SelectField = function SelectField(_ref) {
     onChange(changed);
   };
 
-  var _validationMessage = (0, _utils2.default)(meta),
-      validationState = _validationMessage.validationState,
-      errorMessage = _validationMessage.errorMessage;
+  var _ref2 = customValidation ? customValidation(meta) : (0, _utils2.default)(meta),
+      validationState = _ref2.validationState,
+      errorMessage = _ref2.errorMessage;
 
   return React.createElement(
     _reactBootstrap.FormGroup,
@@ -77,11 +78,11 @@ var SelectField = function SelectField(_ref) {
       controlId: name,
       validationState: validationState
     },
-    React.createElement(
+    label ? React.createElement(
       _reactBootstrap.ControlLabel,
       null,
       label
-    ),
+    ) : '',
     options ? React.createElement(_reactSelect2.default, _extends({
       name: name,
       value: value,

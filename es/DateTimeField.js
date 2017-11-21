@@ -35,17 +35,18 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 var DateTimeField = function DateTimeField(_ref) {
   var label = _ref.label,
       helpText = _ref.helpText,
+      customValidation = _ref.customValidation,
       _ref$input = _ref.input,
       name = _ref$input.name,
       onFocus = _ref$input.onFocus,
       form = _ref.meta.form,
       inputProps = _objectWithoutProperties(_ref.input, ['name', 'onFocus']),
       metaProps = _objectWithoutProperties(_ref.meta, ['form']),
-      props = _objectWithoutProperties(_ref, ['label', 'helpText', 'input', 'meta']);
+      props = _objectWithoutProperties(_ref, ['label', 'helpText', 'customValidation', 'input', 'meta']);
 
-  var _validationMessage = (0, _utils2.default)(metaProps),
-      validationState = _validationMessage.validationState,
-      errorMessage = _validationMessage.errorMessage;
+  var _ref2 = customValidation ? customValidation(metaProps) : (0, _utils2.default)(metaProps),
+      validationState = _ref2.validationState,
+      errorMessage = _ref2.errorMessage;
 
   return React.createElement(
     _reactBootstrap.FormGroup,
@@ -53,11 +54,11 @@ var DateTimeField = function DateTimeField(_ref) {
       controlId: name,
       validationState: validationState
     },
-    React.createElement(
+    label ? React.createElement(
       _reactBootstrap.ControlLabel,
       null,
       label
-    ),
+    ) : '',
     React.createElement(
       _reactBootstrap.InputGroup,
       null,

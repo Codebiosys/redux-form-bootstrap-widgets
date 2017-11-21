@@ -14,18 +14,21 @@ import 'react-toggle/style.css';
 const ToggleField = ({
   label,
   helpText,
+  customValidation,
   input: { name, value, onChange, ...inputProps },
   meta,
   ...props
 }) => {
-  const { validationState, errorMessage } = validationMessage(meta);
+  const { validationState, errorMessage } = customValidation ?
+  customValidation(meta) :
+  validationMessage(meta);
 
   return (
     <FormGroup
       controlId={name}
       validationState={validationState}
     >
-      <ControlLabel>{label}</ControlLabel>
+      {label ? <ControlLabel>{label}</ControlLabel> : ''}
       <InputGroup>
         <Toggle
           {...inputProps}

@@ -14,6 +14,7 @@ const SelectField = ({
   helpText,
   multiple,
   valueKey,
+  customValidation,
   input: { name, onChange, onFocus, onBlur, value, ...inputProps },
   meta,
   options,
@@ -35,14 +36,16 @@ const SelectField = ({
   };
 
 
-  const { validationState, errorMessage } = validationMessage(meta);
+  const { validationState, errorMessage } = customValidation ?
+  customValidation(meta) :
+  validationMessage(meta);
 
   return (
     <FormGroup
       controlId={name}
       validationState={validationState}
     >
-      <ControlLabel>{label}</ControlLabel>
+      {label ? <ControlLabel>{label}</ControlLabel> : ''}
       {options ? (<Select
         name={name}
         value={value}
