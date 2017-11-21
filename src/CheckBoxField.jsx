@@ -16,11 +16,14 @@ const CheckBoxField = ({
   meta,
   valueKey,
   labelKey,
+  customValidation,
   input: { name, value, onFocus, onChange, onBlur },
   options,
   ...props
 }) => {
-  const { validationState, errorMessage } = validationMessage(meta);
+  const { validationState, errorMessage } = customValidation ?
+  customValidation(meta) :
+  validationMessage(meta);
 
   const checkValueKey = valueKey || 'value';
   const checkLabelKey = labelKey || 'label';
@@ -59,7 +62,7 @@ const CheckBoxField = ({
       controlId={name}
       validationState={validationState}
     >
-      <ControlLabel>{label}</ControlLabel>
+      {label ? <ControlLabel>{label}</ControlLabel> : ''}
       <InputGroup>
         {checkboxes}
       </InputGroup>

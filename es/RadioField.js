@@ -30,6 +30,7 @@ var RadioField = function RadioField(_ref) {
   var label = _ref.label,
       options = _ref.options,
       helpText = _ref.helpText,
+      customValidation = _ref.customValidation,
       _ref$input = _ref.input,
       name = _ref$input.name,
       onBlur = _ref$input.onBlur,
@@ -38,11 +39,11 @@ var RadioField = function RadioField(_ref) {
       valueKey = _ref.valueKey,
       labelKey = _ref.labelKey,
       inputProps = _objectWithoutProperties(_ref.input, ['name', 'onBlur', 'value']),
-      props = _objectWithoutProperties(_ref, ['label', 'options', 'helpText', 'input', 'meta', 'valueKey', 'labelKey']);
+      props = _objectWithoutProperties(_ref, ['label', 'options', 'helpText', 'customValidation', 'input', 'meta', 'valueKey', 'labelKey']);
 
-  var _validationMessage = (0, _utils2.default)(meta),
-      validationState = _validationMessage.validationState,
-      errorMessage = _validationMessage.errorMessage;
+  var _ref2 = customValidation ? customValidation(meta) : (0, _utils2.default)(meta),
+      validationState = _ref2.validationState,
+      errorMessage = _ref2.errorMessage;
 
   var radioValueKey = valueKey || 'value';
   var radioLabelKey = labelKey || 'label';
@@ -58,11 +59,11 @@ var RadioField = function RadioField(_ref) {
       controlId: name,
       validationState: validationState
     },
-    React.createElement(
+    label ? React.createElement(
       _reactBootstrap.ControlLabel,
       null,
       label
-    ),
+    ) : '',
     React.createElement(
       _reactBootstrap.InputGroup,
       null,

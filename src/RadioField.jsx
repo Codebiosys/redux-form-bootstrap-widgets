@@ -16,13 +16,17 @@ const RadioField = ({
   label,
   options,
   helpText,
+  customValidation,
   input: { name, onBlur, value, ...inputProps },
   meta,
   valueKey,
   labelKey,
   ...props
 }) => {
-  const { validationState, errorMessage } = validationMessage(meta);
+  const { validationState, errorMessage } = customValidation ?
+  customValidation(meta) :
+  validationMessage(meta);
+
   const radioValueKey = valueKey || 'value';
   const radioLabelKey = labelKey || 'label';
   const handleClick = (event) => {
@@ -36,7 +40,7 @@ const RadioField = ({
       controlId={name}
       validationState={validationState}
     >
-      <ControlLabel>{label}</ControlLabel>
+      {label ? <ControlLabel>{label}</ControlLabel> : ''}
       <InputGroup>
         {_.map(options, option => (
           <div key={`${name}_${option[radioValueKey]}`}>

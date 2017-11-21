@@ -58,4 +58,13 @@ Object.defineProperty(exports, 'ToggleField', {
   }
 });
 
+var _WrappedField = require('./WrappedField');
+
+Object.defineProperty(exports, 'WrappedField', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_WrappedField).default;
+  }
+});
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

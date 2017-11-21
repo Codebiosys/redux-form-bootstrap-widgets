@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { mount } from 'enzyme';
+import { omit } from 'lodash';
 
 import { CheckBoxField } from 'index';
 
@@ -48,6 +49,16 @@ describe('The Checkbox Field', () => {
     expect(inputWrapper).toMatchSnapshot();
   });
 
+  it('has a label when there is a label', () => {
+    expect(inputWrapper.find('ControlLabel').text()).toEqual(fieldProps.label);
+  });
+
+  it('does not have a label when there is no label', () => {
+    const noLabelFieldProps = omit(fieldProps, ['label']);
+    const inputWrapperNoLabel = mount(<CheckBoxField {...noLabelFieldProps} />);
+    expect(inputWrapperNoLabel.find('ControlLabel').isEmpty()).toBe(true);
+  });
+
   it('renders with custom options', () => {
     inputWrapper = mount(<CheckBoxField {...customOptionFieldProps} />);
     expect(inputWrapper).toMatchSnapshot();
@@ -71,5 +82,14 @@ describe('The Checkbox Field', () => {
     expect(fieldProps.input.onChange).toHaveBeenCalledTimes(1);
     expect(fieldProps.input.onBlur).toHaveBeenCalledTimes(1);
     expect(fieldProps.input.onChange).toHaveBeenCalledWith(null);
+  });
+
+  it('calls custom validator when the toogle is toggled', () => {
+    const customValidator = jest.fn(() => ({ validationState: null, errorMessage: null }));
+    const validatorProps = { ...fieldProps, customValidation: customValidator };
+    const inputWrapperValidated = mount(<CheckBoxField {...validatorProps} />);
+
+    inputWrapperValidated.find(`input[name="${fieldProps.input.name}_0"]`).simulate('change', { target: { checked: false } });
+    expect(customValidator).toHaveBeenCalledTimes(1);
   });
 });

@@ -16,18 +16,20 @@ import 'react-datetime/css/react-datetime.css';
 const DateTimeField = ({
   label,
   helpText,
+  customValidation,
   input: { name, onFocus, ...inputProps },
   meta: { form, ...metaProps },
   ...props
 }) => {
-  const { validationState, errorMessage } = validationMessage(metaProps);
-
+  const { validationState, errorMessage } = customValidation ?
+  customValidation(metaProps) :
+  validationMessage(metaProps);
   return (
     <FormGroup
       controlId={name}
       validationState={validationState}
     >
-      <ControlLabel>{label}</ControlLabel>
+      {label ? <ControlLabel>{label}</ControlLabel> : ''}
       <InputGroup>
         <DateTime
           name={name}

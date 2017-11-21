@@ -25,20 +25,21 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 var TextField = function TextField(_ref) {
   var label = _ref.label,
       helpText = _ref.helpText,
+      customValidation = _ref.customValidation,
       input = _ref.input,
       meta = _ref.meta,
       addOnBefore = _ref.addOnBefore,
       addOnAfter = _ref.addOnAfter,
       type = _ref.type,
       componentClass = _ref.componentClass,
-      props = _objectWithoutProperties(_ref, ['label', 'helpText', 'input', 'meta', 'addOnBefore', 'addOnAfter', 'type', 'componentClass']);
+      props = _objectWithoutProperties(_ref, ['label', 'helpText', 'customValidation', 'input', 'meta', 'addOnBefore', 'addOnAfter', 'type', 'componentClass']);
 
   var name = input.name,
       onChange = input.onChange;
 
-  var _validationMessage = (0, _utils2.default)(meta),
-      validationState = _validationMessage.validationState,
-      errorMessage = _validationMessage.errorMessage;
+  var _ref2 = customValidation ? customValidation(meta) : (0, _utils2.default)(meta),
+      validationState = _ref2.validationState,
+      errorMessage = _ref2.errorMessage;
 
   var typeConfig = {};
   var inputStyle = { zIndex: '0' };
@@ -75,11 +76,11 @@ var TextField = function TextField(_ref) {
       controlId: name,
       validationState: validationState
     },
-    React.createElement(
+    label ? React.createElement(
       _reactBootstrap.ControlLabel,
       null,
       label
-    ),
+    ) : '',
     React.createElement(
       _reactBootstrap.InputGroup,
       { style: groupStyle },

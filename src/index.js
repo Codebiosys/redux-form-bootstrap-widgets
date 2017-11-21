@@ -5,3 +5,5 @@ export { default as DateTimeField } from './DateTimeField';
 export { default as RadioField } from './RadioField';
 export { default as SelectField } from './SelectField';
 export { default as ToggleField } from './ToggleField';
+export { WrappedField } from './WrappedField';
+export { WrappedFields } from './WrappedField';

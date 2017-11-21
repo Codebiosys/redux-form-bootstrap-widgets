@@ -15,6 +15,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 const TextField = ({
   label,
   helpText,
+  customValidation,
   input,
   meta,
   addOnBefore,
@@ -24,7 +25,9 @@ const TextField = ({
   ...props
 }) => {
   const { name, onChange } = input;
-  const { validationState, errorMessage } = validationMessage(meta);
+  const { validationState, errorMessage } = customValidation ?
+  customValidation(meta) :
+  validationMessage(meta);
 
   const typeConfig = {};
   const inputStyle = { zIndex: '0' };
@@ -54,7 +57,7 @@ const TextField = ({
       controlId={name}
       validationState={validationState}
     >
-      <ControlLabel>{label}</ControlLabel>
+      {label ? <ControlLabel>{label}</ControlLabel> : ''}
       <InputGroup style={groupStyle}>
         {typeConfig.componentClass ? '' : addOnBefore }
         <FormControl
