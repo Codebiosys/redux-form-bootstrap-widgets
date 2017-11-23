@@ -10,9 +10,9 @@ describe('The validation message', () => {
     expect(errorMessage).toEqual(undefined);
   });
 
-  it('returns success if the item is touched, and there are no errors or warnings', () => {
+  it('returns success if the item is dirty, and there are no errors or warnings', () => {
     const { validationState, errorMessage } = validationMessage(
-      { touched: true,
+      { dirty: true,
         error: undefined,
         warning: undefined,
       });

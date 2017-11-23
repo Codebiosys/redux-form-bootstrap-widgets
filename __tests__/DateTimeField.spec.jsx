@@ -25,7 +25,7 @@ const selectedFieldProps = { ...fieldProps };
 selectedFieldProps.input = { ...fieldProps.input };
 selectedFieldProps.input.value = moment('2017-01-01');
 
-describe('The Toggle Field', () => {
+describe('The Date Time Field', () => {
   let inputWrapper;
 
   beforeEach(() => {
@@ -42,13 +42,14 @@ describe('The Toggle Field', () => {
     expect(inputWrapperNoLabel.find('ControlLabel').isEmpty()).toBe(true);
   });
 
-  it('disables clear button when there is no value', () => {
-    expect(inputWrapper.find('button').prop('disabled')).toEqual(true);
+  it('does not display the clear button when there is no value', () => {
+    expect(inputWrapper.find('.form-control-feedback').hasClass('glyphicon-calendar')).toBe(true);
   });
+
 
   it('clears the value when the clear button is pressed', () => {
     inputWrapper = mount(<DateTimeField {...selectedFieldProps} />);
-    inputWrapper.find('button').simulate('click');
+    inputWrapper.find('.form-control-feedback').simulate('click');
     expect(selectedFieldProps.input.onChange).toHaveBeenCalledWith(null);
   });
 
@@ -57,7 +58,7 @@ describe('The Toggle Field', () => {
     const validatorProps = { ...fieldProps, customValidation: customValidator };
     const inputWrapperValidated = mount(<DateTimeField {...validatorProps} />);
 
-    inputWrapperValidated.find('button').simulate('click');
+    inputWrapperValidated.find('.form-control-feedback').simulate('click');
     expect(customValidator).toHaveBeenCalledTimes(1);
   });
 });

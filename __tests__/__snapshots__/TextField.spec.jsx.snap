@@ -195,48 +195,6 @@ exports[`The Text Field renders 1`] = `
           >
             after
           </div>
-          <InputGroupButton
-            bsClass="input-group-btn"
-          >
-            <span
-              className="input-group-btn"
-            >
-              <Button
-                active={false}
-                block={false}
-                bsClass="btn"
-                bsStyle="default"
-                disabled={true}
-                onClick={[Function]}
-                style={
-                  Object {
-                    "zIndex": "0",
-                  }
-                }
-              >
-                <button
-                  className="btn btn-default"
-                  disabled={true}
-                  onClick={[Function]}
-                  style={
-                    Object {
-                      "zIndex": "0",
-                    }
-                  }
-                  type="button"
-                >
-                  <Glyphicon
-                    bsClass="glyphicon"
-                    glyph="remove"
-                  >
-                    <span
-                      className="glyphicon glyphicon-remove"
-                    />
-                  </Glyphicon>
-                </button>
-              </Button>
-            </span>
-          </InputGroupButton>
         </span>
       </InputGroup>
       <HelpBlock

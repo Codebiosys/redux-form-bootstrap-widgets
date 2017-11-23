@@ -1,4 +1,5 @@
 
+export { default as FieldSet } from './FieldSet';
 export { default as TextField } from './TextField';
 export { default as CheckBoxField } from './CheckBoxField';
 export { default as DateTimeField } from './DateTimeField';

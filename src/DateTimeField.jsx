@@ -1,6 +1,8 @@
 import React from 'react';
 import _ from 'lodash';
-import { FormGroup,
+import {
+  FormGroup,
+  FormControl,
   ControlLabel,
   InputGroup,
   HelpBlock,
@@ -24,6 +26,21 @@ const DateTimeField = ({
   const { validationState, errorMessage } = customValidation ?
   customValidation(metaProps) :
   validationMessage(metaProps);
+
+  const clearContent = () => inputProps.onChange(null);
+
+  const ClearButton = (
+    <span>
+      <FormControl.Feedback onClick={clearContent} style={{ pointerEvents: 'all' }}>
+        <Glyphicon glyph="remove" />
+      </FormControl.Feedback>
+    </span>
+  );
+  const CalendarFeedback = (
+    <FormControl.Feedback style={{ pointerEvents: 'none' }}>
+      <Glyphicon glyph="calendar" />
+    </FormControl.Feedback>
+  );
   return (
     <FormGroup
       controlId={name}
@@ -38,13 +55,7 @@ const DateTimeField = ({
           {...inputProps}
           {...props}
         />
-        <InputGroup.Button>
-          <Button
-            style={{ zIndex: '0' }}
-            onClick={() => inputProps.onChange(null)}
-            disabled={!inputProps.value}
-          ><Glyphicon glyph="remove" /></Button>
-        </InputGroup.Button>
+        { (!inputProps.value) ? CalendarFeedback : ClearButton }
       </InputGroup>
       {errorMessage}
       <HelpBlock>{helpText}</HelpBlock>
