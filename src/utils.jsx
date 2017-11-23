@@ -1,12 +1,12 @@
 import React from 'react';
 import { HelpBlock } from 'react-bootstrap';
 
-const validationMessage = ({ touched, error, warning }) => {
+const validationMessage = ({ dirty, touched, error, warning }) => {
   let errorMessage;
   let validationState;
-  if (touched && !error && !warning) {
+  if (dirty && !error && !warning) {
     validationState = 'success';
-  } else if (touched) {
+  } else if (touched && (!!error || !!warning)) {
     if (error) {
       validationState = 'error';
     } else {

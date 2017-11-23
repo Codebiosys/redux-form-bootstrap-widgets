@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Field Set renders 1`] = `
+<fieldset
+  className="form-group"
+  style={
+    Object {
+      "border": "1px solid #e5e5e5",
+      "margin": "0 2px",
+      "padding": ".35em .625em .75em",
+    }
+  }
+>
+  <legend
+    style={
+      Object {
+        "borderBottom": "0px",
+        "fontSize": "1.5em",
+        "paddingLeft": "10px",
+        "paddingRight": "10px",
+        "width": "auto",
+      }
+    }
+  >
+    Field Label
+  </legend>
+  <input
+    name="foo"
+  />
+</fieldset>
+`;

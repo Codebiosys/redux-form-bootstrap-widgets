@@ -59,19 +59,18 @@ describe('The Text Field', () => {
   it('displays the add ons and clear button for text input', () => {
     expect(inputWrapper.find('#before_addon').exists()).toBe(true);
     expect(inputWrapper.find('#after_addon').exists()).toBe(true);
-    expect(inputWrapper.find('button').exists()).toBe(true);
   });
 
-  it('disables clear button when there is no value', () => {
-    expect(inputWrapper.find('button').prop('disabled')).toEqual(true);
+  it('does not display the clear button when there is no value', () => {
+    expect(inputWrapper.find('.form-control-feedback').exists()).toBe(false);
   });
 
-  it('enables clear button when there is a value', () => {
-    expect(valueWrapper.find('button').prop('disabled')).toEqual(false);
+  it('displays the clear button when there is a value', () => {
+    expect(valueWrapper.find('.form-control-feedback').exists()).toBe(true);
   });
 
   it('clears the value when the clear button is pressed', () => {
-    valueWrapper.find('button').simulate('click');
+    valueWrapper.find('.form-control-feedback').simulate('click');
     expect(valueFieldProps.input.onChange).toHaveBeenCalledWith(null);
   });
 

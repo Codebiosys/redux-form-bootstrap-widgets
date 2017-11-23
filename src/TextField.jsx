@@ -43,13 +43,9 @@ const TextField = ({
   const clearContent = () => onChange(null);
 
   const ClearButton = (
-    <InputGroup.Button>
-      <Button
-        style={{ zIndex: '0' }}
-        onClick={clearContent}
-        disabled={!input.value}
-      ><Glyphicon glyph="remove" /></Button>
-    </InputGroup.Button>
+    <FormControl.Feedback onClick={clearContent} style={{ pointerEvents: 'all' }}>
+      <Glyphicon glyph="remove" />
+    </FormControl.Feedback>
   );
 
   return (
@@ -67,7 +63,7 @@ const TextField = ({
           {...props}
         />
         {typeConfig.componentClass ? '' : addOnAfter }
-        {typeConfig.componentClass ? '' : ClearButton }
+        {typeConfig.componentClass || (!input.value) ? '' : ClearButton }
       </InputGroup>
       {errorMessage}
       <HelpBlock>{helpText}</HelpBlock>
