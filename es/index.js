@@ -4,6 +4,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _FieldSet = require('./FieldSet');
+
+Object.defineProperty(exports, 'FieldSet', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_FieldSet).default;
+  }
+});
+
 var _TextField = require('./TextField');
 
 Object.defineProperty(exports, 'TextField', {
@@ -63,7 +72,13 @@ var _WrappedField = require('./WrappedField');
 Object.defineProperty(exports, 'WrappedField', {
   enumerable: true,
   get: function get() {
-    return _interopRequireDefault(_WrappedField).default;
+    return _WrappedField.WrappedField;
+  }
+});
+Object.defineProperty(exports, 'WrappedFields', {
+  enumerable: true,
+  get: function get() {
+    return _WrappedField.WrappedFields;
   }
 });
 

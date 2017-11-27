@@ -48,6 +48,24 @@ var DateTimeField = function DateTimeField(_ref) {
       validationState = _ref2.validationState,
       errorMessage = _ref2.errorMessage;
 
+  var clearContent = function clearContent() {
+    return inputProps.onChange(null);
+  };
+
+  var ClearButton = React.createElement(
+    'span',
+    null,
+    React.createElement(
+      _reactBootstrap.FormControl.Feedback,
+      { onClick: clearContent, style: { pointerEvents: 'all' } },
+      React.createElement(_reactBootstrap.Glyphicon, { glyph: 'remove' })
+    )
+  );
+  var CalendarFeedback = React.createElement(
+    _reactBootstrap.FormControl.Feedback,
+    { style: { pointerEvents: 'none' } },
+    React.createElement(_reactBootstrap.Glyphicon, { glyph: 'calendar' })
+  );
   return React.createElement(
     _reactBootstrap.FormGroup,
     {
@@ -67,21 +85,7 @@ var DateTimeField = function DateTimeField(_ref) {
         id: form + '-' + name,
         closeOnSelect: true
       }, inputProps, props)),
-      React.createElement(
-        _reactBootstrap.InputGroup.Button,
-        null,
-        React.createElement(
-          _reactBootstrap.Button,
-          {
-            style: { zIndex: '0' },
-            onClick: function () {
-              return inputProps.onChange(null);
-            },
-            disabled: !inputProps.value
-          },
-          React.createElement(_reactBootstrap.Glyphicon, { glyph: 'remove' })
-        )
-      )
+      !inputProps.value ? CalendarFeedback : ClearButton
     ),
     errorMessage,
     React.createElement(

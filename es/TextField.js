@@ -57,17 +57,9 @@ var TextField = function TextField(_ref) {
   };
 
   var ClearButton = React.createElement(
-    _reactBootstrap.InputGroup.Button,
-    null,
-    React.createElement(
-      _reactBootstrap.Button,
-      {
-        style: { zIndex: '0' },
-        onClick: clearContent,
-        disabled: !input.value
-      },
-      React.createElement(_reactBootstrap.Glyphicon, { glyph: 'remove' })
-    )
+    _reactBootstrap.FormControl.Feedback,
+    { onClick: clearContent, style: { pointerEvents: 'all' } },
+    React.createElement(_reactBootstrap.Glyphicon, { glyph: 'remove' })
   );
 
   return React.createElement(
@@ -89,7 +81,7 @@ var TextField = function TextField(_ref) {
         style: inputStyle
       }, typeConfig, input, props)),
       typeConfig.componentClass ? '' : addOnAfter,
-      typeConfig.componentClass ? '' : ClearButton
+      typeConfig.componentClass || !input.value ? '' : ClearButton
     ),
     errorMessage,
     React.createElement(
