@@ -26,17 +26,21 @@ exports[`The Toggle Field renders 1`] = `
     <div
       className="form-group"
     >
-      <ControlLabel
-        bsClass="control-label"
-        srOnly={false}
+      <Component
+        label="CheckBox  Test"
       >
-        <label
-          className="control-label"
-          htmlFor="fieldName"
+        <ControlLabel
+          bsClass="control-label"
+          srOnly={false}
         >
-          CheckBox  Test
-        </label>
-      </ControlLabel>
+          <label
+            className="control-label"
+            htmlFor="fieldName"
+          >
+            CheckBox  Test
+          </label>
+        </ControlLabel>
+      </Component>
       <InputGroup
         bsClass="input-group"
       >

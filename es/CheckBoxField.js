@@ -16,6 +16,10 @@ var _lodash = require('lodash');
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
+var _Label = require('Label');
+
+var _Label2 = _interopRequireDefault(_Label);
+
 var _utils = require('utils');
 
 var _utils2 = _interopRequireDefault(_utils);
@@ -28,6 +32,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 var CheckBoxField = function CheckBoxField(_ref) {
   var label = _ref.label,
+      required = _ref.required,
       helpText = _ref.helpText,
       meta = _ref.meta,
       valueKey = _ref.valueKey,
@@ -40,7 +45,7 @@ var CheckBoxField = function CheckBoxField(_ref) {
       onChange = _ref$input.onChange,
       onBlur = _ref$input.onBlur,
       options = _ref.options,
-      props = _objectWithoutProperties(_ref, ['label', 'helpText', 'meta', 'valueKey', 'labelKey', 'customValidation', 'input', 'options']);
+      props = _objectWithoutProperties(_ref, ['label', 'required', 'helpText', 'meta', 'valueKey', 'labelKey', 'customValidation', 'input', 'options']);
 
   var _ref2 = customValidation ? customValidation(meta) : (0, _utils2.default)(meta),
       validationState = _ref2.validationState,
@@ -87,11 +92,7 @@ var CheckBoxField = function CheckBoxField(_ref) {
       controlId: name,
       validationState: validationState
     },
-    label ? React.createElement(
-      _reactBootstrap.ControlLabel,
-      null,
-      label
-    ) : '',
+    React.createElement(_Label2.default, { label: label, required: required }),
     React.createElement(
       _reactBootstrap.InputGroup,
       null,

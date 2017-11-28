@@ -20,6 +20,10 @@ var _reactSelect = require('react-select');
 
 var _reactSelect2 = _interopRequireDefault(_reactSelect);
 
+var _Label = require('Label');
+
+var _Label2 = _interopRequireDefault(_Label);
+
 var _utils = require('utils');
 
 var _utils2 = _interopRequireDefault(_utils);
@@ -36,6 +40,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 var SelectField = function SelectField(_ref) {
   var label = _ref.label,
+      required = _ref.required,
       helpText = _ref.helpText,
       multiple = _ref.multiple,
       valueKey = _ref.valueKey,
@@ -50,7 +55,7 @@ var SelectField = function SelectField(_ref) {
       options = _ref.options,
       loadOptions = _ref.loadOptions,
       inputProps = _objectWithoutProperties(_ref.input, ['name', 'onChange', 'onFocus', 'onBlur', 'value']),
-      props = _objectWithoutProperties(_ref, ['label', 'helpText', 'multiple', 'valueKey', 'customValidation', 'input', 'meta', 'options', 'loadOptions']);
+      props = _objectWithoutProperties(_ref, ['label', 'required', 'helpText', 'multiple', 'valueKey', 'customValidation', 'input', 'meta', 'options', 'loadOptions']);
 
   var selectValueKey = valueKey || 'value';
 
@@ -78,11 +83,7 @@ var SelectField = function SelectField(_ref) {
       controlId: name,
       validationState: validationState
     },
-    label ? React.createElement(
-      _reactBootstrap.ControlLabel,
-      null,
-      label
-    ) : '',
+    React.createElement(_Label2.default, { label: label, required: required }),
     options ? React.createElement(_reactSelect2.default, _extends({
       name: name,
       value: value,

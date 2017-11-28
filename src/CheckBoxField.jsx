@@ -6,12 +6,15 @@ import { Checkbox,
   InputGroup } from 'react-bootstrap';
 import _ from 'lodash';
 
+import Label from 'Label';
+
 import validationMessage from 'utils';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
 const CheckBoxField = ({
   label,
+  required,
   helpText,
   meta,
   valueKey,
@@ -62,7 +65,7 @@ const CheckBoxField = ({
       controlId={name}
       validationState={validationState}
     >
-      {label ? <ControlLabel>{label}</ControlLabel> : ''}
+      <Label label={label} required={required} />
       <InputGroup>
         {checkboxes}
       </InputGroup>

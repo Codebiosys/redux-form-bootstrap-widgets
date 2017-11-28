@@ -5,8 +5,9 @@ import {
   FormControl,
   HelpBlock,
   InputGroup,
-  Button,
   Glyphicon } from 'react-bootstrap';
+
+import Label from 'Label';
 
 import validationMessage from 'utils';
 
@@ -14,6 +15,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 const TextField = ({
   label,
+  required,
   helpText,
   customValidation,
   input,
@@ -53,7 +55,7 @@ const TextField = ({
       controlId={name}
       validationState={validationState}
     >
-      {label ? <ControlLabel>{label}</ControlLabel> : ''}
+      <Label label={label} required={required} />
       <InputGroup style={groupStyle}>
         {typeConfig.componentClass ? '' : addOnBefore }
         <FormControl
