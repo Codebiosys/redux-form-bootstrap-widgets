@@ -16,6 +16,10 @@ var _lodash2 = _interopRequireDefault(_lodash);
 
 var _reactBootstrap = require('react-bootstrap');
 
+var _Label = require('Label');
+
+var _Label2 = _interopRequireDefault(_Label);
+
 var _utils = require('utils');
 
 var _utils2 = _interopRequireDefault(_utils);
@@ -28,6 +32,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 var RadioField = function RadioField(_ref) {
   var label = _ref.label,
+      required = _ref.required,
       options = _ref.options,
       helpText = _ref.helpText,
       customValidation = _ref.customValidation,
@@ -39,7 +44,7 @@ var RadioField = function RadioField(_ref) {
       valueKey = _ref.valueKey,
       labelKey = _ref.labelKey,
       inputProps = _objectWithoutProperties(_ref.input, ['name', 'onBlur', 'value']),
-      props = _objectWithoutProperties(_ref, ['label', 'options', 'helpText', 'customValidation', 'input', 'meta', 'valueKey', 'labelKey']);
+      props = _objectWithoutProperties(_ref, ['label', 'required', 'options', 'helpText', 'customValidation', 'input', 'meta', 'valueKey', 'labelKey']);
 
   var _ref2 = customValidation ? customValidation(meta) : (0, _utils2.default)(meta),
       validationState = _ref2.validationState,
@@ -59,11 +64,7 @@ var RadioField = function RadioField(_ref) {
       controlId: name,
       validationState: validationState
     },
-    label ? React.createElement(
-      _reactBootstrap.ControlLabel,
-      null,
-      label
-    ) : '',
+    React.createElement(_Label2.default, { label: label, required: required }),
     React.createElement(
       _reactBootstrap.InputGroup,
       null,

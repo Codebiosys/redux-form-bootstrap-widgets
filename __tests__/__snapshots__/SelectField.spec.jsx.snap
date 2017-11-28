@@ -42,17 +42,21 @@ exports[`The Select Field renders 1`] = `
     <div
       className="form-group"
     >
-      <ControlLabel
-        bsClass="control-label"
-        srOnly={false}
+      <Component
+        label="Radio Test"
       >
-        <label
-          className="control-label"
-          htmlFor="fieldName"
+        <ControlLabel
+          bsClass="control-label"
+          srOnly={false}
         >
-          Radio Test
-        </label>
-      </ControlLabel>
+          <label
+            className="control-label"
+            htmlFor="fieldName"
+          >
+            Radio Test
+          </label>
+        </ControlLabel>
+      </Component>
       <Select
         addLabelText="Add \\"{label}\\"?"
         arrowRenderer={[Function]}
@@ -275,17 +279,21 @@ exports[`The Select Field renders allowing multiple selections 1`] = `
     <div
       className="form-group"
     >
-      <ControlLabel
-        bsClass="control-label"
-        srOnly={false}
+      <Component
+        label="Radio Test"
       >
-        <label
-          className="control-label"
-          htmlFor="fieldName"
+        <ControlLabel
+          bsClass="control-label"
+          srOnly={false}
         >
-          Radio Test
-        </label>
-      </ControlLabel>
+          <label
+            className="control-label"
+            htmlFor="fieldName"
+          >
+            Radio Test
+          </label>
+        </ControlLabel>
+      </Component>
       <Select
         addLabelText="Add \\"{label}\\"?"
         arrowRenderer={[Function]}
@@ -492,17 +500,21 @@ exports[`The Select Field renders with async options 1`] = `
     <div
       className="form-group"
     >
-      <ControlLabel
-        bsClass="control-label"
-        srOnly={false}
+      <Component
+        label="Radio Test"
       >
-        <label
-          className="control-label"
-          htmlFor="fieldName"
+        <ControlLabel
+          bsClass="control-label"
+          srOnly={false}
         >
-          Radio Test
-        </label>
-      </ControlLabel>
+          <label
+            className="control-label"
+            htmlFor="fieldName"
+          >
+            Radio Test
+          </label>
+        </ControlLabel>
+      </Component>
       <Async
         autoBlur={true}
         autoload={true}
@@ -752,17 +764,21 @@ exports[`The Select Field renders with custom options 1`] = `
     <div
       className="form-group"
     >
-      <ControlLabel
-        bsClass="control-label"
-        srOnly={false}
+      <Component
+        label="Radio Test"
       >
-        <label
-          className="control-label"
-          htmlFor="fieldName"
+        <ControlLabel
+          bsClass="control-label"
+          srOnly={false}
         >
-          Radio Test
-        </label>
-      </ControlLabel>
+          <label
+            className="control-label"
+            htmlFor="fieldName"
+          >
+            Radio Test
+          </label>
+        </ControlLabel>
+      </Component>
       <Select
         addLabelText="Add \\"{label}\\"?"
         arrowRenderer={[Function]}

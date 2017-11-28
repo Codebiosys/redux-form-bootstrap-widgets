@@ -8,12 +8,14 @@ import {
   InputGroup,
   Radio } from 'react-bootstrap';
 
+import Label from 'Label';
 import validationMessage from 'utils';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
 const RadioField = ({
   label,
+  required,
   options,
   helpText,
   customValidation,
@@ -40,7 +42,7 @@ const RadioField = ({
       controlId={name}
       validationState={validationState}
     >
-      {label ? <ControlLabel>{label}</ControlLabel> : ''}
+      <Label label={label} required={required} />
       <InputGroup>
         {_.map(options, option => (
           <div key={`${name}_${option[radioValueKey]}`}>

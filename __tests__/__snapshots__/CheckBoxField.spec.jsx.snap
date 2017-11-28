@@ -42,17 +42,21 @@ exports[`The Checkbox Field renders 1`] = `
     <div
       className="form-group"
     >
-      <ControlLabel
-        bsClass="control-label"
-        srOnly={false}
+      <Component
+        label="Checkbox Test"
       >
-        <label
-          className="control-label"
-          htmlFor="fieldName"
+        <ControlLabel
+          bsClass="control-label"
+          srOnly={false}
         >
-          Checkbox Test
-        </label>
-      </ControlLabel>
+          <label
+            className="control-label"
+            htmlFor="fieldName"
+          >
+            Checkbox Test
+          </label>
+        </ControlLabel>
+      </Component>
       <InputGroup
         bsClass="input-group"
       >
@@ -203,17 +207,21 @@ exports[`The Checkbox Field renders with custom options 1`] = `
     <div
       className="form-group"
     >
-      <ControlLabel
-        bsClass="control-label"
-        srOnly={false}
+      <Component
+        label="Checkbox Test"
       >
-        <label
-          className="control-label"
-          htmlFor="fieldName"
+        <ControlLabel
+          bsClass="control-label"
+          srOnly={false}
         >
-          Checkbox Test
-        </label>
-      </ControlLabel>
+          <label
+            className="control-label"
+            htmlFor="fieldName"
+          >
+            Checkbox Test
+          </label>
+        </ControlLabel>
+      </Component>
       <InputGroup
         bsClass="input-group"
       >

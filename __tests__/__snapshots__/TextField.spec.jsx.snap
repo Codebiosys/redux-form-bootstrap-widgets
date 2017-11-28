@@ -39,17 +39,21 @@ exports[`The Text Field displays a textarea when the type is textarea 1`] = `
     <div
       className="form-group"
     >
-      <ControlLabel
-        bsClass="control-label"
-        srOnly={false}
+      <Component
+        label="Text Test"
       >
-        <label
-          className="control-label"
-          htmlFor="fieldName"
+        <ControlLabel
+          bsClass="control-label"
+          srOnly={false}
         >
-          Text Test
-        </label>
-      </ControlLabel>
+          <label
+            className="control-label"
+            htmlFor="fieldName"
+          >
+            Text Test
+          </label>
+        </ControlLabel>
+      </Component>
       <InputGroup
         bsClass="input-group"
         style={
@@ -143,17 +147,21 @@ exports[`The Text Field renders 1`] = `
     <div
       className="form-group"
     >
-      <ControlLabel
-        bsClass="control-label"
-        srOnly={false}
+      <Component
+        label="Text Test"
       >
-        <label
-          className="control-label"
-          htmlFor="fieldName"
+        <ControlLabel
+          bsClass="control-label"
+          srOnly={false}
         >
-          Text Test
-        </label>
-      </ControlLabel>
+          <label
+            className="control-label"
+            htmlFor="fieldName"
+          >
+            Text Test
+          </label>
+        </ControlLabel>
+      </Component>
       <InputGroup
         bsClass="input-group"
         style={Object {}}

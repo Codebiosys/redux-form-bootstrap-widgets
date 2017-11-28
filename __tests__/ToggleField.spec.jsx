@@ -42,7 +42,7 @@ describe('The Toggle Field', () => {
   it('does not have a label when there is no label', () => {
     const noLabelFieldProps = omit(fieldProps, ['label']);
     const inputWrapperNoLabel = mount(<ToggleField {...noLabelFieldProps} />);
-    expect(inputWrapperNoLabel.find('ControlLabel').isEmpty()).toBe(true);
+    expect(inputWrapperNoLabel.find('ControlLabel').exists()).toBe(false);
   });
 
   it('is not checked by default', () => {

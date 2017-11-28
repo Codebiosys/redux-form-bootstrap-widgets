@@ -10,6 +10,7 @@ import {
   Glyphicon } from 'react-bootstrap';
 import DateTime from 'react-datetime';
 
+import Label from 'Label';
 import validationMessage from 'utils';
 
 import 'bootstrap/dist/css/bootstrap.css';
@@ -17,6 +18,7 @@ import 'react-datetime/css/react-datetime.css';
 
 const DateTimeField = ({
   label,
+  required,
   helpText,
   customValidation,
   input: { name, onFocus, ...inputProps },
@@ -46,7 +48,7 @@ const DateTimeField = ({
       controlId={name}
       validationState={validationState}
     >
-      {label ? <ControlLabel>{label}</ControlLabel> : ''}
+      <Label label={label} required={required} />
       <InputGroup>
         <DateTime
           name={name}

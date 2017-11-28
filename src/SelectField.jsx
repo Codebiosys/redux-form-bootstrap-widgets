@@ -3,6 +3,8 @@ import _ from 'lodash';
 
 import { FormGroup, ControlLabel, HelpBlock } from 'react-bootstrap';
 import Select from 'react-select';
+
+import Label from 'Label';
 import validationMessage from 'utils';
 
 import 'bootstrap/dist/css/bootstrap.css';
@@ -11,6 +13,7 @@ import './selectFieldStyle.css';
 
 const SelectField = ({
   label,
+  required,
   helpText,
   multiple,
   valueKey,
@@ -45,7 +48,7 @@ const SelectField = ({
       controlId={name}
       validationState={validationState}
     >
-      {label ? <ControlLabel>{label}</ControlLabel> : ''}
+      <Label label={label} required={required} />
       {options ? (<Select
         name={name}
         value={value}

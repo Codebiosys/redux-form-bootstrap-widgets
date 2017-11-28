@@ -42,17 +42,21 @@ exports[`The Radio Field renders 1`] = `
     <div
       className="form-group"
     >
-      <ControlLabel
-        bsClass="control-label"
-        srOnly={false}
+      <Component
+        label="Radio Test"
       >
-        <label
-          className="control-label"
-          htmlFor="fieldName"
+        <ControlLabel
+          bsClass="control-label"
+          srOnly={false}
         >
-          Radio Test
-        </label>
-      </ControlLabel>
+          <label
+            className="control-label"
+            htmlFor="fieldName"
+          >
+            Radio Test
+          </label>
+        </ControlLabel>
+      </Component>
       <InputGroup
         bsClass="input-group"
       >
@@ -227,17 +231,21 @@ exports[`The Radio Field renders with custom options 1`] = `
     <div
       className="form-group"
     >
-      <ControlLabel
-        bsClass="control-label"
-        srOnly={false}
+      <Component
+        label="Radio Test"
       >
-        <label
-          className="control-label"
-          htmlFor="fieldName"
+        <ControlLabel
+          bsClass="control-label"
+          srOnly={false}
         >
-          Radio Test
-        </label>
-      </ControlLabel>
+          <label
+            className="control-label"
+            htmlFor="fieldName"
+          >
+            Radio Test
+          </label>
+        </ControlLabel>
+      </Component>
       <InputGroup
         bsClass="input-group"
       >

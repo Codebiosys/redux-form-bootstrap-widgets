@@ -20,6 +20,10 @@ var _reactDatetime = require('react-datetime');
 
 var _reactDatetime2 = _interopRequireDefault(_reactDatetime);
 
+var _Label = require('Label');
+
+var _Label2 = _interopRequireDefault(_Label);
+
 var _utils = require('utils');
 
 var _utils2 = _interopRequireDefault(_utils);
@@ -34,6 +38,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 var DateTimeField = function DateTimeField(_ref) {
   var label = _ref.label,
+      required = _ref.required,
       helpText = _ref.helpText,
       customValidation = _ref.customValidation,
       _ref$input = _ref.input,
@@ -42,7 +47,7 @@ var DateTimeField = function DateTimeField(_ref) {
       form = _ref.meta.form,
       inputProps = _objectWithoutProperties(_ref.input, ['name', 'onFocus']),
       metaProps = _objectWithoutProperties(_ref.meta, ['form']),
-      props = _objectWithoutProperties(_ref, ['label', 'helpText', 'customValidation', 'input', 'meta']);
+      props = _objectWithoutProperties(_ref, ['label', 'required', 'helpText', 'customValidation', 'input', 'meta']);
 
   var _ref2 = customValidation ? customValidation(metaProps) : (0, _utils2.default)(metaProps),
       validationState = _ref2.validationState,
@@ -72,11 +77,7 @@ var DateTimeField = function DateTimeField(_ref) {
       controlId: name,
       validationState: validationState
     },
-    label ? React.createElement(
-      _reactBootstrap.ControlLabel,
-      null,
-      label
-    ) : '',
+    React.createElement(_Label2.default, { label: label, required: required }),
     React.createElement(
       _reactBootstrap.InputGroup,
       null,

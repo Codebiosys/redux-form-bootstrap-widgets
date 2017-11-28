@@ -6,6 +6,7 @@ import {
   InputGroup } from 'react-bootstrap';
 import Toggle from 'react-toggle';
 
+import Label from 'Label';
 import validationMessage from 'utils';
 
 import 'bootstrap/dist/css/bootstrap.css';
@@ -13,6 +14,7 @@ import 'react-toggle/style.css';
 
 const ToggleField = ({
   label,
+  required,
   helpText,
   customValidation,
   input: { name, value, onChange, ...inputProps },
@@ -28,7 +30,7 @@ const ToggleField = ({
       controlId={name}
       validationState={validationState}
     >
-      {label ? <ControlLabel>{label}</ControlLabel> : ''}
+      <Label label={label} required={required} />
       <InputGroup>
         <Toggle
           {...inputProps}

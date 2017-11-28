@@ -12,6 +12,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactBootstrap = require('react-bootstrap');
 
+var _Label = require('Label');
+
+var _Label2 = _interopRequireDefault(_Label);
+
 var _utils = require('utils');
 
 var _utils2 = _interopRequireDefault(_utils);
@@ -24,6 +28,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 var TextField = function TextField(_ref) {
   var label = _ref.label,
+      required = _ref.required,
       helpText = _ref.helpText,
       customValidation = _ref.customValidation,
       input = _ref.input,
@@ -32,7 +37,7 @@ var TextField = function TextField(_ref) {
       addOnAfter = _ref.addOnAfter,
       type = _ref.type,
       componentClass = _ref.componentClass,
-      props = _objectWithoutProperties(_ref, ['label', 'helpText', 'customValidation', 'input', 'meta', 'addOnBefore', 'addOnAfter', 'type', 'componentClass']);
+      props = _objectWithoutProperties(_ref, ['label', 'required', 'helpText', 'customValidation', 'input', 'meta', 'addOnBefore', 'addOnAfter', 'type', 'componentClass']);
 
   var name = input.name,
       onChange = input.onChange;
@@ -68,11 +73,7 @@ var TextField = function TextField(_ref) {
       controlId: name,
       validationState: validationState
     },
-    label ? React.createElement(
-      _reactBootstrap.ControlLabel,
-      null,
-      label
-    ) : '',
+    React.createElement(_Label2.default, { label: label, required: required }),
     React.createElement(
       _reactBootstrap.InputGroup,
       { style: groupStyle },
