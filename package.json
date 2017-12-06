@@ -1,6 +1,6 @@
 {
   "name": "redux-form-bootstrap-widgets",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "private": true,
   "main": "./dist/redux-form-bootstrap-widgets.min.js",
   "config": {
