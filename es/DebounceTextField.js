@@ -44,19 +44,24 @@ var DebounceTextField = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (DebounceTextField.__proto__ || Object.getPrototypeOf(DebounceTextField)).call(this, props));
 
-    _this.propTypes = _extends({}, _reactBootstrap.FormControl.propTypes);
     var delay = props.delay,
         _props$input = props.input,
         onChange = _props$input.onChange,
         value = _props$input.value;
 
 
-    _this.state = { value: value };
-    _this.lastPropValue = value;
+    _this.state = { value: value || '' };
+    _this.lastPropValue = value || '';
 
     _this.debouncedOnChange = (0, _lodash.debounce)(function (event) {
       onChange(event.target.value);
-    }, delay);
+    }, delay || 100);
+
+    _this.handleChange = function (event) {
+      event.persist();
+      _this.setState({ value: event.target.value });
+      _this.debouncedOnChange(event);
+    };
     return _this;
   }
 
@@ -70,13 +75,6 @@ var DebounceTextField = function (_Component) {
       return componentValue;
     }
   }, {
-    key: 'handleChange',
-    value: function handleChange(event) {
-      event.persist();
-      this.setState({ value: event.target.value });
-      this.debouncedOnChange(event);
-    }
-  }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
@@ -86,6 +84,7 @@ var DebounceTextField = function (_Component) {
           required = _props.required,
           helpText = _props.helpText,
           customValidation = _props.customValidation,
+          delay = _props.delay,
           _props$input2 = _props.input,
           name = _props$input2.name,
           onChange = _props$input2.onChange,
@@ -95,7 +94,7 @@ var DebounceTextField = function (_Component) {
           type = _props.type,
           componentClass = _props.componentClass,
           inputProps = _objectWithoutProperties(_props.input, ['name', 'onChange']),
-          rest = _objectWithoutProperties(_props, ['label', 'required', 'helpText', 'customValidation', 'input', 'meta', 'addOnBefore', 'addOnAfter', 'type', 'componentClass']);
+          rest = _objectWithoutProperties(_props, ['label', 'required', 'helpText', 'customValidation', 'delay', 'input', 'meta', 'addOnBefore', 'addOnAfter', 'type', 'componentClass']);
 
       var _ref = customValidation ? customValidation(meta) : (0, _utils2.default)(meta),
           validationState = _ref.validationState,
@@ -113,7 +112,7 @@ var DebounceTextField = function (_Component) {
       }
 
       var clearContent = function clearContent() {
-        _this2.setState({ value: null });
+        _this2.setState({ value: '' });
         onChange(null);
       };
 
@@ -142,7 +141,7 @@ var DebounceTextField = function (_Component) {
             value: this.getValue()
           })),
           addOnAfter,
-          ClearButton
+          !this.getValue() ? '' : ClearButton
         ),
         errorMessage,
         React.createElement(
@@ -156,5 +155,7 @@ var DebounceTextField = function (_Component) {
 
   return DebounceTextField;
 }(_react.Component);
+
+DebounceTextField.propTypes = _extends({}, _reactBootstrap.FormControl.propTypes);
 
 exports.default = DebounceTextField;
