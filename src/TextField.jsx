@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   FormGroup,
-  ControlLabel,
   FormControl,
   HelpBlock,
   InputGroup,
