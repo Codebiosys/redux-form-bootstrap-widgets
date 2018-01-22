@@ -26,8 +26,9 @@ exports[`The Toggle Field renders 1`] = `
     <div
       className="form-group"
     >
-      <Component
+      <Label
         label="CheckBox  Test"
+        required={false}
       >
         <ControlLabel
           bsClass="control-label"
@@ -40,7 +41,7 @@ exports[`The Toggle Field renders 1`] = `
             CheckBox  Test
           </label>
         </ControlLabel>
-      </Component>
+      </Label>
       <InputGroup
         bsClass="input-group"
       >

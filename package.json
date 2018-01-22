@@ -86,7 +86,9 @@
     "build:umd:min": "cross-env NODE_ENV=production webpack src/index.js dist/redux-form-bootstrap-widgets.min.js",
     "clean": "rimraf dist es lib",
     "prepublish": " npm run clean && npm run build",
-    "test": "cross-env NODE_ENV=test jest --config=jest.json --coverage"
+    "test": "cross-env NODE_ENV=test jest --config=jest.json --coverage",
+    "lint": "eslint -c ./.eslintrc.yml --ext .jsx,.js src/"
+
   },
   "npmName": "redux-form-bootstrap-widgets",
   "npmFileMap": [

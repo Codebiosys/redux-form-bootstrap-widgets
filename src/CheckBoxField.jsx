@@ -1,10 +1,10 @@
 import React from 'react';
 import { Checkbox,
   FormGroup,
-  ControlLabel,
   HelpBlock,
   InputGroup } from 'react-bootstrap';
-import _ from 'lodash';
+
+import { union, filter, toArray, find } from 'lodash';
 
 import Label from 'Label';
 
@@ -34,11 +34,11 @@ const CheckBoxField = ({
   const checkboxes = options.map(
     ({ [checkLabelKey]: checkLabel, [checkValueKey]: checkValue }, index) => {
       const handleChange = (event) => {
-        let arr = _.toArray(value);
+        let arr = toArray(value);
         if (event.target.checked) {
-          arr = _.union(value, [checkValue]);
+          arr = union(value, [checkValue]);
         } else {
-          arr = _.filter(arr, val => val !== checkValue);
+          arr = filter(arr, val => val !== checkValue);
         }
         arr = arr.length ? arr : null;
         onBlur();
@@ -50,7 +50,7 @@ const CheckBoxField = ({
         key={`${name}_${index}`} // eslint-disable-line
           name={`${name}_${index}`}
           value={checkValue}
-          checked={_.find(value, checkValue)}
+          checked={find(value, checkValue)}
           onChange={handleChange}
           onFocus={onFocus}
           {...props}

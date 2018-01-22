@@ -1,9 +1,9 @@
 import React from 'react';
 import {
   FormGroup,
-  ControlLabel,
   HelpBlock,
   InputGroup } from 'react-bootstrap';
+
 import Toggle from 'react-toggle';
 
 import Label from 'Label';

@@ -1,11 +1,11 @@
 import React from 'react';
-import _ from 'lodash';
+import PropTypes from 'prop-types';
 
 import { ControlLabel, Glyphicon } from 'react-bootstrap';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
-export default ({ label, required }) => {
+const Label = ({ label, required }) => {
   if (label && required) {
     return (<ControlLabel>{label}&nbsp;<small><Glyphicon glyph="asterisk" style={{ color: '#a94442' }} /></small></ControlLabel>);
   } else if (label) {
@@ -13,3 +13,15 @@ export default ({ label, required }) => {
   }
   return null;
 };
+
+Label.propTypes = {
+  label: PropTypes.string,
+  required: PropTypes.bool,
+};
+
+Label.defaultProps = {
+  label: '',
+  required: false,
+};
+
+export default Label;

@@ -1,7 +1,7 @@
 import React from 'react';
-import _ from 'lodash';
+import { castArray, map, get, head } from 'lodash';
 
-import { FormGroup, ControlLabel, HelpBlock } from 'react-bootstrap';
+import { FormGroup, HelpBlock } from 'react-bootstrap';
 import Select from 'react-select';
 
 import Label from 'Label';
@@ -27,11 +27,11 @@ const SelectField = ({
   const selectValueKey = valueKey || 'value';
 
   const handleChange = (selected) => {
-    const selectedList = _.castArray(selected);
-    const selectedVals = _.map(selectedList, opt => _.get(opt, selectValueKey));
+    const selectedList = castArray(selected);
+    const selectedVals = map(selectedList, opt => get(opt, selectValueKey));
     let changed;
     if (!multiple) {
-      changed = _.get(_.head(selectedList), selectValueKey, null);
+      changed = get(head(selectedList), selectValueKey, null);
     } else {
       changed = selectedVals.length ? selectedVals : null;
     }

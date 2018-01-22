@@ -42,8 +42,9 @@ exports[`The Radio Field renders 1`] = `
     <div
       className="form-group"
     >
-      <Component
+      <Label
         label="Radio Test"
+        required={false}
       >
         <ControlLabel
           bsClass="control-label"
@@ -56,7 +57,7 @@ exports[`The Radio Field renders 1`] = `
             Radio Test
           </label>
         </ControlLabel>
-      </Component>
+      </Label>
       <InputGroup
         bsClass="input-group"
       >
@@ -231,8 +232,9 @@ exports[`The Radio Field renders with custom options 1`] = `
     <div
       className="form-group"
     >
-      <Component
+      <Label
         label="Radio Test"
+        required={false}
       >
         <ControlLabel
           bsClass="control-label"
@@ -245,7 +247,7 @@ exports[`The Radio Field renders with custom options 1`] = `
             Radio Test
           </label>
         </ControlLabel>
-      </Component>
+      </Label>
       <InputGroup
         bsClass="input-group"
       >

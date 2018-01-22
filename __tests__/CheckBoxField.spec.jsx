@@ -53,12 +53,6 @@ describe('The Checkbox Field', () => {
     expect(inputWrapper.find('ControlLabel').text()).toEqual(fieldProps.label);
   });
 
-  it('does not have a label when there is no label', () => {
-    const noLabelFieldProps = omit(fieldProps, ['label']);
-    const inputWrapperNoLabel = mount(<CheckBoxField {...noLabelFieldProps} />);
-    expect(inputWrapperNoLabel.find('Label').exists()).toBe(false);
-  });
-
   it('renders with custom options', () => {
     inputWrapper = mount(<CheckBoxField {...customOptionFieldProps} />);
     expect(inputWrapper).toMatchSnapshot();

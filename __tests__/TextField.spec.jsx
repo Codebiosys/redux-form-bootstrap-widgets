@@ -49,13 +49,6 @@ describe('The Text Field', () => {
     expect(inputWrapper.find('ControlLabel').text()).toEqual(fieldProps.label);
   });
 
-  it('does not have a label when there is no label', () => {
-    const noLabelFieldProps = omit(fieldProps, ['label']);
-    const inputWrapperNoLabel = mount(<TextField {...noLabelFieldProps} />);
-    expect(inputWrapperNoLabel.find('Label').exists()).toBe(false);
-  });
-
-
   it('displays the add ons and clear button for text input', () => {
     expect(inputWrapper.find('#before_addon').exists()).toBe(true);
     expect(inputWrapper.find('#after_addon').exists()).toBe(true);

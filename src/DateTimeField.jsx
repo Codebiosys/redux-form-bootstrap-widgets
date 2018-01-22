@@ -1,12 +1,10 @@
 import React from 'react';
-import _ from 'lodash';
+import { omit } from 'lodash';
 import {
   FormGroup,
   FormControl,
-  ControlLabel,
   InputGroup,
   HelpBlock,
-  Button,
   Glyphicon } from 'react-bootstrap';
 import DateTime from 'react-datetime';
 
@@ -66,6 +64,6 @@ const DateTimeField = ({
 };
 
 DateTimeField.propTypes = {
-  ..._.omit(DateTime.propTypes, 'input'),
+  ...omit(DateTime.propTypes, 'input'),
 };
 export default DateTimeField;

@@ -2,7 +2,7 @@ import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { reduxForm, Field, propTypes, Fields } from 'redux-form';
-import _ from 'lodash';
+import { omit, keys } from 'lodash';
 
 const reduxFormConfig = {
   destroyOnUnmount: false,
@@ -10,13 +10,13 @@ const reduxFormConfig = {
 
 const ReduxField = props => (
   <Field
-    {..._.omit(props, [..._.keys(propTypes), 'clearSubmitErrors'])}
+    {...omit(props, [...keys(propTypes), 'clearSubmitErrors'])}
   />
 );
 
 const ReduxFields = props => (
   <Fields
-    {..._.omit(props, [..._.keys(propTypes), 'clearSubmitErrors'])}
+    {...omit(props, [...keys(propTypes), 'clearSubmitErrors'])}
   />
 );
 

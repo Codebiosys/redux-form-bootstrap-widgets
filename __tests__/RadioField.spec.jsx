@@ -52,12 +52,6 @@ describe('The Radio Field', () => {
     expect(inputWrapper.find('ControlLabel').text()).toEqual(fieldProps.label);
   });
 
-  it('does not have a label when there is no label', () => {
-    const noLabelFieldProps = omit(fieldProps, ['label']);
-    const inputWrapperNoLabel = mount(<RadioField {...noLabelFieldProps} />);
-    expect(inputWrapperNoLabel.find('Label').exists()).toBe(false);
-  });
-
   it('renders with custom options', () => {
     inputWrapper = mount(<RadioField {...customOptionFieldProps} />);
     expect(inputWrapper).toMatchSnapshot();

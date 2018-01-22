@@ -76,12 +76,6 @@ describe('The Select Field', () => {
     expect(inputWrapper.find('ControlLabel').text()).toEqual(fieldProps.label);
   });
 
-  it('does not have a label when there is no label', () => {
-    const noLabelFieldProps = omit(fieldProps, ['label']);
-    const inputWrapperNoLabel = mount(<SelectField {...noLabelFieldProps} />);
-    expect(inputWrapperNoLabel.find('Label').exists()).toBe(false);
-  });
-
   it('renders with custom options', () => {
     inputWrapper = mount(<SelectField {...customOptionFieldProps} />);
     expect(inputWrapper).toMatchSnapshot();

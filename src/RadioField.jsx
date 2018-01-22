@@ -3,7 +3,6 @@ import _ from 'lodash';
 
 import {
   FormGroup,
-  ControlLabel,
   HelpBlock,
   InputGroup,
   Radio } from 'react-bootstrap';

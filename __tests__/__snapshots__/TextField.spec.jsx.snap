@@ -39,8 +39,9 @@ exports[`The Text Field displays a textarea when the type is textarea 1`] = `
     <div
       className="form-group"
     >
-      <Component
+      <Label
         label="Text Test"
+        required={false}
       >
         <ControlLabel
           bsClass="control-label"
@@ -53,7 +54,7 @@ exports[`The Text Field displays a textarea when the type is textarea 1`] = `
             Text Test
           </label>
         </ControlLabel>
-      </Component>
+      </Label>
       <InputGroup
         bsClass="input-group"
         style={
@@ -147,8 +148,9 @@ exports[`The Text Field renders 1`] = `
     <div
       className="form-group"
     >
-      <Component
+      <Label
         label="Text Test"
+        required={false}
       >
         <ControlLabel
           bsClass="control-label"
@@ -161,7 +163,7 @@ exports[`The Text Field renders 1`] = `
             Text Test
           </label>
         </ControlLabel>
-      </Component>
+      </Label>
       <InputGroup
         bsClass="input-group"
         style={Object {}}

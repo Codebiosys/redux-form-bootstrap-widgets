@@ -42,8 +42,9 @@ exports[`The Select Field renders 1`] = `
     <div
       className="form-group"
     >
-      <Component
+      <Label
         label="Radio Test"
+        required={false}
       >
         <ControlLabel
           bsClass="control-label"
@@ -56,7 +57,7 @@ exports[`The Select Field renders 1`] = `
             Radio Test
           </label>
         </ControlLabel>
-      </Component>
+      </Label>
       <Select
         addLabelText="Add \\"{label}\\"?"
         arrowRenderer={[Function]}
@@ -279,8 +280,9 @@ exports[`The Select Field renders allowing multiple selections 1`] = `
     <div
       className="form-group"
     >
-      <Component
+      <Label
         label="Radio Test"
+        required={false}
       >
         <ControlLabel
           bsClass="control-label"
@@ -293,7 +295,7 @@ exports[`The Select Field renders allowing multiple selections 1`] = `
             Radio Test
           </label>
         </ControlLabel>
-      </Component>
+      </Label>
       <Select
         addLabelText="Add \\"{label}\\"?"
         arrowRenderer={[Function]}
@@ -377,7 +379,7 @@ exports[`The Select Field renders allowing multiple selections 1`] = `
           >
             <span
               className="Select-multi-value-wrapper"
-              id="react-select-21--value"
+              id="react-select-17--value"
             >
               <div
                 className="Select-placeholder"
@@ -385,7 +387,7 @@ exports[`The Select Field renders allowing multiple selections 1`] = `
                 Select...
               </div>
               <AutosizeInput
-                aria-activedescendant="react-select-21--value"
+                aria-activedescendant="react-select-17--value"
                 aria-expanded="false"
                 aria-haspopup="false"
                 aria-owns=""
@@ -414,7 +416,7 @@ exports[`The Select Field renders allowing multiple selections 1`] = `
                     }
                   />
                   <input
-                    aria-activedescendant="react-select-21--value"
+                    aria-activedescendant="react-select-17--value"
                     aria-expanded="false"
                     aria-haspopup="false"
                     aria-owns=""
@@ -500,8 +502,9 @@ exports[`The Select Field renders with async options 1`] = `
     <div
       className="form-group"
     >
-      <Component
+      <Label
         label="Radio Test"
+        required={false}
       >
         <ControlLabel
           bsClass="control-label"
@@ -514,7 +517,7 @@ exports[`The Select Field renders with async options 1`] = `
             Radio Test
           </label>
         </ControlLabel>
-      </Component>
+      </Label>
       <Async
         autoBlur={true}
         autoload={true}
@@ -623,7 +626,7 @@ exports[`The Select Field renders with async options 1`] = `
             >
               <span
                 className="Select-multi-value-wrapper"
-                id="react-select-17--value"
+                id="react-select-13--value"
               >
                 <div
                   className="Select-placeholder"
@@ -631,7 +634,7 @@ exports[`The Select Field renders with async options 1`] = `
                   Select...
                 </div>
                 <AutosizeInput
-                  aria-activedescendant="react-select-17--value"
+                  aria-activedescendant="react-select-13--value"
                   aria-expanded="false"
                   aria-haspopup="false"
                   aria-owns=""
@@ -660,7 +663,7 @@ exports[`The Select Field renders with async options 1`] = `
                       }
                     />
                     <input
-                      aria-activedescendant="react-select-17--value"
+                      aria-activedescendant="react-select-13--value"
                       aria-expanded="false"
                       aria-haspopup="false"
                       aria-owns=""
@@ -764,8 +767,9 @@ exports[`The Select Field renders with custom options 1`] = `
     <div
       className="form-group"
     >
-      <Component
+      <Label
         label="Radio Test"
+        required={false}
       >
         <ControlLabel
           bsClass="control-label"
@@ -778,7 +782,7 @@ exports[`The Select Field renders with custom options 1`] = `
             Radio Test
           </label>
         </ControlLabel>
-      </Component>
+      </Label>
       <Select
         addLabelText="Add \\"{label}\\"?"
         arrowRenderer={[Function]}
@@ -862,7 +866,7 @@ exports[`The Select Field renders with custom options 1`] = `
           >
             <span
               className="Select-multi-value-wrapper"
-              id="react-select-15--value"
+              id="react-select-11--value"
             >
               <div
                 className="Select-placeholder"
@@ -870,7 +874,7 @@ exports[`The Select Field renders with custom options 1`] = `
                 Select...
               </div>
               <AutosizeInput
-                aria-activedescendant="react-select-15--value"
+                aria-activedescendant="react-select-11--value"
                 aria-expanded="false"
                 aria-haspopup="false"
                 aria-owns=""
@@ -899,7 +903,7 @@ exports[`The Select Field renders with custom options 1`] = `
                     }
                   />
                   <input
-                    aria-activedescendant="react-select-15--value"
+                    aria-activedescendant="react-select-11--value"
                     aria-expanded="false"
                     aria-haspopup="false"
                     aria-owns=""

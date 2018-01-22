@@ -36,12 +36,6 @@ describe('The Date Time Field', () => {
     expect(inputWrapper.find('ControlLabel').text()).toEqual(fieldProps.label);
   });
 
-  it('does not have a label when there is no label', () => {
-    const noLabelFieldProps = omit(fieldProps, ['label']);
-    const inputWrapperNoLabel = mount(<DateTimeField {...noLabelFieldProps} />);
-    expect(inputWrapperNoLabel.find('Label').exists()).toBe(false);
-  });
-
   it('does not display the clear button when there is no value', () => {
     expect(inputWrapper.find('.form-control-feedback').hasClass('glyphicon-calendar')).toBe(true);
   });
