@@ -14,8 +14,6 @@ var _reactBootstrap = require('react-bootstrap');
 
 var _lodash = require('lodash');
 
-var _lodash2 = _interopRequireDefault(_lodash);
-
 var _Label = require('Label');
 
 var _Label2 = _interopRequireDefault(_Label);
@@ -59,11 +57,11 @@ var CheckBoxField = function CheckBoxField(_ref) {
         checkValue = _ref3[checkValueKey];
 
     var handleChange = function handleChange(event) {
-      var arr = _lodash2.default.toArray(value);
+      var arr = (0, _lodash.toArray)(value);
       if (event.target.checked) {
-        arr = _lodash2.default.union(value, [checkValue]);
+        arr = (0, _lodash.union)(value, [checkValue]);
       } else {
-        arr = _lodash2.default.filter(arr, function (val) {
+        arr = (0, _lodash.filter)(arr, function (val) {
           return val !== checkValue;
         });
       }
@@ -78,7 +76,7 @@ var CheckBoxField = function CheckBoxField(_ref) {
         key: name + '_' + index // eslint-disable-line
         , name: name + '_' + index,
         value: checkValue,
-        checked: _lodash2.default.find(value, checkValue),
+        checked: (0, _lodash.find)(value, checkValue),
         onChange: handleChange,
         onFocus: onFocus
       }, props),

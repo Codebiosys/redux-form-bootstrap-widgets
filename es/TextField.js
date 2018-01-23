@@ -12,6 +12,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactBootstrap = require('react-bootstrap');
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _Label = require('Label');
 
 var _Label2 = _interopRequireDefault(_Label);
@@ -26,6 +30,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
+/** TextField component description */
 var TextField = function TextField(_ref) {
   var label = _ref.label,
       required = _ref.required,
@@ -93,6 +98,41 @@ var TextField = function TextField(_ref) {
   );
 };
 
-TextField.propTypes = _extends({}, _reactBootstrap.FormControl.propTypes);
+TextField.propTypes = _extends({}, _reactBootstrap.FormControl.propTypes, {
+  /** Form label. */
+  label: _propTypes2.default.string.isRequired,
+
+  /** Flag to display required Astrisk. */
+  required: _propTypes2.default.bool,
+
+  /** Additional text that displays below the widget. */
+  helpText: _propTypes2.default.string,
+
+  /** Override the default validation checks. Takes ReduxForm 'meta' as input */
+  customValidation: _propTypes2.default.func,
+
+  /** Redux Form Input property. Set when used in a redux 'Field' */
+  input: _propTypes2.default.object.isRequired,
+
+  /** Redux Form meta property. Set when used in a redux 'Field' */
+
+  meta: _propTypes2.default.object.isRequired,
+  /** React Boostrap Field addOn, placed before the input */
+  addOnBefore: _propTypes2.default.element,
+
+  /** React Boostrap Field addOn, placed after the input */
+  addOnAfter: _propTypes2.default.element,
+
+  type: _propTypes2.default.string,
+  componentClass: _propTypes2.default.string
+});
+
+TextField.defaultProps = {
+  required: false,
+  helpText: null,
+  customValidation: null,
+  addOnBefore: null,
+  addOnAfter: null
+};
 
 exports.default = TextField;

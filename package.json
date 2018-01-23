@@ -22,6 +22,8 @@
     "redux-form": "^7.1.2"
   },
   "devDependencies": {
+    "@storybook/addon-info": "^3.3.10",
+    "@storybook/addon-knobs": "^3.3.10",
     "@storybook/react": "^3.3.10",
     "autoprefixer": "^7.1.5",
     "babel-cli": "^6.26.0",
@@ -29,6 +31,7 @@
     "babel-eslint": "^8.0.0",
     "babel-jest": "^20.0.3",
     "babel-loader": "^7.1.0",
+    "babel-plugin-react-docgen": "^1.8.2",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.10",
     "babel-preset-env": "^1.6.0",
@@ -90,7 +93,6 @@
     "test": "cross-env NODE_ENV=test jest --config=jest.json --coverage",
     "lint": "eslint -c ./.eslintrc.yml --ext .jsx,.js src",
     "storybook": "start-storybook -p 9001 -c .storybook"
-
   },
   "npmName": "redux-form-bootstrap-widgets",
   "npmFileMap": [

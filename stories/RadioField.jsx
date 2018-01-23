@@ -2,13 +2,13 @@ import React from 'react';
 import { Field } from 'redux-form';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import ReduxFormWrapper from './helpers/ReduxForm';
 
 import RadioField from '../src/RadioField';
 
 storiesOf('RadioField', module)
-  .addDecorator(ReduxFormWrapper)
-  .add('with text', () => (
+  .addWithInfo('with text',
+  'Some additional info',
+  () => (
     <Field
       name="field1"
       component={RadioField}

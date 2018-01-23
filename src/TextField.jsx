@@ -5,13 +5,14 @@ import {
   HelpBlock,
   InputGroup,
   Glyphicon } from 'react-bootstrap';
-
+import PropTypes from 'prop-types';
 import Label from 'Label';
 
 import validationMessage from 'utils';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
+/** TextField component description */
 const TextField = ({
   label,
   required,
@@ -73,7 +74,42 @@ const TextField = ({
 };
 
 TextField.propTypes = {
+  /** additional Props that can be passed to Form Control */
   ...FormControl.propTypes,
+  /** Form label. */
+  label: PropTypes.string.isRequired,
+
+  /** Flag to display required Astrisk. */
+  required: PropTypes.bool,
+
+  /** Additional text that displays below the widget. */
+  helpText: PropTypes.string,
+
+  /** Override the default validation checks. Takes ReduxForm 'meta' as input */
+  customValidation: PropTypes.func,
+
+  /** Redux Form Input property. Set when used in a redux 'Field' */
+  input: PropTypes.object.isRequired,
+
+  /** Redux Form meta property. Set when used in a redux 'Field' */
+
+  meta: PropTypes.object.isRequired,
+  /** React Boostrap Field addOn, placed before the input */
+  addOnBefore: PropTypes.element,
+
+  /** React Boostrap Field addOn, placed after the input */
+  addOnAfter: PropTypes.element,
+
+  type: PropTypes.string,
+  componentClass: PropTypes.string,
+};
+
+TextField.defaultProps = {
+  required: false,
+  helpText: null,
+  customValidation: null,
+  addOnBefore: null,
+  addOnAfter: null,
 };
 
 export default TextField;

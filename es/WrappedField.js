@@ -17,8 +17,6 @@ var _reduxForm = require('redux-form');
 
 var _lodash = require('lodash');
 
-var _lodash2 = _interopRequireDefault(_lodash);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -28,11 +26,11 @@ var reduxFormConfig = {
 };
 
 var ReduxField = function ReduxField(props) {
-  return React.createElement(_reduxForm.Field, _lodash2.default.omit(props, [].concat(_toConsumableArray(_lodash2.default.keys(_reduxForm.propTypes)), ['clearSubmitErrors'])));
+  return React.createElement(_reduxForm.Field, (0, _lodash.omit)(props, [].concat(_toConsumableArray((0, _lodash.keys)(_reduxForm.propTypes)), ['clearSubmitErrors'])));
 };
 
 var ReduxFields = function ReduxFields(props) {
-  return React.createElement(_reduxForm.Fields, _lodash2.default.omit(props, [].concat(_toConsumableArray(_lodash2.default.keys(_reduxForm.propTypes)), ['clearSubmitErrors'])));
+  return React.createElement(_reduxForm.Fields, (0, _lodash.omit)(props, [].concat(_toConsumableArray((0, _lodash.keys)(_reduxForm.propTypes)), ['clearSubmitErrors'])));
 };
 
 var WrappedField = exports.WrappedField = (0, _redux.compose)((0, _reactRedux.connect)(function (state, props) {

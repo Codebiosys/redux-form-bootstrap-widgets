@@ -8,9 +8,9 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _lodash = require('lodash');
+var _propTypes = require('prop-types');
 
-var _lodash2 = _interopRequireDefault(_lodash);
+var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _reactBootstrap = require('react-bootstrap');
 
@@ -18,7 +18,7 @@ require('bootstrap/dist/css/bootstrap.css');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = function (_ref) {
+var Label = function Label(_ref) {
   var label = _ref.label,
       required = _ref.required;
 
@@ -43,3 +43,15 @@ exports.default = function (_ref) {
   }
   return null;
 };
+
+Label.propTypes = {
+  label: _propTypes2.default.string,
+  required: _propTypes2.default.bool
+};
+
+Label.defaultProps = {
+  label: '',
+  required: false
+};
+
+exports.default = Label;

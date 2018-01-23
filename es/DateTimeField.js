@@ -12,8 +12,6 @@ var _react2 = _interopRequireDefault(_react);
 
 var _lodash = require('lodash');
 
-var _lodash2 = _interopRequireDefault(_lodash);
-
 var _reactBootstrap = require('react-bootstrap');
 
 var _reactDatetime = require('react-datetime');
@@ -97,5 +95,5 @@ var DateTimeField = function DateTimeField(_ref) {
   );
 };
 
-DateTimeField.propTypes = _extends({}, _lodash2.default.omit(_reactDatetime2.default.propTypes, 'input'));
+DateTimeField.propTypes = _extends({}, (0, _lodash.omit)(_reactDatetime2.default.propTypes, 'input'));
 exports.default = DateTimeField;

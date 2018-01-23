@@ -12,8 +12,6 @@ var _react2 = _interopRequireDefault(_react);
 
 var _lodash = require('lodash');
 
-var _lodash2 = _interopRequireDefault(_lodash);
-
 var _reactBootstrap = require('react-bootstrap');
 
 var _reactSelect = require('react-select');
@@ -60,13 +58,13 @@ var SelectField = function SelectField(_ref) {
   var selectValueKey = valueKey || 'value';
 
   var handleChange = function handleChange(selected) {
-    var selectedList = _lodash2.default.castArray(selected);
-    var selectedVals = _lodash2.default.map(selectedList, function (opt) {
-      return _lodash2.default.get(opt, selectValueKey);
+    var selectedList = (0, _lodash.castArray)(selected);
+    var selectedVals = (0, _lodash.map)(selectedList, function (opt) {
+      return (0, _lodash.get)(opt, selectValueKey);
     });
     var changed = void 0;
     if (!multiple) {
-      changed = _lodash2.default.get(_lodash2.default.head(selectedList), selectValueKey, null);
+      changed = (0, _lodash.get)((0, _lodash.head)(selectedList), selectValueKey, null);
     } else {
       changed = selectedVals.length ? selectedVals : null;
     }

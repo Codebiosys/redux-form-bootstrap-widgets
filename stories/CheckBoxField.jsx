@@ -2,14 +2,13 @@ import React from 'react';
 import { Field } from 'redux-form';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import ReduxFormWrapper from './helpers/ReduxForm';
 
 import CheckBoxField from '../src/CheckBoxField';
 
 storiesOf('CheckboxField', module)
-  .addDecorator(ReduxFormWrapper)
-  .add('with text', () => (
-
+  .addWithInfo('with text',
+  'A Description',
+  () => (
     <Field
       name="Checkbox_withText"
       component={CheckBoxField}
@@ -25,4 +24,5 @@ storiesOf('CheckboxField', module)
                 { foo: 'three', bar: 3 },
       ]}
     />
-  ));
+  ),
+{ propTables: [CheckBoxField] });
