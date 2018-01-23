@@ -64,4 +64,5 @@ storiesOf('CheckboxField', module)
                 { label: 'three', value: 3 },
       ]}
     />
-  ));
+  ),
+storyConfig);

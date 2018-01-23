@@ -1,5 +1,4 @@
 import React from 'react';
-import { HelpBlock } from 'react-bootstrap';
 
 const validationMessage = ({ dirty, touched, error, warning }) => {
   let errorMessage;
@@ -12,7 +11,7 @@ const validationMessage = ({ dirty, touched, error, warning }) => {
     } else {
       validationState = 'warning';
     }
-    errorMessage = (<HelpBlock>{error || warning}</HelpBlock>);
+    errorMessage = error || warning;
   }
   return { validationState, errorMessage };
 };

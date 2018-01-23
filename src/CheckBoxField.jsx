@@ -25,6 +25,7 @@ const CheckBoxField = ({
   customValidation,
   input: { name, value, onFocus, onChange, onBlur },
   options,
+  inline,
   ...props
 }) => {
   const { validationState, errorMessage } = customValidation ?
@@ -57,6 +58,7 @@ const CheckBoxField = ({
           onChange={handleChange}
           onFocus={onFocus}
           disabled={disabled}
+          inline={inline}
           {...props}
         >
           {checkLabel}
@@ -89,6 +91,8 @@ CheckBoxField.propTypes = {
   required: PropTypes.bool,
   /** Whether or not the field is disabled */
   disabled: PropTypes.bool,
+  /** Whether or not the fields are inline */
+  inline: PropTypes.bool,
   /** Additional text that displays below the widget. */
   helpText: PropTypes.string,
   /** The key in the option list for the display label */
@@ -118,6 +122,7 @@ CheckBoxField.defaultProps = {
   required: false,
   helpText: null,
   disabled: false,
+  inline: false,
   customValidation: null,
   labelKey: 'label',
   valueKey: 'value',
