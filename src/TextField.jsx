@@ -68,9 +68,10 @@ const TextField = ({
         {typeConfig.componentClass === 'textarea' ? '' : addOnAfter }
         {typeConfig.componentClass === 'textarea' || (!input.value) || (disabled) ? '' : ClearButton }
       </InputGroup>
-      {errorMessage}
-      <HelpBlock>{helpText}</HelpBlock>
-      {errorMessage ? '' : (<HelpBlock>&nbsp;</HelpBlock>)}
+      <HelpBlock style={{ minHeight: '3ex' }}>
+        {errorMessage}
+        {(errorMessage && helpText) ? <br /> : ''}
+        {helpText}</HelpBlock>
     </FormGroup>
   );
 };
@@ -88,18 +89,12 @@ TextField.propTypes = {
   helpText: PropTypes.string,
   /** HTML input type. */
   type: PropTypes.oneOf(['text', 'password', 'number', 'textarea']),
-
-
   /** Override the default validation checks. Takes ReduxForm 'meta' as input */
   customValidation: PropTypes.func,
-
-
   /** React Boostrap Field addOn, placed before the input */
   addOnBefore: PropTypes.element,
-
   /** React Boostrap Field addOn, placed after the input */
   addOnAfter: PropTypes.element,
-
   /**
   * @ignore
   * Redux Form internal input property. Set when used in a redux 'Field'

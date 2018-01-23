@@ -17,16 +17,6 @@ const storyConfig = {
   propTablesExclude: [FormControl, Field],
 };
 
-// const typeLabel = 'Types';
-// const typeOptions = {
-//   text: 'text',
-//   password: 'password',
-//   number: 'number',
-//   textarea: 'textarea',
-// };
-// const typeDefaultValue = 'text';
-// {select(typeLabel, typeOptions)}
-
 storiesOf('TextField', module)
 .addDecorator(withKnobs)
 .addDecorator(ReduxFormWrapper('storytime'))
@@ -68,6 +58,21 @@ storiesOf('TextField', module)
         required={boolean('Required', false)}
         disabled={boolean('Disabled', false)}
         helpText={text('Help Text', 'Help text for the widget')}
+        type="text"
+      />
+    ),
+  storyConfig)
+  .addWithInfo('with required validation',
+  'A Description',
+    () => (
+      <Field
+        name="fieldName"
+        component={TextField}
+        label={text('Label', 'Text Field Label')}
+        required
+        validate={value => (value ? undefined : 'Required')}
+        disabled={boolean('Disabled', false)}
+        helpText={text('Help Text', '')}
         type="text"
       />
     ),
