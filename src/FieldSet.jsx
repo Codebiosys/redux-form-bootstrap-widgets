@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
-const FieldSet = ({ style, legendStyle, label, children }) => (
+const FieldSet = ({ style, labelStyle, label, children }) => (
   <fieldset
     style={{
       padding: '.35em .625em .75em',
@@ -19,7 +19,7 @@ const FieldSet = ({ style, legendStyle, label, children }) => (
       paddingLeft: '10px',
       paddingRight: '10px',
       fontSize: '1.5em',
-      ...legendStyle,
+      ...labelStyle,
     }}
     >{label}</legend>
     {children}
@@ -28,14 +28,18 @@ const FieldSet = ({ style, legendStyle, label, children }) => (
 
 
 FieldSet.propTypes = {
+  /** Fieldset label. */
   label: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
+  /** Styling for the Fieldset. */
   style: PropTypes.object,
-  legendStyle: PropTypes.object,
+  /** Styling for the Fieldset label. */
+  labelStyle: PropTypes.object,
+  /** Child nodes for the Fieldset. */
+  children: PropTypes.node.isRequired,
 };
 
 FieldSet.defaultProps = {
   style: {},
-  legendStyle: {},
+  labelStyle: {},
 };
 export default FieldSet;

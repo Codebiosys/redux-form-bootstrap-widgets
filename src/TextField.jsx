@@ -27,7 +27,7 @@ const TextField = ({
   type,
   ...props
 }) => {
-  const { name, onChange } = input;
+  const { name, onChange, onBlur } = input;
   const { validationState, errorMessage } = customValidation ?
   customValidation(meta) :
   validationMessage(meta);
@@ -43,7 +43,7 @@ const TextField = ({
     typeConfig.componentClass = 'textarea';
     groupStyle.width = '100%';
   }
-  const clearContent = () => onChange(null);
+  const clearContent = () => { onChange(null); onBlur(null); };
 
   const ClearButton = (
     <FormControl.Feedback onClick={clearContent} style={{ pointerEvents: 'all' }}>
@@ -68,7 +68,7 @@ const TextField = ({
         {typeConfig.componentClass === 'textarea' ? '' : addOnAfter }
         {typeConfig.componentClass === 'textarea' || (!input.value) || (disabled) ? '' : ClearButton }
       </InputGroup>
-      <HelpBlock style={{ minHeight: '3ex' }}>
+      <HelpBlock style={{ minHeight: helpText ? '6ex' : '3ex' }}>
         {errorMessage}
         {(errorMessage && helpText) ? <br /> : ''}
         {helpText}</HelpBlock>

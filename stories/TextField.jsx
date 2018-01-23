@@ -7,11 +7,6 @@ import { FormControl, Button, InputGroup } from 'react-bootstrap';
 import TextField from '../src/TextField';
 import ReduxFormWrapper from '../.storybook/ReduxForm';
 
-const defaultProps = {
-  component: TextField,
-  label: 'Text Field Label',
-};
-
 const storyConfig = {
   propTables: [TextField],
   propTablesExclude: [FormControl, Field],
@@ -73,6 +68,21 @@ storiesOf('TextField', module)
         validate={value => (value ? undefined : 'Required')}
         disabled={boolean('Disabled', false)}
         helpText={text('Help Text', '')}
+        type="text"
+      />
+    ),
+  storyConfig)
+  .addWithInfo('with required validation and help text',
+  'A Description',
+    () => (
+      <Field
+        name="fieldName"
+        component={TextField}
+        label={text('Label', 'Text Field Label')}
+        required
+        validate={value => (value ? undefined : 'Required')}
+        disabled={boolean('Disabled', false)}
+        helpText={text('Help Text', 'Help text for the widget')}
         type="text"
       />
     ),
