@@ -24,6 +24,7 @@ const TextField = ({
   addOnAfter,
   type,
   componentClass,
+  disabled,
   ...props
 }) => {
   const { name, onChange } = input;
@@ -49,7 +50,6 @@ const TextField = ({
       <Glyphicon glyph="remove" />
     </FormControl.Feedback>
   );
-
   return (
     <FormGroup
       controlId={name}
@@ -62,13 +62,15 @@ const TextField = ({
           style={inputStyle}
           {...typeConfig}
           {...input}
+          disabled={disabled}
           {...props}
         />
         {typeConfig.componentClass ? '' : addOnAfter }
-        {typeConfig.componentClass || (!input.value) ? '' : ClearButton }
+        {typeConfig.componentClass || (!input.value) || (disabled) ? '' : ClearButton }
       </InputGroup>
       {errorMessage}
       <HelpBlock>{helpText}</HelpBlock>
+      {errorMessage ? '' : (<HelpBlock>&nbsp;</HelpBlock>)}
     </FormGroup>
   );
 };
@@ -102,6 +104,9 @@ TextField.propTypes = {
 
   type: PropTypes.string,
   componentClass: PropTypes.string,
+
+  /** Whether or not the field is disabled */
+  disabled: PropTypes.bool,
 };
 
 TextField.defaultProps = {
@@ -110,6 +115,7 @@ TextField.defaultProps = {
   customValidation: null,
   addOnBefore: null,
   addOnAfter: null,
+  disabled: false,
 };
 
 export default TextField;
