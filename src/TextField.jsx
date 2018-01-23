@@ -7,6 +7,7 @@ import {
   Glyphicon } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import Label from 'Label';
+import { Field } from 'redux-form';
 
 import validationMessage from 'utils';
 
@@ -22,9 +23,8 @@ const TextField = ({
   meta,
   addOnBefore,
   addOnAfter,
-  type,
-  componentClass,
   disabled,
+  type,
   ...props
 }) => {
   const { name, onChange } = input;
@@ -32,17 +32,17 @@ const TextField = ({
   customValidation(meta) :
   validationMessage(meta);
 
-  const typeConfig = {};
+  const typeConfig = {
+    componentClass: 'input',
+    type,
+  };
   const inputStyle = { zIndex: '0' };
   const groupStyle = {};
 
-  if (type === 'textarea' || componentClass === 'textarea') {
+  if (type === 'textarea') {
     typeConfig.componentClass = 'textarea';
     groupStyle.width = '100%';
-  } else if (type) {
-    typeConfig.type = type;
   }
-
   const clearContent = () => onChange(null);
 
   const ClearButton = (
@@ -57,7 +57,7 @@ const TextField = ({
     >
       <Label label={label} required={required} />
       <InputGroup style={groupStyle}>
-        {typeConfig.componentClass ? '' : addOnBefore }
+        {typeConfig.componentClass === 'textarea' ? '' : addOnBefore }
         <FormControl
           style={inputStyle}
           {...typeConfig}
@@ -65,8 +65,8 @@ const TextField = ({
           disabled={disabled}
           {...props}
         />
-        {typeConfig.componentClass ? '' : addOnAfter }
-        {typeConfig.componentClass || (!input.value) || (disabled) ? '' : ClearButton }
+        {typeConfig.componentClass === 'textarea' ? '' : addOnAfter }
+        {typeConfig.componentClass === 'textarea' || (!input.value) || (disabled) ? '' : ClearButton }
       </InputGroup>
       {errorMessage}
       <HelpBlock>{helpText}</HelpBlock>
@@ -80,33 +80,37 @@ TextField.propTypes = {
   ...FormControl.propTypes,
   /** Form label. */
   label: PropTypes.string.isRequired,
-
   /** Flag to display required Astrisk. */
   required: PropTypes.bool,
-
+  /** Whether or not the field is disabled */
+  disabled: PropTypes.bool,
   /** Additional text that displays below the widget. */
   helpText: PropTypes.string,
+  /** HTML input type. */
+  type: PropTypes.oneOf(['text', 'password', 'number', 'textarea']),
+
 
   /** Override the default validation checks. Takes ReduxForm 'meta' as input */
   customValidation: PropTypes.func,
 
-  /** Redux Form Input property. Set when used in a redux 'Field' */
-  input: PropTypes.object.isRequired,
 
-  /** Redux Form meta property. Set when used in a redux 'Field' */
-
-  meta: PropTypes.object.isRequired,
   /** React Boostrap Field addOn, placed before the input */
   addOnBefore: PropTypes.element,
 
   /** React Boostrap Field addOn, placed after the input */
   addOnAfter: PropTypes.element,
 
-  type: PropTypes.string,
-  componentClass: PropTypes.string,
+  /**
+  * @ignore
+  * Redux Form internal input property. Set when used in a redux 'Field'
+  */
+  input: PropTypes.object.isRequired,
 
-  /** Whether or not the field is disabled */
-  disabled: PropTypes.bool,
+  /**
+  * @ignore
+  * Redux Form internal meta property. Set when used in a redux 'Field'
+  */
+  meta: PropTypes.object.isRequired,
 };
 
 TextField.defaultProps = {
@@ -116,6 +120,7 @@ TextField.defaultProps = {
   addOnBefore: null,
   addOnAfter: null,
   disabled: false,
+  type: 'text',
 };
 
 export default TextField;

@@ -2,7 +2,8 @@ import React from 'react';
 import { Field } from 'redux-form';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { FormControl } from 'react-bootstrap';
+import { withKnobs, text, boolean, number, select } from '@storybook/addon-knobs/react';
+import { FormControl, Button, InputGroup } from 'react-bootstrap';
 import TextField from '../src/TextField';
 import ReduxFormWrapper from '../.storybook/ReduxForm';
 
@@ -12,36 +13,86 @@ const defaultProps = {
 };
 
 const storyConfig = {
-  propTables: [TextField, FormControl],
-  propTablesExclude: [Field],
+  propTables: [TextField],
+  propTablesExclude: [FormControl, Field],
 };
 
+// const typeLabel = 'Types';
+// const typeOptions = {
+//   text: 'text',
+//   password: 'password',
+//   number: 'number',
+//   textarea: 'textarea',
+// };
+// const typeDefaultValue = 'text';
+// {select(typeLabel, typeOptions)}
+
 storiesOf('TextField', module)
-.addDecorator(ReduxFormWrapper('storytime', { textField: 'Initial Data' }))
+.addDecorator(withKnobs)
+.addDecorator(ReduxFormWrapper('storytime'))
 .addWithInfo('Default Text Field',
-'A Description',
+`A Text field with a react-bootstrap wrapping that connects to a redux field.
+ For fields and their functionality, see the
+ [redux-form documentation](https://redux-form.com/7.2.1/docs/api/field.md/).
+ Properties that are not required or optional for the TextField widget will be
+ passed on to the underlying
+ [react-bootstrap formcontrol](https://react-bootstrap.github.io/components/forms/).
+`,
   () => (
-    <Field name="textField1" {...defaultProps} />
+    <Field
+      name="fieldName"
+      component={TextField}
+      label={text('Label', 'Text Field Label')}
+      required={boolean('Required', false)}
+      disabled={boolean('Disabled', false)}
+      helpText={text('Help Text', 'Help text for the widget')}
+      type="text"
+    />
   ),
-  storyConfig).addWithInfo('with required',
-  'A Description',
-    () => (
-      <Field name="textField2" {...defaultProps} value="foo" />
-    ),
   storyConfig);
 
-
 storiesOf('TextField', module)
-  .addDecorator(ReduxFormWrapper('storytime', { textField3: 'Initial Data' }))
+  .addDecorator(withKnobs)
+  .addDecorator(
+    ReduxFormWrapper(
+      'TextFieldInitialValues',
+      { fieldName: 'Initial Data' },
+    ))
   .addWithInfo('Text Field With Initial initialValues',
   'A Description',
     () => (
-      <Field name="textField3" {...defaultProps} />
-    ),
-  storyConfig)
-  .addWithInfo('Disabled Text Field With Initial initialValues',
-  'A Description',
-    () => (
-      <Field name="textField3" disabled {...defaultProps} />
+      <Field
+        name="fieldName"
+        component={TextField}
+        label={text('Label', 'Text Field Label')}
+        required={boolean('Required', false)}
+        disabled={boolean('Disabled', false)}
+        helpText={text('Help Text', 'Help text for the widget')}
+        type="text"
+      />
     ),
   storyConfig);
+
+storiesOf('TextField', module)
+    .addDecorator(withKnobs)
+    .addDecorator(
+      ReduxFormWrapper(
+        'TextFieldAddOns',
+      ))
+    .addWithInfo('Text Field With Add Ons',
+    'A Description',
+      () => (
+        <Field
+          name="fieldName"
+          component={TextField}
+          label={text('Label', 'Text Field Label')}
+          required={boolean('Required', false)}
+          disabled={boolean('Disabled', false)}
+          helpText={text('Help Text', 'Help text for the widget')}
+          type="text"
+          addOnBefore={<InputGroup.Button>
+            <Button>Before</Button>
+          </InputGroup.Button>}
+        />
+      ),
+    storyConfig);
