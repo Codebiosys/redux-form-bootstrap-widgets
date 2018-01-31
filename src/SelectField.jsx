@@ -1,5 +1,7 @@
 import React from 'react';
-import { castArray, map, get, head } from 'lodash';
+import PropTypes from 'prop-types';
+
+import { castArray, map, get, head, isFunction } from 'lodash';
 
 import { FormGroup, HelpBlock } from 'react-bootstrap';
 import Select from 'react-select';
@@ -16,22 +18,20 @@ const SelectField = ({
   required,
   helpText,
   multiple,
+  labelKey,
   valueKey,
   customValidation,
   input: { name, onChange, onFocus, onBlur, value, ...inputProps },
   meta,
   options,
-  loadOptions,
   ...props
 }) => {
-  const selectValueKey = valueKey || 'value';
-
   const handleChange = (selected) => {
     const selectedList = castArray(selected);
-    const selectedVals = map(selectedList, opt => get(opt, selectValueKey));
+    const selectedVals = map(selectedList, opt => get(opt, valueKey));
     let changed;
     if (!multiple) {
-      changed = get(head(selectedList), selectValueKey, null);
+      changed = get(head(selectedList), valueKey, null);
     } else {
       changed = selectedVals.length ? selectedVals : null;
     }
@@ -43,16 +43,19 @@ const SelectField = ({
   customValidation(meta) :
   validationMessage(meta);
 
+  const isAsync = isFunction(options);
+
   return (
     <FormGroup
       controlId={name}
       validationState={validationState}
     >
       <Label label={label} required={required} />
-      {options ? (<Select
+      {!isAsync ? (<Select
         name={name}
         value={value}
-        valueKey={selectValueKey}
+        labelKey={labelKey}
+        valueKey={valueKey}
         autoBlur
         onChange={handleChange}
         onFocus={onFocus}
@@ -65,7 +68,8 @@ const SelectField = ({
       />) : (<Select.Async
         name={name}
         value={value}
-        valueKey={selectValueKey}
+        labelKey={labelKey}
+        valueKey={valueKey}
         autoBlur
         onChange={handleChange}
         onFocus={onFocus}
@@ -73,7 +77,7 @@ const SelectField = ({
         inputProps={inputProps}
         multi={!!multiple}
         joinValues
-        loadOptions={loadOptions}
+        loadOptions={options}
         {...props}
       />)
     }
@@ -85,6 +89,50 @@ const SelectField = ({
 
 
 SelectField.propTypes = {
-  ...Select.propTypes,
+  /** Form label. */
+  label: PropTypes.string.isRequired,
+  /** Flag to display required Astrisk. */
+  required: PropTypes.bool,
+  /** Whether or not the field is disabled */
+  disabled: PropTypes.bool,
+  /** Allow multi select or single select */
+  multiple: PropTypes.bool,
+  /** Additional text that displays below the widget. */
+  helpText: PropTypes.string,
+  /** Custom validation function */
+  customValidation: PropTypes.func,
+  /** Either an array of objects that have a shape that includes
+      the labelKey and valueKey, or a promise that resolves
+      such an array */
+  options: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.arrayOf(PropTypes.object)],
+  ).isRequired,
+  /** The key that is used as the select label */
+  labelKey: PropTypes.string,
+  /** The key that is used as the select value */
+  valueKey: PropTypes.string,
+  /**
+  * @ignore
+  * Redux Form internal input property. Set when used in a redux 'Field'
+  */
+  input: PropTypes.object.isRequired,
+
+  /**
+  * @ignore
+  * Redux Form internal meta property. Set when used in a redux 'Field'
+  */
+  meta: PropTypes.object.isRequired,
 };
+
+SelectField.defaultProps = {
+  required: false,
+  disabled: false,
+  helpText: null,
+  multiple: false,
+  customValidation: undefined,
+  labelKey: 'label',
+  valueKey: 'value',
+};
+
 export default SelectField;
