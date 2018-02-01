@@ -20,7 +20,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var FieldSet = function FieldSet(_ref) {
   var style = _ref.style,
-      legendStyle = _ref.legendStyle,
+      labelStyle = _ref.labelStyle,
       label = _ref.label,
       children = _ref.children;
   return React.createElement(
@@ -41,7 +41,7 @@ var FieldSet = function FieldSet(_ref) {
           paddingLeft: '10px',
           paddingRight: '10px',
           fontSize: '1.5em'
-        }, legendStyle)
+        }, labelStyle)
       },
       label
     ),
@@ -50,14 +50,18 @@ var FieldSet = function FieldSet(_ref) {
 };
 
 FieldSet.propTypes = {
+  /** Fieldset label. */
   label: _propTypes2.default.string.isRequired,
-  children: _propTypes2.default.node.isRequired,
+  /** Styling for the Fieldset. */
   style: _propTypes2.default.object,
-  legendStyle: _propTypes2.default.object
+  /** Styling for the Fieldset label. */
+  labelStyle: _propTypes2.default.object,
+  /** Child nodes for the Fieldset. */
+  children: _propTypes2.default.node.isRequired
 };
 
 FieldSet.defaultProps = {
   style: {},
-  legendStyle: {}
+  labelStyle: {}
 };
 exports.default = FieldSet;

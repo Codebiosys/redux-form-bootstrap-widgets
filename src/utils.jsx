@@ -1,5 +1,3 @@
-import React from 'react';
-
 const validationMessage = ({ dirty, touched, error, warning }) => {
   let errorMessage;
   let validationState;

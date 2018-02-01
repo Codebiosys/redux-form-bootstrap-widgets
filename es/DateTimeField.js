@@ -39,17 +39,16 @@ var DateTimeField = function DateTimeField(_ref) {
       required = _ref.required,
       helpText = _ref.helpText,
       customValidation = _ref.customValidation,
-      _ref$input = _ref.input,
-      name = _ref$input.name,
-      onFocus = _ref$input.onFocus,
+      name = _ref.input.name,
       form = _ref.meta.form,
-      inputProps = _objectWithoutProperties(_ref.input, ['name', 'onFocus']),
+      disabled = _ref.disabled,
+      inputProps = _objectWithoutProperties(_ref.input, ['name']),
       metaProps = _objectWithoutProperties(_ref.meta, ['form']),
-      props = _objectWithoutProperties(_ref, ['label', 'required', 'helpText', 'customValidation', 'input', 'meta']);
+      props = _objectWithoutProperties(_ref, ['label', 'required', 'helpText', 'customValidation', 'input', 'meta', 'disabled']);
 
-  var _ref2 = customValidation ? customValidation(metaProps) : (0, _utils2.default)(metaProps),
-      validationState = _ref2.validationState,
-      errorMessage = _ref2.errorMessage;
+  var _ref3 = customValidation ? customValidation(metaProps) : (0, _utils2.default)(metaProps),
+      validationState = _ref3.validationState,
+      errorMessage = _ref3.errorMessage;
 
   var clearContent = function clearContent() {
     return inputProps.onChange(null);
@@ -64,11 +63,49 @@ var DateTimeField = function DateTimeField(_ref) {
       React.createElement(_reactBootstrap.Glyphicon, { glyph: 'remove' })
     )
   );
-  var CalendarFeedback = React.createElement(
-    _reactBootstrap.FormControl.Feedback,
-    { style: { pointerEvents: 'none' } },
-    React.createElement(_reactBootstrap.Glyphicon, { glyph: 'calendar' })
-  );
+  // const CalendarFeedback = (
+  //   <FormControl.Feedback style={{ pointerEvents: 'none' }}>
+  //     <Glyphicon glyph="calendar" />
+  //   </FormControl.Feedback>
+  // );
+  var widgetInputProps = {
+    name: name,
+    className: props.className,
+    onClick: function onClick() {},
+    disabled: disabled || false
+  };
+  // name:
+  // type: 'text',
+  // className: 'form-control',
+  // onClick: this.openCalendar,
+  // onFocus: this.openCalendar,
+  // onChange: this.onInputChange,
+  // onKeyDown: this.onInputKey,
+  // value: this.state.inputValue,
+
+
+  var renderInput = function renderInput(_ref2, openCalendar) {
+    var onFocus = _ref2.onFocus,
+        thisprops = _objectWithoutProperties(_ref2, ['onFocus']);
+
+    return React.createElement(
+      _reactBootstrap.InputGroup,
+      null,
+      React.createElement(_reactBootstrap.FormControl, _extends({}, thisprops, {
+        onClick: function () {
+          console.log('clicking');
+        },
+        onFocus: function () {
+          console.log('focussing');
+        }
+      })),
+      React.createElement(
+        _reactBootstrap.FormControl.Feedback,
+        { onClick: openCalendar, style: { pointerEvents: 'all' } },
+        React.createElement(_reactBootstrap.Glyphicon, { glyph: 'calendar' })
+      )
+    );
+  };
   return React.createElement(
     _reactBootstrap.FormGroup,
     {
@@ -76,16 +113,15 @@ var DateTimeField = function DateTimeField(_ref) {
       validationState: validationState
     },
     React.createElement(_Label2.default, { label: label, required: required }),
-    React.createElement(
-      _reactBootstrap.InputGroup,
-      null,
-      React.createElement(_reactDatetime2.default, _extends({
-        name: name,
-        id: form + '-' + name,
-        closeOnSelect: true
-      }, inputProps, props)),
-      !inputProps.value ? CalendarFeedback : ClearButton
-    ),
+    React.createElement(_reactDatetime2.default, _extends({
+      name: name,
+      id: form + '-' + name,
+      closeOnSelect: true,
+      open: false
+    }, inputProps, {
+      inputProps: widgetInputProps,
+      renderInput: renderInput
+    }, props)),
     errorMessage,
     React.createElement(
       _reactBootstrap.HelpBlock,

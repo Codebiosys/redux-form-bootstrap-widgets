@@ -2,7 +2,10 @@
 
 exports[`The Checkbox Field renders 1`] = `
 <CheckBoxField
+  customValidation={null}
+  disabled={false}
   helpText="The help Text"
+  inline={false}
   input={
     Object {
       "name": "fieldName",
@@ -12,6 +15,7 @@ exports[`The Checkbox Field renders 1`] = `
     }
   }
   label="Checkbox Test"
+  labelKey="label"
   meta={
     Object {
       "form": "formName",
@@ -34,6 +38,8 @@ exports[`The Checkbox Field renders 1`] = `
       },
     ]
   }
+  required={false}
+  valueKey="value"
 >
   <FormGroup
     bsClass="form-group"
@@ -152,9 +158,19 @@ exports[`The Checkbox Field renders 1`] = `
       </InputGroup>
       <HelpBlock
         bsClass="help-block"
+        style={
+          Object {
+            "minHeight": "6ex",
+          }
+        }
       >
         <span
           className="help-block"
+          style={
+            Object {
+              "minHeight": "6ex",
+            }
+          }
         >
           The help Text
         </span>
@@ -166,7 +182,10 @@ exports[`The Checkbox Field renders 1`] = `
 
 exports[`The Checkbox Field renders with custom options 1`] = `
 <CheckBoxField
+  customValidation={null}
+  disabled={false}
   helpText="The help Text"
+  inline={false}
   input={
     Object {
       "name": "fieldName",
@@ -199,6 +218,7 @@ exports[`The Checkbox Field renders with custom options 1`] = `
       },
     ]
   }
+  required={false}
   valueKey="bar"
 >
   <FormGroup
@@ -318,9 +338,19 @@ exports[`The Checkbox Field renders with custom options 1`] = `
       </InputGroup>
       <HelpBlock
         bsClass="help-block"
+        style={
+          Object {
+            "minHeight": "6ex",
+          }
+        }
       >
         <span
           className="help-block"
+          style={
+            Object {
+              "minHeight": "6ex",
+            }
+          }
         >
           The help Text
         </span>

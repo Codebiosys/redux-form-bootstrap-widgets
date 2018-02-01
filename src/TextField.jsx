@@ -7,7 +7,6 @@ import {
   Glyphicon } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import Label from 'Label';
-import { Field } from 'redux-form';
 
 import validationMessage from 'utils';
 

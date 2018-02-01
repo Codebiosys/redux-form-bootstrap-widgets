@@ -16,6 +16,8 @@ exports[`The Text Field displays a textarea when the type is textarea 1`] = `
       before
     </div>
   }
+  customValidation={null}
+  disabled={false}
   helpText="The help Text"
   input={
     Object {
@@ -30,6 +32,7 @@ exports[`The Text Field displays a textarea when the type is textarea 1`] = `
       "pristine": false,
     }
   }
+  required={false}
   type="textarea"
 >
   <FormGroup
@@ -74,6 +77,7 @@ exports[`The Text Field displays a textarea when the type is textarea 1`] = `
           <FormControl
             bsClass="form-control"
             componentClass="textarea"
+            disabled={false}
             name="fieldName"
             onChange={[Function]}
             style={
@@ -81,9 +85,11 @@ exports[`The Text Field displays a textarea when the type is textarea 1`] = `
                 "zIndex": "0",
               }
             }
+            type="textarea"
           >
             <textarea
               className="form-control"
+              disabled={false}
               id="fieldName"
               name="fieldName"
               onChange={[Function]}
@@ -92,15 +98,26 @@ exports[`The Text Field displays a textarea when the type is textarea 1`] = `
                   "zIndex": "0",
                 }
               }
+              type="textarea"
             />
           </FormControl>
         </span>
       </InputGroup>
       <HelpBlock
         bsClass="help-block"
+        style={
+          Object {
+            "minHeight": "6ex",
+          }
+        }
       >
         <span
           className="help-block"
+          style={
+            Object {
+              "minHeight": "6ex",
+            }
+          }
         >
           The help Text
         </span>
@@ -126,6 +143,8 @@ exports[`The Text Field renders 1`] = `
       before
     </div>
   }
+  customValidation={null}
+  disabled={false}
   helpText="The help Text"
   input={
     Object {
@@ -140,6 +159,8 @@ exports[`The Text Field renders 1`] = `
       "pristine": false,
     }
   }
+  required={false}
+  type="text"
 >
   <FormGroup
     bsClass="form-group"
@@ -180,6 +201,7 @@ exports[`The Text Field renders 1`] = `
           <FormControl
             bsClass="form-control"
             componentClass="input"
+            disabled={false}
             name="fieldName"
             onChange={[Function]}
             style={
@@ -187,9 +209,11 @@ exports[`The Text Field renders 1`] = `
                 "zIndex": "0",
               }
             }
+            type="text"
           >
             <input
               className="form-control"
+              disabled={false}
               id="fieldName"
               name="fieldName"
               onChange={[Function]}
@@ -198,6 +222,7 @@ exports[`The Text Field renders 1`] = `
                   "zIndex": "0",
                 }
               }
+              type="text"
             />
           </FormControl>
           <div
@@ -209,9 +234,19 @@ exports[`The Text Field renders 1`] = `
       </InputGroup>
       <HelpBlock
         bsClass="help-block"
+        style={
+          Object {
+            "minHeight": "6ex",
+          }
+        }
       >
         <span
           className="help-block"
+          style={
+            Object {
+              "minHeight": "6ex",
+            }
+          }
         >
           The help Text
         </span>
