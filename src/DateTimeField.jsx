@@ -19,7 +19,8 @@ const DateTimeField = ({
   required,
   helpText,
   customValidation,
-  input: { name, onFocus, ...inputProps },
+  disabled,
+  input: { name, value, ...inputProps },
   meta: { form, ...metaProps },
   ...props
 }) => {
@@ -27,7 +28,11 @@ const DateTimeField = ({
   customValidation(metaProps) :
   validationMessage(metaProps);
 
-  const clearContent = () => inputProps.onChange(null);
+  const clearContent = () => {
+    if (!disabled) {
+      inputProps.onChange(null);
+    }
+  };
 
   const ClearButton = (
     <span>
@@ -41,22 +46,49 @@ const DateTimeField = ({
       <Glyphicon glyph="calendar" />
     </FormControl.Feedback>
   );
+  const renderInput = (renderinputprops, openCalendar) => {
+    // console.log(openCalendar);
+    const onChange = (event) => {
+      renderinputprops.onChange(event);
+    };
+
+    return (
+      <InputGroup>
+        <FormControl
+          {...renderinputprops}
+          autoComplete="off"
+          disabled={disabled}
+          onChange={onChange}
+          value={value}
+        />
+        { (!value) ? CalendarFeedback : ClearButton }
+
+      </InputGroup>);
+  }
+//    return (<input {...renderinputprops} onFocus={() => {}} />);
+  ;
   return (
     <FormGroup
       controlId={name}
       validationState={validationState}
     >
       <Label label={label} required={required} />
-      <InputGroup>
-        <DateTime
-          name={name}
-          id={`${form}-${name}`}
-          closeOnSelect
+      {/* <FormControl
           {...inputProps}
+          disabled={disabled}
           {...props}
-        />
-        { (!inputProps.value) ? CalendarFeedback : ClearButton }
-      </InputGroup>
+        /> */}
+      <DateTime
+        name={name}
+        id={`${form}-${name}`}
+        closeOnSelect
+        renderInput={renderInput}
+          // onChange={inputProps.onChange}
+          // onFocus={inputProps.onFocus}
+        {...inputProps}
+        {...props}
+        value={value}
+      />
       {errorMessage}
       <HelpBlock>{helpText}</HelpBlock>
     </FormGroup>
