@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { castArray, map, get, head, isFunction } from 'lodash';
@@ -13,82 +13,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'react-select/dist/react-select.css';
 import './selectFieldStyle.css';
 
-const SelectField = ({
-  label,
-  required,
-  helpText,
-  multiple,
-  labelKey,
-  valueKey,
-  customValidation,
-  input: { name, onChange, onFocus, onBlur, value, ...inputProps },
-  meta,
-  options,
-  ...props
-}) => {
-  const handleChange = (selected) => {
-    const selectedList = castArray(selected);
-    const selectedVals = map(selectedList, opt => get(opt, valueKey));
-    let changed;
-    if (!multiple) {
-      changed = get(head(selectedList), valueKey, null);
-    } else {
-      changed = selectedVals.length ? selectedVals : null;
-    }
-    onChange(changed);
-  };
-
-
-  const { validationState, errorMessage } = customValidation ?
-  customValidation(meta) :
-  validationMessage(meta);
-
-  const isAsync = isFunction(options);
-
-  return (
-    <FormGroup
-      controlId={name}
-      validationState={validationState}
-    >
-      <Label label={label} required={required} />
-      {!isAsync ? (<Select
-        name={name}
-        value={value}
-        labelKey={labelKey}
-        valueKey={valueKey}
-        autoBlur
-        onChange={handleChange}
-        onFocus={onFocus}
-        onBlur={() => onBlur()}
-        inputProps={inputProps}
-        multi={!!multiple}
-        joinValues
-        options={options}
-        {...props}
-      />) : (<Select.Async
-        name={name}
-        value={value}
-        labelKey={labelKey}
-        valueKey={valueKey}
-        autoBlur
-        onChange={handleChange}
-        onFocus={onFocus}
-        onBlur={() => onBlur()}
-        inputProps={inputProps}
-        multi={!!multiple}
-        joinValues
-        loadOptions={options}
-        {...props}
-      />)
-    }
-      {errorMessage}
-      <HelpBlock>{helpText}</HelpBlock>
-    </FormGroup>
-  );
-};
-
-
-SelectField.propTypes = {
+const propTypes = {
   /** Form label. */
   label: PropTypes.string.isRequired,
   /** Flag to display required Astrisk. */
@@ -125,7 +50,7 @@ SelectField.propTypes = {
   meta: PropTypes.object.isRequired,
 };
 
-SelectField.defaultProps = {
+const defaultProps = {
   required: false,
   disabled: false,
   helpText: null,
@@ -134,5 +59,112 @@ SelectField.defaultProps = {
   labelKey: 'label',
   valueKey: 'value',
 };
+
+class SelectField extends Component {
+  static propTypes = propTypes;
+  static defaultProps = defaultProps;
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      validationState: undefined,
+      errorMessage: undefined,
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { customValidation, meta } = nextProps;
+    if (customValidation) {
+      this.setState(customValidation(meta));
+    } else {
+      this.setState(validationMessage(meta));
+    }
+  }
+
+  selectProps = () => {
+    const {
+      multiple,
+      labelKey,
+      valueKey,
+      input: { name, onChange, onFocus, onBlur, value, ...inputProps },
+    } = this.props;
+
+    return {
+      name,
+      value,
+      labelKey,
+      valueKey,
+      autoBlur: true,
+      onChange: this.handleChange,
+      onFocus,
+      onBlur: () => onBlur(),
+      inputProps,
+      multi: !!multiple,
+      joinValues: true,
+    };
+  }
+
+  handleChange = (selected) => {
+    const { multiple, valueKey, input: { onChange } } = this.props;
+    const selectedList = castArray(selected);
+    const selectedVals = map(selectedList, opt => get(opt, valueKey));
+    let changed;
+    if (!multiple) {
+      changed = get(head(selectedList), valueKey, null);
+    } else {
+      changed = selectedVals.length ? selectedVals : null;
+    }
+    onChange(changed);
+  }
+
+  renderHelpMessage = () => {
+    const { helpText } = this.props;
+    const errorMessage = this.state.errorMessage;
+    return (<HelpBlock style={{ minHeight: helpText ? '6ex' : '3ex' }}>
+      {errorMessage}
+      {(errorMessage && helpText) ? <br /> : ''}
+      {helpText}
+    </HelpBlock>);
+  }
+
+  render() {
+    const {
+      label,
+      required,
+      helpText,
+      multiple,
+      labelKey,
+      valueKey,
+      customValidation,
+      input: { name },
+      meta,
+      options,
+      ...props
+    } = this.props;
+
+    const isAsync = isFunction(options);
+
+    return (
+      <FormGroup
+        controlId={name}
+        validationState={this.state.validationState}
+      >
+        <Label label={label} required={required} />
+        {!isAsync ? (<Select
+          {...this.selectProps}
+          options={options}
+          {...props}
+        />) : (<Select.Async
+          {...this.selectProps}
+          loadOptions={options}
+          {...props}
+        />)
+      }
+        {this.renderHelpMessage()}
+      </FormGroup>
+    );
+  }
+
+}
 
 export default SelectField;

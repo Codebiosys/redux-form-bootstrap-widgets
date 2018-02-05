@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import {
@@ -14,48 +14,7 @@ import validationMessage from 'utils';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'react-toggle/style.css';
 
-const ToggleField = ({
-  label,
-  required,
-  helpText,
-  disabled,
-  customValidation,
-  input: { name, value, onChange, ...inputProps },
-  meta,
-  ...props
-}) => {
-  const { validationState, errorMessage } = customValidation ?
-  customValidation(meta) :
-  validationMessage(meta);
-
-  return (
-    <FormGroup
-      controlId={name}
-      validationState={validationState}
-    >
-      <Label label={label} required={required} />
-      <InputGroup>
-        <Toggle
-          {...inputProps}
-          name={name}
-          checked={!!value}
-          onChange={(event) => {
-            onChange(!!event.target.checked);
-          }}
-          disabled={disabled}
-          {...props}
-        />
-      </InputGroup>
-      {errorMessage}
-      <HelpBlock>{helpText}</HelpBlock>
-    </FormGroup>
-
-  );
-};
-
-ToggleField.propTypes = {
-  /** additional Props that can be passed to the Toggle Field */
-  ...ToggleField.propTypes,
+const propTypes = {
   /** Form label. */
   label: PropTypes.string.isRequired,
   /** Flag to display required Astrisk. */
@@ -81,10 +40,82 @@ ToggleField.propTypes = {
 
 };
 
-ToggleField.defaultProps = {
+const defaultProps = {
   required: false,
   disabled: false,
   helpText: null,
   customValidation: undefined,
 };
+
+class ToggleField extends Component {
+  static propTypes = propTypes;
+  static defaultProps = defaultProps;
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      validationState: undefined,
+      errorMessage: undefined,
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { customValidation, meta } = nextProps;
+    if (customValidation) {
+      this.setState(customValidation(meta));
+    } else {
+      this.setState(validationMessage(meta));
+    }
+  }
+
+  handleChange = (event) => {
+    const { input: { onChange } } = this.props;
+    onChange(!!event.target.checked);
+  }
+
+  renderHelpMessage = () => {
+    const { helpText } = this.props;
+    const errorMessage = this.state.errorMessage;
+    return (<HelpBlock style={{ minHeight: helpText ? '6ex' : '3ex' }}>
+      {errorMessage}
+      {(errorMessage && helpText) ? <br /> : ''}
+      {helpText}
+    </HelpBlock>);
+  }
+
+  render() {
+    const {
+    label,
+    required,
+    helpText,
+    disabled,
+    customValidation,
+    input: { name, value, onChange, ...inputProps },
+    meta,
+    ...props
+  } = this.props;
+
+    return (
+      <FormGroup
+        controlId={name}
+        validationState={this.state.validationState}
+      >
+        <Label label={label} required={required} />
+        <InputGroup>
+          <Toggle
+            {...inputProps}
+            name={name}
+            checked={!!value}
+            onChange={this.handleChange}
+            disabled={disabled}
+            {...props}
+          />
+        </InputGroup>
+        {this.renderHelpMessage()}
+      </FormGroup>
+
+    );
+  }
+}
+
 export default ToggleField;

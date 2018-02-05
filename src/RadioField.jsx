@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 
@@ -13,63 +13,7 @@ import validationMessage from 'utils';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
-const RadioField = ({
-  label,
-  required,
-  helpText,
-  valueKey,
-  labelKey,
-  options,
-  inline,
-  disabled,
-  customValidation,
-  input: { name, onBlur, onChange, value, ...inputProps },
-  meta,
-  ...props
-}) => {
-  const { validationState, errorMessage } = customValidation ?
-  customValidation(meta) :
-  validationMessage(meta);
-
-  const handleClick = (event) => {
-    const changeValue = event.target.value === value ? null : event.target.value;
-    onChange(changeValue);
-    onBlur(changeValue);
-  };
-
-  return (
-    <FormGroup
-      controlId={name}
-      validationState={validationState}
-    >
-      <Label label={label} required={required} />
-      <InputGroup>
-        {_.map(options, option => (
-          <Radio
-            key={`${name}_${option[valueKey]}`}
-            name={name}
-            {...inputProps}
-            checked={`${option[valueKey]}` === `${value}`}
-            value={option[valueKey]}
-            onBlur={() => onBlur()}
-            onChange={handleClick}
-            inline={inline}
-            disabled={disabled}
-            {...props}
-          >
-            {option[labelKey]}
-          </Radio>
-        ))}
-      </InputGroup>
-      <HelpBlock style={{ minHeight: helpText ? '6ex' : '3ex' }}>
-        {errorMessage}
-        {(errorMessage && helpText) ? <br /> : ''}
-        {helpText}</HelpBlock>
-    </FormGroup>
-  );
-};
-
-RadioField.propTypes = {
+const propTypes = {
   /** Field label. */
   label: PropTypes.string.isRequired,
   /** Flag to display required Astrisk. */
@@ -102,7 +46,7 @@ RadioField.propTypes = {
   meta: PropTypes.object.isRequired,
 };
 
-RadioField.defaultProps = {
+const defaultProps = {
   required: false,
   disabled: false,
   inline: false,
@@ -111,4 +55,99 @@ RadioField.defaultProps = {
   customValidation: null,
   helpText: null,
 };
+
+class RadioField extends Component {
+  static propTypes = propTypes;
+  static defaultProps = defaultProps;
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      validationState: undefined,
+      errorMessage: undefined,
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { customValidation, meta } = nextProps;
+    if (customValidation) {
+      this.setState(customValidation(meta));
+    } else {
+      this.setState(validationMessage(meta));
+    }
+  }
+
+  handleClick = (event) => {
+    const { input: { onChange, onBlur, value } } = this.props;
+    const changeValue = event.target.value === value ? null : event.target.value;
+    onChange(changeValue);
+    onBlur(changeValue);
+  }
+
+  renderHelpMessage = () => {
+    const { helpText } = this.props;
+    const errorMessage = this.state.errorMessage;
+    return (<HelpBlock style={{ minHeight: helpText ? '6ex' : '3ex' }}>
+      {errorMessage}
+      {(errorMessage && helpText) ? <br /> : ''}
+      {helpText}
+    </HelpBlock>);
+  }
+
+  renderOption = (option) => {
+    const {
+      label,
+      required,
+      helpText,
+      valueKey,
+      labelKey,
+      options,
+      inline,
+      disabled,
+      customValidation,
+      input: { name, onBlur, onChange, value, ...inputProps },
+      meta,
+      ...props
+    } = this.props;
+    return (<Radio
+      key={`${name}_${option[valueKey]}`}
+      name={name}
+      {...inputProps}
+      checked={`${option[valueKey]}` === `${value}`}
+      value={option[valueKey]}
+      onBlur={() => onBlur()}
+      onChange={this.handleClick}
+      inline={inline}
+      disabled={disabled}
+      {...props}
+    >
+      {option[labelKey]}
+    </Radio>);
+  }
+
+  render() {
+    const {
+      label,
+      required,
+      options,
+      input: { name },
+    } = this.props;
+    return (
+      <FormGroup
+        controlId={name}
+        validationState={this.state.validationState}
+      >
+        <Label label={label} required={required} />
+        <InputGroup>
+          {_.map(options, option => (
+            this.renderOption(option)
+
+          ))}
+        </InputGroup>
+        {this.renderHelpMessage()}
+      </FormGroup>
+    );
+  }
+}
+
 export default RadioField;

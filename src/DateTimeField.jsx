@@ -23,7 +23,7 @@ const propTypes = {
   disabled: PropTypes.bool,
   /** The helptext to display below the field */
   helpText: PropTypes.string,
-  /** The date format to use: Supports moment */
+  // /** The date format to use: Supports moment */
   dateFormat: PropTypes.string,
   /** The custom validation function */
   customValidation: PropTypes.func,

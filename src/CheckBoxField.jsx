@@ -1,12 +1,14 @@
-import React from 'react';
+
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { Checkbox,
   FormGroup,
   HelpBlock,
-  InputGroup } from 'react-bootstrap';
+  InputGroup,
+  } from 'react-bootstrap';
 
-import { union, filter, toArray, find } from 'lodash';
+import { castArray, camelCase, union, filter, toArray } from 'lodash';
 
 import Label from 'Label';
 
@@ -14,77 +16,7 @@ import validationMessage from 'utils';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
-const CheckBoxField = ({
-  label,
-  required,
-  helpText,
-  disabled,
-  meta,
-  valueKey,
-  labelKey,
-  customValidation,
-  input: { name, value, onFocus, onChange, onBlur },
-  options,
-  inline,
-  ...props
-}) => {
-  const { validationState, errorMessage } = customValidation ?
-  customValidation(meta) :
-  validationMessage(meta);
-
-  const checkValueKey = valueKey || 'value';
-  const checkLabelKey = labelKey || 'label';
-
-  const checkboxes = options.map(
-    ({ [checkLabelKey]: checkLabel, [checkValueKey]: checkValue }, index) => {
-      const handleChange = (event) => {
-        let arr = toArray(value);
-        if (event.target.checked) {
-          arr = union(value, [checkValue]);
-        } else {
-          arr = filter(arr, val => val !== checkValue);
-        }
-        arr = arr.length ? arr : null;
-        onBlur();
-        return onChange(arr);
-      };
-
-      return (
-        <Checkbox
-        key={`${name}_${index}`} // eslint-disable-line
-          name={`${name}_${index}`}
-          value={checkValue}
-          checked={find(value, checkValue)}
-          onChange={handleChange}
-          onFocus={onFocus}
-          disabled={disabled}
-          inline={inline}
-          {...props}
-        >
-          {checkLabel}
-        </Checkbox>
-      );
-    });
-
-  return (
-    <FormGroup
-      controlId={name}
-      validationState={validationState}
-    >
-      <Label label={label} required={required} />
-      <InputGroup>
-        {checkboxes}
-      </InputGroup>
-      <HelpBlock style={{ minHeight: helpText ? '6ex' : '3ex' }}>
-        {errorMessage}
-        {(errorMessage && helpText) ? <br /> : ''}
-        {helpText}
-      </HelpBlock>
-    </FormGroup>
-  );
-};
-
-CheckBoxField.propTypes = {
+const propTypes = {
   /** Field label. */
   label: PropTypes.string.isRequired,
   /** Flag to display required Astrisk. */
@@ -118,7 +50,7 @@ CheckBoxField.propTypes = {
 };
 
 
-CheckBoxField.defaultProps = {
+const defaultProps = {
   required: false,
   helpText: null,
   disabled: false,
@@ -127,4 +59,115 @@ CheckBoxField.defaultProps = {
   labelKey: 'label',
   valueKey: 'value',
 };
+
+class CheckBoxField extends Component {
+  static propTypes = propTypes;
+  static defaultProps = defaultProps;
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      validationState: undefined,
+      errorMessage: undefined,
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { customValidation, meta } = nextProps;
+    if (customValidation) {
+      this.setState(customValidation(meta));
+    } else {
+      this.setState(validationMessage(meta));
+    }
+  }
+
+  checkOptions = () => {
+    const { labelKey, valueKey, options, input: { value } } = this.props;
+    const valueList = toArray(value);
+
+    return options.map(({ [labelKey]: checkLabel, [valueKey]: checkValue }) => ({
+      label: checkLabel,
+      value: checkValue,
+      checked: valueList.includes(String(checkValue)),
+    }));
+  }
+
+  handleChange = (event) => {
+    const { input: { value, onChange, onBlur } } = this.props;
+    const { value: checkValue, checked } = event.target;
+    let valueList = castArray(value);
+    if (checked) {
+      valueList = union(value, [checkValue]);
+    } else {
+      valueList = filter(valueList, val => val !== checkValue);
+    }
+    valueList = valueList.length ? valueList : null;
+    onBlur();
+    onChange(valueList);
+  };
+
+
+  renderHelpMessage = () => {
+    const { helpText } = this.props;
+    const errorMessage = this.state.errorMessage;
+    return (<HelpBlock style={{ minHeight: helpText ? '6ex' : '3ex' }}>
+      {errorMessage}
+      {(errorMessage && helpText) ? <br /> : ''}
+      {helpText}
+    </HelpBlock>);
+  }
+
+  renderInput = (checkBoxProps) => {
+    const {
+      label: widgetLabel,
+      required,
+      helpText,
+      disabled,
+      meta,
+      valueKey,
+      labelKey,
+      customValidation,
+      input: { name, onFocus },
+      options,
+      inline,
+      ...props
+    } = this.props;
+    const { value, label, checked } = checkBoxProps;
+    return (<Checkbox
+      key={`${name}_${camelCase(label)}`} // eslint-disable-line
+      name={`${name}_${camelCase(label)}`}
+      value={value}
+      checked={checked}
+      onChange={this.handleChange}
+      onFocus={onFocus}
+      disabled={disabled}
+      inline={inline}
+      {...props}
+    >
+      {label}
+    </Checkbox>);
+  }
+
+  render() {
+    const {
+      label,
+      required,
+      input: { name },
+    } = this.props;
+
+    return (
+      <FormGroup
+        controlId={name}
+        validationState={this.state.validationState}
+      >
+        <Label label={label} required={required} />
+        <InputGroup>
+          {this.checkOptions().map(this.renderInput)}
+        </InputGroup>
+        {this.renderHelpMessage()}
+      </FormGroup>
+    );
+  }
+}
+
 export default CheckBoxField;

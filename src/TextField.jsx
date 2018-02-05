@@ -1,81 +1,22 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import {
   FormGroup,
   FormControl,
   HelpBlock,
   InputGroup,
   Glyphicon } from 'react-bootstrap';
-import PropTypes from 'prop-types';
+
+import { debounce } from 'lodash';
+
 import Label from 'Label';
 
 import validationMessage from 'utils';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
-/** TextField component description */
-const TextField = ({
-  label,
-  required,
-  helpText,
-  customValidation,
-  input,
-  meta,
-  addOnBefore,
-  addOnAfter,
-  disabled,
-  type,
-  ...props
-}) => {
-  const { name, onChange, onBlur } = input;
-  const { validationState, errorMessage } = customValidation ?
-  customValidation(meta) :
-  validationMessage(meta);
-
-  const typeConfig = {
-    componentClass: 'input',
-    type,
-  };
-  const inputStyle = { zIndex: '0' };
-  const groupStyle = {};
-
-  if (type === 'textarea') {
-    typeConfig.componentClass = 'textarea';
-    groupStyle.width = '100%';
-  }
-  const clearContent = () => { onChange(null); onBlur(null); };
-
-  const ClearButton = (
-    <FormControl.Feedback onClick={clearContent} style={{ pointerEvents: 'all' }}>
-      <Glyphicon glyph="remove" />
-    </FormControl.Feedback>
-  );
-  return (
-    <FormGroup
-      controlId={name}
-      validationState={validationState}
-    >
-      <Label label={label} required={required} />
-      <InputGroup style={groupStyle}>
-        {typeConfig.componentClass === 'textarea' ? '' : addOnBefore }
-        <FormControl
-          style={inputStyle}
-          {...typeConfig}
-          {...input}
-          disabled={disabled}
-          {...props}
-        />
-        {typeConfig.componentClass === 'textarea' ? '' : addOnAfter }
-        {typeConfig.componentClass === 'textarea' || (!input.value) || (disabled) ? '' : ClearButton }
-      </InputGroup>
-      <HelpBlock style={{ minHeight: helpText ? '6ex' : '3ex' }}>
-        {errorMessage}
-        {(errorMessage && helpText) ? <br /> : ''}
-        {helpText}</HelpBlock>
-    </FormGroup>
-  );
-};
-
-TextField.propTypes = {
+const propTypes = {
   /** additional Props that can be passed to Form Control */
   ...FormControl.propTypes,
   /** Form label. */
@@ -84,6 +25,8 @@ TextField.propTypes = {
   required: PropTypes.bool,
   /** Whether or not the field is disabled */
   disabled: PropTypes.bool,
+  /** Additional text that displays below the widget. */
+  // delay: PropTypes.int,
   /** Additional text that displays below the widget. */
   helpText: PropTypes.string,
   /** HTML input type. */
@@ -107,7 +50,7 @@ TextField.propTypes = {
   meta: PropTypes.object.isRequired,
 };
 
-TextField.defaultProps = {
+const defaultProps = {
   required: false,
   helpText: null,
   customValidation: null,
@@ -115,6 +58,145 @@ TextField.defaultProps = {
   addOnAfter: null,
   disabled: false,
   type: 'text',
+  delay: undefined,
 };
 
+class TextField extends Component {
+  static propTypes = propTypes;
+  static defaultProps = defaultProps;
+
+  constructor(props) {
+    super(props);
+    const { input: { value } } = props;
+
+    this.state = {
+      value: value || '',
+      validationState: undefined,
+      errorMessage: undefined,
+      delay: undefined,
+    };
+    this.lastPropValue = value || '';
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { input: { value }, customValidation, meta } = nextProps;
+    if (customValidation) {
+      this.setState({ ...this.state, value, ...customValidation(meta) });
+    } else {
+      this.setState({ ...this.state, value, ...validationMessage(meta) });
+    }
+  }
+
+  getValue() {
+    const { input: { value } } = this.props;
+    const componentValue = value !== this.lastPropValue ? value : this.state.value;
+    this.lastPropValue = componentValue;
+    return componentValue;
+  }
+
+  debouncedOnChange = () => {
+    const { input: { onChange }, delay } = this.props;
+    if (delay) {
+      return debounce((event) => {
+        onChange(event);
+      }, delay, {
+        leading: false,
+        trailing: true });
+    }
+    return onChange;
+  }
+
+  handleChange = (event) => {
+    event.persist();
+    this.setState({ value: event.target.value });
+    this.debouncedOnChange()(event);
+  }
+
+  clearContent = () => {
+    const { disabled, input: { onChange } } = this.props;
+    if (!disabled) {
+      this.setState({ value: '' });
+      onChange(null);
+    }
+  }
+
+  renderClearButton = () => {
+    const { type } = this.props;
+    if (type === 'textarea' || !this.getValue()) {
+      return undefined;
+    }
+    return (
+      <FormControl.Feedback
+        onClick={this.clearContent}
+        style={{ pointerEvents: 'all' }}
+      >
+        <Glyphicon glyph="remove" />
+      </FormControl.Feedback>
+    );
+  };
+
+  renderHelpMessage = () => {
+    const { helpText } = this.props;
+    const errorMessage = this.state.errorMessage;
+    return (<HelpBlock style={{ minHeight: helpText ? '6ex' : '3ex' }}>
+      {errorMessage}
+      {(errorMessage && helpText) ? <br /> : ''}
+      {helpText}
+    </HelpBlock>);
+  }
+
+  render() {
+    const {
+      label,
+      required,
+      helpText,
+      customValidation,
+      delay,
+      disabled,
+      input: { name, onChange, ...inputProps },
+      meta,
+      addOnBefore,
+      addOnAfter,
+      type,
+      ...rest
+    } = this.props;
+
+    const typeConfig = {};
+    const inputStyle = { zIndex: '0' };
+    const groupStyle = {};
+
+    if (type === 'textarea') {
+      typeConfig.componentClass = 'textarea';
+      groupStyle.width = '100%';
+    } else if (type) {
+      typeConfig.type = type;
+    }
+
+    return (
+      <FormGroup
+        controlId={name}
+        validationState={this.state.validationState}
+      >
+        <Label label={label} required={required} />
+        <InputGroup style={groupStyle}>
+          {typeConfig.componentClass === 'textarea' ? '' : addOnBefore }
+          <FormControl
+            name={name}
+            onChange={this.handleChange}
+            style={inputStyle}
+            {...typeConfig}
+            {...inputProps}
+            {...rest}
+            disabled={disabled}
+            value={this.getValue()}
+
+          />
+          {typeConfig.componentClass === 'textarea' ? '' : addOnAfter }
+          {this.renderClearButton()}
+        </InputGroup>
+        {this.renderHelpMessage()}
+      </FormGroup>
+    );
+  }
+}
 export default TextField;
