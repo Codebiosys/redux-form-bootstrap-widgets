@@ -159,7 +159,7 @@ class TextField extends Component {
     if (type === 'textarea') {
       typeConfig.componentClass = 'textarea';
       groupStyle.width = '100%';
-    } else if (type) {
+    } else {
       typeConfig.type = type;
     }
 

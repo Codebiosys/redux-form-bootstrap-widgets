@@ -31,23 +31,36 @@ describe('The Date Time Field', () => {
   });
 
   it('renders', () => {
-    expect(inputWrapper).toMatchSnapshot();
+    const shallowinputWrapper = shallow(<DateTimeField {...fieldProps} />);
+    expect(shallowinputWrapper).toMatchSnapshot();
   });
 
   it('has a label when there is a label', () => {
     expect(inputWrapper.find('ControlLabel').text()).toEqual(fieldProps.label);
   });
 
-  it('does not display the clear button when there is no value', () => {
-    expect(inputWrapper.find('.form-control-feedback').hasClass('glyphicon-calendar')).toBe(true);
+  it('displays the formatted value when a date is entered', () => {
+    expect(inputWrapper.find('ControlLabel').text()).toEqual(fieldProps.label);
   });
 
+
+  it('displays a formatted string when the date can be convered', () => {
+    const formatWrapper = mount(<DateTimeField {...selectedFieldProps} dateFormat="DD/MMM/YYYY" />);
+    expect(formatWrapper.find('FormControl').prop('value')).toEqual('01/Jan/2017 12:00 AM');
+  });
 
   it('clears the value when the clear button is pressed', () => {
     inputWrapper = mount(<DateTimeField {...selectedFieldProps} />);
     inputWrapper.find('.form-control-feedback').simulate('click');
     expect(selectedFieldProps.input.onChange).toHaveBeenCalledWith(null);
   });
+
+  it('does not clear the value when the clear button is pressed and the field is disabled', () => {
+    const disabledInputWrapper = mount(<DateTimeField {...selectedFieldProps} disabled />);
+    disabledInputWrapper.find('.form-control-feedback').simulate('click');
+    expect(selectedFieldProps.input.onChange).not.toHaveBeenCalled();
+  });
+
 
   it('calls custom validator when the date changes', () => {
     const customValidator = jest.fn(() => ({ validationState: null, errorMessage: null }));

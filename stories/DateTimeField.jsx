@@ -1,7 +1,6 @@
 import React from 'react';
 import { Field } from 'redux-form';
 import { storiesOf } from '@storybook/react';
-import DateTime from 'react-datetime';
 import moment from 'moment';
 
 import ReduxFormWrapper from '../.storybook/ReduxForm';
@@ -49,7 +48,8 @@ storiesOf('DateTimeField', module)
      />
   ),
   {
-    propTables: [DateTimeField, DateTime],
+    propTables: [DateTimeField],
+    propTablesExclude: [Field],
   });
 
 storiesOf('DateTimeField', module)
@@ -69,7 +69,8 @@ storiesOf('DateTimeField', module)
        />
     ),
   {
-    propTables: [DateTimeField, DateTime],
+    propTables: [DateTimeField],
+    propTablesExclude: [Field],
   });
 
 storiesOf('DateTimeField', module)
@@ -89,5 +90,6 @@ storiesOf('DateTimeField', module)
          />
       ),
   {
-    propTables: [DateTimeField, DateTime],
+    propTables: [DateTimeField],
+    propTablesExclude: [Field],
   });

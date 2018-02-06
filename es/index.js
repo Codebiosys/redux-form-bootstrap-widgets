@@ -21,13 +21,10 @@ Object.defineProperty(exports, 'TextField', {
     return _interopRequireDefault(_TextField).default;
   }
 });
-
-var _DebounceTextField = require('./DebounceTextField');
-
 Object.defineProperty(exports, 'DebounceTextField', {
   enumerable: true,
   get: function get() {
-    return _interopRequireDefault(_DebounceTextField).default;
+    return _interopRequireDefault(_TextField).default;
   }
 });
 

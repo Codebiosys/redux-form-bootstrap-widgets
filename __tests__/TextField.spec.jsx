@@ -66,6 +66,12 @@ describe('The Text Field', () => {
     expect(valueFieldProps.input.onChange).toHaveBeenCalledWith(null);
   });
 
+  it('does not clear the value when the clear button is pressed and the field is disabled', () => {
+    const disabledValueWrapper = mount(<TextField {...valueFieldProps} disabled />);
+    disabledValueWrapper.find('.form-control-feedback').simulate('click');
+    expect(valueFieldProps.input.onChange).not.toHaveBeenCalled();
+  });
+
   it('displays a textarea when the type is textarea', () => {
     expect(textAreaWrapper).toMatchSnapshot();
     expect(textAreaWrapper.find('textarea').exists()).toBe(true);

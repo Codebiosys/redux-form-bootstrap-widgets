@@ -1,8 +1,7 @@
 import React from 'react';
 import { Field } from 'redux-form';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { withKnobs, text, boolean, number, select } from '@storybook/addon-knobs/react';
+import { withKnobs, text, boolean } from '@storybook/addon-knobs/react';
 import ReduxFormWrapper from '../.storybook/ReduxForm';
 
 import CheckBoxField from '../src/CheckBoxField';
