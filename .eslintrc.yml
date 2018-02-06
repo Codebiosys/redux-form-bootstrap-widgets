@@ -4,6 +4,10 @@ env:
   node: true
   es6: true
   jest: true
+parserOptions:
+  sourceType: "module"
+  ecmaFeatures:
+    jsx: true
 plugins:
   - import
   - node

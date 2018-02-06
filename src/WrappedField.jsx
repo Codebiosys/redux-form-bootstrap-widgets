@@ -10,13 +10,13 @@ const reduxFormConfig = {
 
 const ReduxField = props => (
   <Field
-    {...omit(props, [...keys(propTypes), 'clearSubmitErrors'])}
+    {...omit(props, [...keys(propTypes), 'clearSubmitErrors', 'clearFields'])}
   />
 );
 
 const ReduxFields = props => (
   <Fields
-    {...omit(props, [...keys(propTypes), 'clearSubmitErrors'])}
+    {...omit(props, [...keys(propTypes), 'clearSubmitErrors', 'clearFields'])}
   />
 );
 

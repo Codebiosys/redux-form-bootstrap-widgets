@@ -1,7 +1,7 @@
 /* eslint-disable import/first */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import PropTypes from 'prop-types';
 import { createMockStore } from 'redux-test-utils';
 
@@ -20,17 +20,28 @@ const renderFields = fields => (
 
 describe('The Redux Wrapper', () => {
   let inputWrapper;
+  let shallowWrapper;
   let store;
   const defaultStore = {};
   beforeEach(() => {
     store = createMockStore(defaultStore);
+    shallowWrapper = shallow(
+      <WrappedField
+        form="formname"
+        name="name"
+        type="text"
+        component="input"
+      />,
+      { context: { store },
+        childContextTypes: {
+          store: PropTypes.object } },
+    );
     inputWrapper = mount(
       <WrappedField
         form="formname"
         name="name"
         type="text"
         component="input"
-        clearSubmitErrors
       />,
       { context: { store },
         childContextTypes: {
@@ -39,7 +50,7 @@ describe('The Redux Wrapper', () => {
   });
 
   it('renders', () => {
-    expect(inputWrapper).toMatchSnapshot();
+    expect(shallowWrapper).toMatchSnapshot();
   });
 
   it('has the correct field name', () => {
@@ -47,12 +58,11 @@ describe('The Redux Wrapper', () => {
   });
 
   it('renders a multi field component', () => {
-    const multiwrapper = mount(
+    const multiwrapper = shallow(
       <WrappedFields
         form="foobar"
         names={['firstName', 'lastName']}
         component={renderFields}
-        clearSubmitErrors
       />,
       { context: { store },
         childContextTypes: {
