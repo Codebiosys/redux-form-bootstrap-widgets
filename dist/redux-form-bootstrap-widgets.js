@@ -92894,10 +92894,10 @@ var Datetime = createClass({
 		this.props.onChange( date );
 	},
 
-	openCalendar: function( e ) {
-		if ( !this.state.open ) {
+	openCalendar: function() {
+		if (!this.state.open) {
 			this.setState({ open: true }, function() {
-				this.props.onFocus( e );
+				this.props.onFocus();
 			});
 		}
 	},
@@ -92959,20 +92959,15 @@ var Datetime = createClass({
 			children = [];
 
 		if ( this.props.input ) {
-			var finalInputProps = assign({
+			children = [ React.createElement('input', assign({
+				key: 'i',
 				type: 'text',
 				className: 'form-control',
-				onClick: this.openCalendar,
 				onFocus: this.openCalendar,
 				onChange: this.onInputChange,
 				onKeyDown: this.onInputKey,
-				value: this.state.inputValue,
-			}, this.props.inputProps);
-			if ( this.props.renderInput ) {
-				children = [ React.createElement('div', { key: 'i' }, this.props.renderInput( finalInputProps, this.openCalendar )) ];
-			} else {
-				children = [ React.createElement('input', assign({ key: 'i' }, finalInputProps ))];
-			}
+				value: this.state.inputValue
+			}, this.props.inputProps ))];
 		} else {
 			className += ' rdtStatic';
 		}
@@ -92980,10 +92975,10 @@ var Datetime = createClass({
 		if ( this.state.open )
 			className += ' rdtOpen';
 
-		return React.createElement( 'div', { className: className }, children.concat(
-			React.createElement( 'div',
+		return React.createElement('div', {className: className}, children.concat(
+			React.createElement('div',
 				{ key: 'dt', className: 'rdtPicker' },
-				React.createElement( CalendarContainer, { view: this.state.currentView, viewProps: this.getComponentProps(), onClickOutside: this.handleClickOutside })
+				React.createElement( CalendarContainer, {view: this.state.currentView, viewProps: this.getComponentProps(), onClickOutside: this.handleClickOutside })
 			)
 		));
 	}
@@ -94646,19 +94641,17 @@ var DateTimePickerTime = onClickOutside( createClass({
 			}
 		}
 
-		var hours = date.format( 'H' );
-		
 		var daypart = false;
 		if ( this.state !== null && this.props.timeFormat.toLowerCase().indexOf( ' a' ) !== -1 ) {
 			if ( this.props.timeFormat.indexOf( ' A' ) !== -1 ) {
-				daypart = ( hours >= 12 ) ? 'PM' : 'AM';
+				daypart = ( this.state.hours >= 12 ) ? 'PM' : 'AM';
 			} else {
-				daypart = ( hours >= 12 ) ? 'pm' : 'am';
+				daypart = ( this.state.hours >= 12 ) ? 'pm' : 'am';
 			}
 		}
 
 		return {
-			hours: hours,
+			hours: date.format( 'H' ),
 			minutes: date.format( 'mm' ),
 			seconds: date.format( 'ss' ),
 			milliseconds: date.format( 'SSS' ),
@@ -94678,9 +94671,9 @@ var DateTimePickerTime = onClickOutside( createClass({
 				}
 			}
 			return React.createElement('div', { key: type, className: 'rdtCounter' }, [
-				React.createElement('span', { key: 'up', className: 'rdtBtn', onMouseDown: this.onStartClicking( 'increase', type ), onContextMenu: this.disableContextMenu }, '▲' ),
+				React.createElement('span', { key: 'up', className: 'rdtBtn', onMouseDown: this.onStartClicking( 'increase', type ) }, '▲' ),
 				React.createElement('div', { key: 'c', className: 'rdtCount' }, value ),
-				React.createElement('span', { key: 'do', className: 'rdtBtn', onMouseDown: this.onStartClicking( 'decrease', type ), onContextMenu: this.disableContextMenu }, '▼' )
+				React.createElement('span', { key: 'do', className: 'rdtBtn', onMouseDown: this.onStartClicking( 'decrease', type ) }, '▼' )
 			]);
 		}
 		return '';
@@ -94688,9 +94681,9 @@ var DateTimePickerTime = onClickOutside( createClass({
 
 	renderDayPart: function() {
 		return React.createElement('div', { key: 'dayPart', className: 'rdtCounter' }, [
-			React.createElement('span', { key: 'up', className: 'rdtBtn', onMouseDown: this.onStartClicking( 'toggleDayPart', 'hours'), onContextMenu: this.disableContextMenu }, '▲' ),
+			React.createElement('span', { key: 'up', className: 'rdtBtn', onMouseDown: this.onStartClicking( 'toggleDayPart', 'hours') }, '▲' ),
 			React.createElement('div', { key: this.state.daypart, className: 'rdtCount' }, this.state.daypart ),
-			React.createElement('span', { key: 'do', className: 'rdtBtn', onMouseDown: this.onStartClicking( 'toggleDayPart', 'hours'), onContextMenu: this.disableContextMenu }, '▼' )
+			React.createElement('span', { key: 'do', className: 'rdtBtn', onMouseDown: this.onStartClicking( 'toggleDayPart', 'hours') }, '▼' )
 		]);
 	},
 
@@ -94804,11 +94797,6 @@ var DateTimePickerTime = onClickOutside( createClass({
 
 			document.body.addEventListener( 'mouseup', me.mouseUpListener );
 		};
-	},
-
-	disableContextMenu: function( event ) {
-		event.preventDefault();
-		return false;
 	},
 
 	padValues: {
