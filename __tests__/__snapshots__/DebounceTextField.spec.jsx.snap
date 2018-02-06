@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`The Debounce Text Field renders 1`] = `
-<DebounceTextField
+<TextField
   addOnAfter={
     <div
       id="after_addon"
@@ -16,7 +16,9 @@ exports[`The Debounce Text Field renders 1`] = `
       before
     </div>
   }
+  customValidation={null}
   delay={100}
+  disabled={false}
   helpText="The help Text"
   input={
     Object {
@@ -31,6 +33,8 @@ exports[`The Debounce Text Field renders 1`] = `
       "pristine": false,
     }
   }
+  required={false}
+  type="text"
 >
   <FormGroup
     bsClass="form-group"
@@ -71,6 +75,7 @@ exports[`The Debounce Text Field renders 1`] = `
           <FormControl
             bsClass="form-control"
             componentClass="input"
+            disabled={false}
             name="fieldName"
             onChange={[Function]}
             style={
@@ -78,9 +83,11 @@ exports[`The Debounce Text Field renders 1`] = `
                 "zIndex": "0",
               }
             }
+            type="text"
           >
             <input
               className="form-control"
+              disabled={false}
               id="fieldName"
               name="fieldName"
               onChange={[Function]}
@@ -89,6 +96,7 @@ exports[`The Debounce Text Field renders 1`] = `
                   "zIndex": "0",
                 }
               }
+              type="text"
             />
           </FormControl>
           <div
@@ -100,14 +108,24 @@ exports[`The Debounce Text Field renders 1`] = `
       </InputGroup>
       <HelpBlock
         bsClass="help-block"
+        style={
+          Object {
+            "minHeight": "6ex",
+          }
+        }
       >
         <span
           className="help-block"
+          style={
+            Object {
+              "minHeight": "6ex",
+            }
+          }
         >
           The help Text
         </span>
       </HelpBlock>
     </div>
   </FormGroup>
-</DebounceTextField>
+</TextField>
 `;

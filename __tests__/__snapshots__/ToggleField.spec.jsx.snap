@@ -134,9 +134,19 @@ exports[`The Toggle Field renders 1`] = `
       </InputGroup>
       <HelpBlock
         bsClass="help-block"
+        style={
+          Object {
+            "minHeight": "6ex",
+          }
+        }
       >
         <span
           className="help-block"
+          style={
+            Object {
+              "minHeight": "6ex",
+            }
+          }
         >
           The help Text
         </span>

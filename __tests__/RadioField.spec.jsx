@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { mount } from 'enzyme';
-import { omit } from 'lodash';
 import { RadioField } from 'index';
 
 const fieldProps = {
@@ -66,7 +65,7 @@ describe('The Radio Field', () => {
     expect(fieldProps.input.onBlur).toHaveBeenCalledTimes(1);
   });
   it('calls onChange when the radio is selected', () => {
-    inputWrapper.find('input[value="One"]').simulate('click');
+    inputWrapper.find('input[value="One"]').simulate('change', { target: { value: 'One' } });
     expect(fieldProps.input.onChange).toHaveBeenCalledTimes(1);
     expect(fieldProps.input.onBlur).toHaveBeenCalledTimes(1);
     expect(fieldProps.input.onChange).toHaveBeenCalledWith('One');
@@ -74,7 +73,7 @@ describe('The Radio Field', () => {
 
   it('clears value  when the radio is deselected', () => {
     inputWrapper = mount(<RadioField {...selectedFieldProps} />);
-    inputWrapper.find('input[value="One"]').simulate('click');
+    inputWrapper.find('input[value="One"]').simulate('change', { target: { value: 'One' } });
     expect(fieldProps.input.onChange).toHaveBeenCalledTimes(1);
     expect(fieldProps.input.onChange).toHaveBeenCalledWith(null);
   });
@@ -84,7 +83,7 @@ describe('The Radio Field', () => {
     const validatorProps = { ...fieldProps, customValidation: customValidator };
     const inputWrapperValidated = mount(<RadioField {...validatorProps} />);
 
-    inputWrapperValidated.find('input[value="One"]').simulate('click');
+    inputWrapperValidated.find('input[value="One"]').simulate('change', { target: { value: 'One' } });
     expect(customValidator).toHaveBeenCalledTimes(1);
   });
 });

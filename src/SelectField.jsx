@@ -66,10 +66,13 @@ class SelectField extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      validationState: undefined,
-      errorMessage: undefined,
-    };
+    const { customValidation, meta } = props;
+
+    if (customValidation) {
+      this.state = customValidation(meta);
+    } else {
+      this.state = validationMessage(meta);
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -99,7 +102,7 @@ class SelectField extends Component {
       onFocus,
       onBlur: () => onBlur(),
       inputProps,
-      multi: !!multiple,
+      multi: multiple,
       joinValues: true,
     };
   }
@@ -143,7 +146,6 @@ class SelectField extends Component {
     } = this.props;
 
     const isAsync = isFunction(options);
-
     return (
       <FormGroup
         controlId={name}
@@ -151,11 +153,11 @@ class SelectField extends Component {
       >
         <Label label={label} required={required} />
         {!isAsync ? (<Select
-          {...this.selectProps}
+          {...this.selectProps()}
           options={options}
           {...props}
         />) : (<Select.Async
-          {...this.selectProps}
+          {...this.selectProps()}
           loadOptions={options}
           {...props}
         />)

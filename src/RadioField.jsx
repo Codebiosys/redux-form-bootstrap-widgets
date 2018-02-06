@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
+import { map } from 'lodash';
 import PropTypes from 'prop-types';
 
 import {
@@ -62,10 +62,13 @@ class RadioField extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      validationState: undefined,
-      errorMessage: undefined,
-    };
+    const { customValidation, meta } = props;
+
+    if (customValidation) {
+      this.state = customValidation(meta);
+    } else {
+      this.state = validationMessage(meta);
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -77,7 +80,7 @@ class RadioField extends Component {
     }
   }
 
-  handleClick = (event) => {
+  handleChange = (event) => {
     const { input: { onChange, onBlur, value } } = this.props;
     const changeValue = event.target.value === value ? null : event.target.value;
     onChange(changeValue);
@@ -116,7 +119,7 @@ class RadioField extends Component {
       checked={`${option[valueKey]}` === `${value}`}
       value={option[valueKey]}
       onBlur={() => onBlur()}
-      onChange={this.handleClick}
+      onChange={this.handleChange}
       inline={inline}
       disabled={disabled}
       {...props}
@@ -139,9 +142,8 @@ class RadioField extends Component {
       >
         <Label label={label} required={required} />
         <InputGroup>
-          {_.map(options, option => (
+          {map(options, option => (
             this.renderOption(option)
-
           ))}
         </InputGroup>
         {this.renderHelpMessage()}

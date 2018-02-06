@@ -67,14 +67,14 @@ class TextField extends Component {
 
   constructor(props) {
     super(props);
-    const { input: { value } } = props;
+    const { input: { value }, customValidation, meta } = props;
 
-    this.state = {
-      value: value || '',
-      validationState: undefined,
-      errorMessage: undefined,
-      delay: undefined,
-    };
+    if (customValidation) {
+      this.state = { value: value || '', ...customValidation(meta) };
+    } else {
+      this.state = { value: value || '', ...validationMessage(meta) };
+    }
+
     this.lastPropValue = value || '';
   }
 

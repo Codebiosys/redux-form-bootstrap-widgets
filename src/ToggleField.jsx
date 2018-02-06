@@ -53,10 +53,12 @@ class ToggleField extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      validationState: undefined,
-      errorMessage: undefined,
-    };
+    const { customValidation, meta } = props;
+    if (customValidation) {
+      this.state = customValidation(meta);
+    } else {
+      this.state = validationMessage(meta);
+    }
   }
 
   componentWillReceiveProps(nextProps) {

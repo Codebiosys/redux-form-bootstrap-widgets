@@ -85,7 +85,6 @@ exports[`The Text Field displays a textarea when the type is textarea 1`] = `
                 "zIndex": "0",
               }
             }
-            type="textarea"
           >
             <textarea
               className="form-control"
@@ -98,7 +97,6 @@ exports[`The Text Field displays a textarea when the type is textarea 1`] = `
                   "zIndex": "0",
                 }
               }
-              type="textarea"
             />
           </FormControl>
         </span>

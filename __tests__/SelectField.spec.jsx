@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { mount } from 'enzyme';
-import { omit } from 'lodash';
 import Select from 'react-select';
 import { SelectField } from 'index';
 
@@ -47,8 +46,7 @@ multiValueFieldProps.input = { ...multipleFieldProps.input };
 multiValueFieldProps.input.value = ['One', 'Two'];
 
 const asyncFieldProps = { ...fieldProps };
-delete asyncFieldProps.options;
-asyncFieldProps.loadOptions = input => Promise.resolve({
+asyncFieldProps.options = input => Promise.resolve({ // eslint-disable-line no-unused-vars
   options: [
           { label: 'one', value: 1 },
           { label: 'two', value: 2 },

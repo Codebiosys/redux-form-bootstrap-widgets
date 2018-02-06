@@ -6,7 +6,7 @@ import { omit } from 'lodash';
 
 import { InputGroup } from 'react-bootstrap';
 
-import { DebounceTextField } from 'index';
+import { TextField } from 'index';
 
 jest.unmock('lodash');
 
@@ -39,9 +39,9 @@ describe('The Debounce Text Field', () => {
   let textAreaWrapper;
   let valueWrapper;
   beforeEach(() => {
-    inputWrapper = mount(<DebounceTextField {...fieldProps} />);
-    valueWrapper = mount(<DebounceTextField {...valueFieldProps} />);
-    textAreaWrapper = mount(<DebounceTextField {...textAreaFieldProps} />);
+    inputWrapper = mount(<TextField {...fieldProps} />);
+    valueWrapper = mount(<TextField {...valueFieldProps} />);
+    textAreaWrapper = mount(<TextField {...textAreaFieldProps} />);
   });
 
   it('renders', () => {
@@ -77,31 +77,27 @@ describe('The Debounce Text Field', () => {
   it('has the password field type when set to password', () => {
     const passwordFieldProps = { ...fieldProps };
     passwordFieldProps.type = 'password';
-    const passwordWrapper = mount(<DebounceTextField {...passwordFieldProps} />);
+    const passwordWrapper = mount(<TextField {...passwordFieldProps} />);
     expect(passwordWrapper.find('input').prop('type')).toEqual('password');
   });
 
   it('calls custom validator and onChange when the content changes', () => {
-    // expect.assertions(1);
     const lodash = require.requireActual('lodash');
-    lodash.debounce = jest.fn((event, time) => event);
+    lodash.debounce = jest.fn((event, time) => event); // eslint-disable-line
     const customValidator = jest.fn(() => ({ validationState: null, errorMessage: null }));
     const validatorProps = { ...fieldProps, customValidation: customValidator };
-    const inputWrapperValidated = mount(<DebounceTextField {...validatorProps} />);
+    const inputWrapperValidated = mount(<TextField {...validatorProps} />);
     inputWrapperValidated.find(`input[name="${fieldProps.input.name}"]`).simulate('change', { target: { value: 'foo' } });
     expect(fieldProps.input.onChange).toHaveBeenCalled();
     expect(customValidator).toHaveBeenCalled();
   });
 
-  it('uses debounce 100 when there is no delay', () => {
-    // expect.assertions(1);
-
-    let mockEvent;
+  it('uses does not debounce when there is no delay', () => {
     const lodash = require.requireActual('lodash');
-    lodash.debounce = jest.fn((event, time) => { mockEvent = event; return event; });
+    lodash.debounce = jest.fn((event, time) => event); // eslint-disable-line
     const validatorProps = omit(fieldProps, 'delay');
-    const inputWrapperValidated = mount(<DebounceTextField {...validatorProps} />);
+    const inputWrapperValidated = mount(<TextField {...validatorProps} />);
     inputWrapperValidated.find(`input[name="${fieldProps.input.name}"]`).simulate('change', { target: { value: 'foo' } });
-    expect(lodash.debounce).toHaveBeenCalledWith(mockEvent, 100);
+    expect(lodash.debounce).not.toHaveBeenCalled();
   });
 });

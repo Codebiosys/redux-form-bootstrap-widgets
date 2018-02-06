@@ -72,9 +72,10 @@ exports[`The Checkbox Field renders 1`] = `
         >
           <Checkbox
             bsClass="checkbox"
+            checked={false}
             disabled={false}
             inline={false}
-            name="fieldName_0"
+            name="fieldName_option1"
             onChange={[Function]}
             onFocus={[Function]}
             title=""
@@ -87,8 +88,9 @@ exports[`The Checkbox Field renders 1`] = `
                 title=""
               >
                 <input
+                  checked={false}
                   disabled={false}
-                  name="fieldName_0"
+                  name="fieldName_option1"
                   onChange={[Function]}
                   onFocus={[Function]}
                   type="checkbox"
@@ -100,9 +102,10 @@ exports[`The Checkbox Field renders 1`] = `
           </Checkbox>
           <Checkbox
             bsClass="checkbox"
+            checked={false}
             disabled={false}
             inline={false}
-            name="fieldName_1"
+            name="fieldName_option2"
             onChange={[Function]}
             onFocus={[Function]}
             title=""
@@ -115,8 +118,9 @@ exports[`The Checkbox Field renders 1`] = `
                 title=""
               >
                 <input
+                  checked={false}
                   disabled={false}
-                  name="fieldName_1"
+                  name="fieldName_option2"
                   onChange={[Function]}
                   onFocus={[Function]}
                   type="checkbox"
@@ -128,9 +132,10 @@ exports[`The Checkbox Field renders 1`] = `
           </Checkbox>
           <Checkbox
             bsClass="checkbox"
+            checked={false}
             disabled={false}
             inline={false}
-            name="fieldName_2"
+            name="fieldName_option3"
             onChange={[Function]}
             onFocus={[Function]}
             title=""
@@ -143,8 +148,9 @@ exports[`The Checkbox Field renders 1`] = `
                 title=""
               >
                 <input
+                  checked={false}
                   disabled={false}
-                  name="fieldName_2"
+                  name="fieldName_option3"
                   onChange={[Function]}
                   onFocus={[Function]}
                   type="checkbox"
@@ -252,9 +258,10 @@ exports[`The Checkbox Field renders with custom options 1`] = `
         >
           <Checkbox
             bsClass="checkbox"
+            checked={false}
             disabled={false}
             inline={false}
-            name="fieldName_0"
+            name="fieldName_option1"
             onChange={[Function]}
             onFocus={[Function]}
             title=""
@@ -267,8 +274,9 @@ exports[`The Checkbox Field renders with custom options 1`] = `
                 title=""
               >
                 <input
+                  checked={false}
                   disabled={false}
-                  name="fieldName_0"
+                  name="fieldName_option1"
                   onChange={[Function]}
                   onFocus={[Function]}
                   type="checkbox"
@@ -280,9 +288,10 @@ exports[`The Checkbox Field renders with custom options 1`] = `
           </Checkbox>
           <Checkbox
             bsClass="checkbox"
+            checked={false}
             disabled={false}
             inline={false}
-            name="fieldName_1"
+            name="fieldName_option2"
             onChange={[Function]}
             onFocus={[Function]}
             title=""
@@ -295,8 +304,9 @@ exports[`The Checkbox Field renders with custom options 1`] = `
                 title=""
               >
                 <input
+                  checked={false}
                   disabled={false}
-                  name="fieldName_1"
+                  name="fieldName_option2"
                   onChange={[Function]}
                   onFocus={[Function]}
                   type="checkbox"
@@ -308,9 +318,10 @@ exports[`The Checkbox Field renders with custom options 1`] = `
           </Checkbox>
           <Checkbox
             bsClass="checkbox"
+            checked={false}
             disabled={false}
             inline={false}
-            name="fieldName_2"
+            name="fieldName_option3"
             onChange={[Function]}
             onFocus={[Function]}
             title=""
@@ -323,8 +334,9 @@ exports[`The Checkbox Field renders with custom options 1`] = `
                 title=""
               >
                 <input
+                  checked={false}
                   disabled={false}
-                  name="fieldName_2"
+                  name="fieldName_option3"
                   onChange={[Function]}
                   onFocus={[Function]}
                   type="checkbox"

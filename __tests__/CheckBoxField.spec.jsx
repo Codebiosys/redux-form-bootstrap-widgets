@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { mount } from 'enzyme';
-import { omit } from 'lodash';
+import { camelCase } from 'lodash';
 
 import { CheckBoxField } from 'index';
 
@@ -58,12 +58,12 @@ describe('The Checkbox Field', () => {
     expect(inputWrapper).toMatchSnapshot();
   });
   it('triggers the focus when focused', () => {
-    inputWrapper.find(`input[name="${fieldProps.input.name}_0"]`).simulate('focus');
+    inputWrapper.find(`input[name="${fieldProps.input.name}_${camelCase('Option 1')}"]`).simulate('focus');
     expect(fieldProps.input.onFocus).toHaveBeenCalledTimes(1);
   });
 
   it('calls onChange and onBlur when the checkbox is selected', () => {
-    inputWrapper.find(`input[name="${fieldProps.input.name}_0"]`).simulate('change', { target: { checked: true } });
+    inputWrapper.find(`input[name="${fieldProps.input.name}_${camelCase('Option 1')}"]`).simulate('change', { target: { value: 'One', checked: true } });
     expect(fieldProps.input.onChange).toHaveBeenCalledTimes(1);
     expect(fieldProps.input.onBlur).toHaveBeenCalledTimes(1);
     expect(fieldProps.input.onChange).toHaveBeenCalledWith(['One']);
@@ -72,18 +72,18 @@ describe('The Checkbox Field', () => {
   it('calls onChange and onBlur when the checkbox is deselected', () => {
     inputWrapper = mount(<CheckBoxField {...selectedFieldProps} />);
 
-    inputWrapper.find(`input[name="${fieldProps.input.name}_0"]`).simulate('change', { target: { checked: false } });
+    inputWrapper.find(`input[name="${fieldProps.input.name}_${camelCase('Option 1')}"]`).simulate('change', { target: { value: 'One', checked: false } });
     expect(fieldProps.input.onChange).toHaveBeenCalledTimes(1);
     expect(fieldProps.input.onBlur).toHaveBeenCalledTimes(1);
     expect(fieldProps.input.onChange).toHaveBeenCalledWith(null);
   });
 
-  it('calls custom validator when the toogle is toggled', () => {
+  it('calls custom validator when the checkbox is checked', () => {
     const customValidator = jest.fn(() => ({ validationState: null, errorMessage: null }));
     const validatorProps = { ...fieldProps, customValidation: customValidator };
     const inputWrapperValidated = mount(<CheckBoxField {...validatorProps} />);
 
-    inputWrapperValidated.find(`input[name="${fieldProps.input.name}_0"]`).simulate('change', { target: { checked: false } });
+    inputWrapperValidated.find(`input[name="${fieldProps.input.name}_${camelCase('Option 1')}"]`).simulate('change', { value: 'One', target: { checked: false } });
     expect(customValidator).toHaveBeenCalledTimes(1);
   });
 });

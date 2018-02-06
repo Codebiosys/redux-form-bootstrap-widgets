@@ -1,6 +1,3 @@
-import React from 'react';
-import { HelpBlock } from 'react-bootstrap';
-
 import validationMessage from 'utils';
 
 describe('The validation message', () => {
@@ -27,7 +24,7 @@ describe('The validation message', () => {
         warning: undefined,
       });
     expect(validationState).toEqual('error');
-    expect(errorMessage).toEqual(<HelpBlock>An error Occured</HelpBlock>);
+    expect(errorMessage).toEqual('An error Occured');
   });
 
   it('returns warning with an warning message if the item is touched, and there is a warning', () => {
@@ -37,7 +34,7 @@ describe('The validation message', () => {
         error: undefined,
       });
     expect(validationState).toEqual('warning');
-    expect(errorMessage).toEqual(<HelpBlock>An warning Occured</HelpBlock>);
+    expect(errorMessage).toEqual('An warning Occured');
   });
 
   it('will prioritize errors over warnings', () => {
@@ -47,6 +44,6 @@ describe('The validation message', () => {
         error: 'An error Occured',
       });
     expect(validationState).toEqual('error');
-    expect(errorMessage).toEqual(<HelpBlock>An error Occured</HelpBlock>);
+    expect(errorMessage).toEqual('An error Occured');
   });
 });
