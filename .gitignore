@@ -16,6 +16,7 @@ lib-cov
 
 # Coverage directory used by tools like istanbul
 coverage
+__coverage__
 
 # nyc test coverage
 .nyc_output
@@ -35,6 +36,11 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+
+# build directories
+dist
+lib
+es
 
 # Typescript v1 declaration files
 typings/
@@ -56,5 +62,3 @@ typings/
 
 # dotenv environment variables file
 .env
-
-__coverage__
