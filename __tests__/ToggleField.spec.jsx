@@ -30,7 +30,8 @@ describe('The Toggle Field', () => {
   });
 
   it('renders', () => {
-    expect(inputWrapper).toMatchSnapshot();
+    const shallowField = shallow(<ToggleField {...fieldProps} />);
+    expect(shallowField).toMatchSnapshot();
   });
 
   it('has a label when there is a label', () => {

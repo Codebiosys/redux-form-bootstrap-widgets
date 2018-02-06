@@ -43,7 +43,8 @@ describe('The Radio Field', () => {
   });
 
   it('renders', () => {
-    expect(inputWrapper).toMatchSnapshot();
+    const shallowField = shallow(<RadioField {...fieldProps} />);
+    expect(shallowField).toMatchSnapshot();
   });
 
   it('has a label when there is a label', () => {

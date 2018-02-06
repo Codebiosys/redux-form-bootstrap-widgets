@@ -41,7 +41,8 @@ describe('The Text Field', () => {
   });
 
   it('renders', () => {
-    expect(inputWrapper).toMatchSnapshot();
+    const shallowField = shallow(<TextField {...fieldProps} />);
+    expect(shallowField).toMatchSnapshot();
   });
 
   it('has a label when there is a label', () => {
@@ -72,11 +73,14 @@ describe('The Text Field', () => {
     expect(valueFieldProps.input.onChange).not.toHaveBeenCalled();
   });
 
-  it('displays a textarea when the type is textarea', () => {
-    expect(textAreaWrapper).toMatchSnapshot();
-    expect(textAreaWrapper.find('textarea').exists()).toBe(true);
+  it('renders a textarea when the type is textarea', () => {
+    const shallowField = shallow(<TextField {...fieldProps} />);
+    expect(shallowField).toMatchSnapshot();
   });
 
+  it('displays a textarea when the type is textarea', () => {
+    expect(textAreaWrapper.find('textarea').exists()).toBe(true);
+  });
   it('displays full width when the type is textarea', () => {
     expect(textAreaWrapper.find(InputGroup).prop('style')).toEqual({ width: '100%' });
   });

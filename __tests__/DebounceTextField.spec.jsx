@@ -44,7 +44,8 @@ describe('The Debounce Text Field', () => {
   });
 
   it('renders', () => {
-    expect(inputWrapper).toMatchSnapshot();
+    const shallowField = shallow(<TextField {...fieldProps} />);
+    expect(shallowField).toMatchSnapshot();
   });
 
   it('has a label when there is a label', () => {

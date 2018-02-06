@@ -6,11 +6,12 @@
   "config": {
     "builddir": "./dist"
   },
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "^4.17.5",
+    "moment": "^2.20.1"
+  },
   "peerDependencies": {
     "bootstrap": "^3.3.7",
-    "lodash": "^4.17.4",
-    "moment": "^2.18.1",
     "react": "^15.5.4",
     "react-bootstrap": "^0.31.3",
     "react-datetime": "^2.10.1",

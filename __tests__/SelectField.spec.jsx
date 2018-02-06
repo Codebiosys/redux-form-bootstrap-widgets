@@ -65,7 +65,8 @@ describe('The Select Field', () => {
   });
 
   it('renders', () => {
-    expect(inputWrapper).toMatchSnapshot();
+    const shallowField = shallow(<SelectField {...fieldProps} />);
+    expect(shallowField).toMatchSnapshot();
   });
 
 
@@ -74,16 +75,18 @@ describe('The Select Field', () => {
   });
 
   it('renders with custom options', () => {
-    inputWrapper = mount(<SelectField {...customOptionFieldProps} />);
+    inputWrapper = shallow(<SelectField {...customOptionFieldProps} />);
     expect(inputWrapper).toMatchSnapshot();
   });
 
   it('renders with async options', () => {
-    expect(asyncWrapper).toMatchSnapshot();
+    const shallowField = shallow(<SelectField {...asyncFieldProps} />);
+    expect(shallowField).toMatchSnapshot();
   });
 
   it('renders allowing multiple selections', () => {
-    expect(multipleWrapper).toMatchSnapshot();
+    const shallowField = shallow(<SelectField {...multipleFieldProps} />);
+    expect(shallowField).toMatchSnapshot();
   });
   it('triggers the focus when focused', () => {
     inputWrapper.find('.Select-input input').simulate('focus');

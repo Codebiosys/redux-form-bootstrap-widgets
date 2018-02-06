@@ -45,7 +45,8 @@ describe('The Checkbox Field', () => {
   });
 
   it('renders', () => {
-    expect(inputWrapper).toMatchSnapshot();
+    const shallowField = shallow(<CheckBoxField {...fieldProps} />);
+    expect(shallowField).toMatchSnapshot();
   });
 
   it('has a label when there is a label', () => {
@@ -53,8 +54,8 @@ describe('The Checkbox Field', () => {
   });
 
   it('renders with custom options', () => {
-    inputWrapper = mount(<CheckBoxField {...customOptionFieldProps} />);
-    expect(inputWrapper).toMatchSnapshot();
+    const shallowField = shallow(<CheckBoxField {...customOptionFieldProps} />);
+    expect(shallowField).toMatchSnapshot();
   });
   it('triggers the focus when focused', () => {
     inputWrapper.find(`input[name="${fieldProps.input.name}_${camelCase('Option 1')}"]`).simulate('focus');

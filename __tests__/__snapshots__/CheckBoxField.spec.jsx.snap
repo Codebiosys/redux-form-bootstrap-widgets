@@ -1,187 +1,66 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`The Checkbox Field renders 1`] = `
-<CheckBoxField
-  disabled={false}
-  helpText={null}
-  inline={false}
-  input={
-    Object {
-      "name": "fieldName",
-      "onBlur": [Function],
-      "onChange": [Function],
-      "onFocus": [Function],
-    }
-  }
-  label="Checkbox Test"
-  labelKey="label"
-  meta={
-    Object {
-      "form": "formName",
-      "pristine": false,
-    }
-  }
-  options={
-    Array [
-      Object {
-        "label": "Option 1",
-        "value": "One",
-      },
-      Object {
-        "label": "Option 2",
-        "value": "Two",
-      },
-      Object {
-        "label": "Option 3",
-        "value": "Three",
-      },
-    ]
-  }
-  required={false}
-  validator={[Function]}
-  valueKey="value"
+<FormGroup
+  bsClass="form-group"
+  controlId="fieldName"
 >
-  <FormGroup
-    bsClass="form-group"
-    controlId="fieldName"
+  <Label
+    label="Checkbox Test"
+    required={false}
+  />
+  <InputGroup
+    bsClass="input-group"
   >
-    <div
-      className="form-group"
+    <Checkbox
+      bsClass="checkbox"
+      checked={false}
+      disabled={false}
+      inline={false}
+      name="fieldName_option1"
+      onChange={[Function]}
+      onFocus={[Function]}
+      title=""
+      value="One"
     >
-      <Label
-        label="Checkbox Test"
-        required={false}
-      >
-        <ControlLabel
-          bsClass="control-label"
-          srOnly={false}
-        >
-          <label
-            className="control-label"
-            htmlFor="fieldName"
-          >
-            Checkbox Test
-          </label>
-        </ControlLabel>
-      </Label>
-      <InputGroup
-        bsClass="input-group"
-      >
-        <span
-          className="input-group"
-        >
-          <Checkbox
-            bsClass="checkbox"
-            checked={false}
-            disabled={false}
-            inline={false}
-            name="fieldName_option1"
-            onChange={[Function]}
-            onFocus={[Function]}
-            title=""
-            value="One"
-          >
-            <div
-              className="checkbox"
-            >
-              <label
-                title=""
-              >
-                <input
-                  checked={false}
-                  disabled={false}
-                  name="fieldName_option1"
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  type="checkbox"
-                  value="One"
-                />
-                Option 1
-              </label>
-            </div>
-          </Checkbox>
-          <Checkbox
-            bsClass="checkbox"
-            checked={false}
-            disabled={false}
-            inline={false}
-            name="fieldName_option2"
-            onChange={[Function]}
-            onFocus={[Function]}
-            title=""
-            value="Two"
-          >
-            <div
-              className="checkbox"
-            >
-              <label
-                title=""
-              >
-                <input
-                  checked={false}
-                  disabled={false}
-                  name="fieldName_option2"
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  type="checkbox"
-                  value="Two"
-                />
-                Option 2
-              </label>
-            </div>
-          </Checkbox>
-          <Checkbox
-            bsClass="checkbox"
-            checked={false}
-            disabled={false}
-            inline={false}
-            name="fieldName_option3"
-            onChange={[Function]}
-            onFocus={[Function]}
-            title=""
-            value="Three"
-          >
-            <div
-              className="checkbox"
-            >
-              <label
-                title=""
-              >
-                <input
-                  checked={false}
-                  disabled={false}
-                  name="fieldName_option3"
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  type="checkbox"
-                  value="Three"
-                />
-                Option 3
-              </label>
-            </div>
-          </Checkbox>
-        </span>
-      </InputGroup>
-      <HelpBlock
-        bsClass="help-block"
-        style={
-          Object {
-            "minHeight": "3ex",
-          }
-        }
-      >
-        <span
-          className="help-block"
-          style={
-            Object {
-              "minHeight": "3ex",
-            }
-          }
-        />
-      </HelpBlock>
-    </div>
-  </FormGroup>
-</CheckBoxField>
+      Option 1
+    </Checkbox>
+    <Checkbox
+      bsClass="checkbox"
+      checked={false}
+      disabled={false}
+      inline={false}
+      name="fieldName_option2"
+      onChange={[Function]}
+      onFocus={[Function]}
+      title=""
+      value="Two"
+    >
+      Option 2
+    </Checkbox>
+    <Checkbox
+      bsClass="checkbox"
+      checked={false}
+      disabled={false}
+      inline={false}
+      name="fieldName_option3"
+      onChange={[Function]}
+      onFocus={[Function]}
+      title=""
+      value="Three"
+    >
+      Option 3
+    </Checkbox>
+  </InputGroup>
+  <HelpBlock
+    bsClass="help-block"
+    style={
+      Object {
+        "minHeight": "3ex",
+      }
+    }
+  />
+</FormGroup>
 `;
 
 exports[`The Checkbox Field renders the help message with a break 1`] = `
@@ -253,185 +132,64 @@ exports[`The Checkbox Field renders the help message with a break 1`] = `
 `;
 
 exports[`The Checkbox Field renders with custom options 1`] = `
-<CheckBoxField
-  disabled={false}
-  helpText={null}
-  inline={false}
-  input={
-    Object {
-      "name": "fieldName",
-      "onBlur": [Function],
-      "onChange": [Function],
-      "onFocus": [Function],
-    }
-  }
-  label="Checkbox Test"
-  labelKey="foo"
-  meta={
-    Object {
-      "form": "formName",
-      "pristine": false,
-    }
-  }
-  options={
-    Array [
-      Object {
-        "bar": "One",
-        "foo": "Option 1",
-      },
-      Object {
-        "bar": "Two",
-        "foo": "Option 2",
-      },
-      Object {
-        "bar": "Three",
-        "foo": "Option 3",
-      },
-    ]
-  }
-  required={false}
-  validator={[Function]}
-  valueKey="bar"
+<FormGroup
+  bsClass="form-group"
+  controlId="fieldName"
 >
-  <FormGroup
-    bsClass="form-group"
-    controlId="fieldName"
+  <Label
+    label="Checkbox Test"
+    required={false}
+  />
+  <InputGroup
+    bsClass="input-group"
   >
-    <div
-      className="form-group"
+    <Checkbox
+      bsClass="checkbox"
+      checked={false}
+      disabled={false}
+      inline={false}
+      name="fieldName_option1"
+      onChange={[Function]}
+      onFocus={[Function]}
+      title=""
+      value="One"
     >
-      <Label
-        label="Checkbox Test"
-        required={false}
-      >
-        <ControlLabel
-          bsClass="control-label"
-          srOnly={false}
-        >
-          <label
-            className="control-label"
-            htmlFor="fieldName"
-          >
-            Checkbox Test
-          </label>
-        </ControlLabel>
-      </Label>
-      <InputGroup
-        bsClass="input-group"
-      >
-        <span
-          className="input-group"
-        >
-          <Checkbox
-            bsClass="checkbox"
-            checked={false}
-            disabled={false}
-            inline={false}
-            name="fieldName_option1"
-            onChange={[Function]}
-            onFocus={[Function]}
-            title=""
-            value="One"
-          >
-            <div
-              className="checkbox"
-            >
-              <label
-                title=""
-              >
-                <input
-                  checked={false}
-                  disabled={false}
-                  name="fieldName_option1"
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  type="checkbox"
-                  value="One"
-                />
-                Option 1
-              </label>
-            </div>
-          </Checkbox>
-          <Checkbox
-            bsClass="checkbox"
-            checked={false}
-            disabled={false}
-            inline={false}
-            name="fieldName_option2"
-            onChange={[Function]}
-            onFocus={[Function]}
-            title=""
-            value="Two"
-          >
-            <div
-              className="checkbox"
-            >
-              <label
-                title=""
-              >
-                <input
-                  checked={false}
-                  disabled={false}
-                  name="fieldName_option2"
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  type="checkbox"
-                  value="Two"
-                />
-                Option 2
-              </label>
-            </div>
-          </Checkbox>
-          <Checkbox
-            bsClass="checkbox"
-            checked={false}
-            disabled={false}
-            inline={false}
-            name="fieldName_option3"
-            onChange={[Function]}
-            onFocus={[Function]}
-            title=""
-            value="Three"
-          >
-            <div
-              className="checkbox"
-            >
-              <label
-                title=""
-              >
-                <input
-                  checked={false}
-                  disabled={false}
-                  name="fieldName_option3"
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  type="checkbox"
-                  value="Three"
-                />
-                Option 3
-              </label>
-            </div>
-          </Checkbox>
-        </span>
-      </InputGroup>
-      <HelpBlock
-        bsClass="help-block"
-        style={
-          Object {
-            "minHeight": "3ex",
-          }
-        }
-      >
-        <span
-          className="help-block"
-          style={
-            Object {
-              "minHeight": "3ex",
-            }
-          }
-        />
-      </HelpBlock>
-    </div>
-  </FormGroup>
-</CheckBoxField>
+      Option 1
+    </Checkbox>
+    <Checkbox
+      bsClass="checkbox"
+      checked={false}
+      disabled={false}
+      inline={false}
+      name="fieldName_option2"
+      onChange={[Function]}
+      onFocus={[Function]}
+      title=""
+      value="Two"
+    >
+      Option 2
+    </Checkbox>
+    <Checkbox
+      bsClass="checkbox"
+      checked={false}
+      disabled={false}
+      inline={false}
+      name="fieldName_option3"
+      onChange={[Function]}
+      onFocus={[Function]}
+      title=""
+      value="Three"
+    >
+      Option 3
+    </Checkbox>
+  </InputGroup>
+  <HelpBlock
+    bsClass="help-block"
+    style={
+      Object {
+        "minHeight": "3ex",
+      }
+    }
+  />
+</FormGroup>
 `;

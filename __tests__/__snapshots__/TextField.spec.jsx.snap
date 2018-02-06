@@ -1,257 +1,103 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`The Text Field displays a textarea when the type is textarea 1`] = `
-<TextField
-  addOnAfter={
-    <div
-      id="after_addon"
-    >
-      after
-    </div>
-  }
-  addOnBefore={
+exports[`The Text Field renders 1`] = `
+<FormGroup
+  bsClass="form-group"
+  controlId="fieldName"
+>
+  <Label
+    label="Text Test"
+    required={false}
+  />
+  <InputGroup
+    bsClass="input-group"
+    style={Object {}}
+  >
     <div
       id="before_addon"
     >
       before
     </div>
-  }
-  disabled={false}
-  helpText="The help Text"
-  input={
-    Object {
-      "name": "fieldName",
-      "onChange": [Function],
-    }
-  }
-  label="Text Test"
-  meta={
-    Object {
-      "form": "formName",
-      "pristine": false,
-    }
-  }
-  required={false}
-  type="textarea"
-  validator={[Function]}
->
-  <FormGroup
-    bsClass="form-group"
-    controlId="fieldName"
-  >
+    <FormControl
+      bsClass="form-control"
+      componentClass="input"
+      disabled={false}
+      name="fieldName"
+      onChange={[Function]}
+      style={
+        Object {
+          "zIndex": "0",
+        }
+      }
+      type="text"
+    />
     <div
-      className="form-group"
+      id="after_addon"
     >
-      <Label
-        label="Text Test"
-        required={false}
-      >
-        <ControlLabel
-          bsClass="control-label"
-          srOnly={false}
-        >
-          <label
-            className="control-label"
-            htmlFor="fieldName"
-          >
-            Text Test
-          </label>
-        </ControlLabel>
-      </Label>
-      <InputGroup
-        bsClass="input-group"
-        style={
-          Object {
-            "width": "100%",
-          }
-        }
-      >
-        <span
-          className="input-group"
-          style={
-            Object {
-              "width": "100%",
-            }
-          }
-        >
-          <FormControl
-            bsClass="form-control"
-            componentClass="textarea"
-            disabled={false}
-            name="fieldName"
-            onChange={[Function]}
-            style={
-              Object {
-                "zIndex": "0",
-              }
-            }
-          >
-            <textarea
-              className="form-control"
-              disabled={false}
-              id="fieldName"
-              name="fieldName"
-              onChange={[Function]}
-              style={
-                Object {
-                  "zIndex": "0",
-                }
-              }
-            />
-          </FormControl>
-        </span>
-      </InputGroup>
-      <HelpBlock
-        bsClass="help-block"
-        style={
-          Object {
-            "minHeight": "6ex",
-          }
-        }
-      >
-        <span
-          className="help-block"
-          style={
-            Object {
-              "minHeight": "6ex",
-            }
-          }
-        >
-          The help Text
-        </span>
-      </HelpBlock>
+      after
     </div>
-  </FormGroup>
-</TextField>
+  </InputGroup>
+  <HelpBlock
+    bsClass="help-block"
+    style={
+      Object {
+        "minHeight": "6ex",
+      }
+    }
+  >
+    The help Text
+  </HelpBlock>
+</FormGroup>
 `;
 
-exports[`The Text Field renders 1`] = `
-<TextField
-  addOnAfter={
-    <div
-      id="after_addon"
-    >
-      after
-    </div>
-  }
-  addOnBefore={
+exports[`The Text Field renders a textarea when the type is textarea 1`] = `
+<FormGroup
+  bsClass="form-group"
+  controlId="fieldName"
+>
+  <Label
+    label="Text Test"
+    required={false}
+  />
+  <InputGroup
+    bsClass="input-group"
+    style={Object {}}
+  >
     <div
       id="before_addon"
     >
       before
     </div>
-  }
-  disabled={false}
-  helpText="The help Text"
-  input={
-    Object {
-      "name": "fieldName",
-      "onChange": [Function],
-    }
-  }
-  label="Text Test"
-  meta={
-    Object {
-      "form": "formName",
-      "pristine": false,
-    }
-  }
-  required={false}
-  type="text"
-  validator={[Function]}
->
-  <FormGroup
-    bsClass="form-group"
-    controlId="fieldName"
-  >
-    <div
-      className="form-group"
-    >
-      <Label
-        label="Text Test"
-        required={false}
-      >
-        <ControlLabel
-          bsClass="control-label"
-          srOnly={false}
-        >
-          <label
-            className="control-label"
-            htmlFor="fieldName"
-          >
-            Text Test
-          </label>
-        </ControlLabel>
-      </Label>
-      <InputGroup
-        bsClass="input-group"
-        style={Object {}}
-      >
-        <span
-          className="input-group"
-          style={Object {}}
-        >
-          <div
-            id="before_addon"
-          >
-            before
-          </div>
-          <FormControl
-            bsClass="form-control"
-            componentClass="input"
-            disabled={false}
-            name="fieldName"
-            onChange={[Function]}
-            style={
-              Object {
-                "zIndex": "0",
-              }
-            }
-            type="text"
-          >
-            <input
-              className="form-control"
-              disabled={false}
-              id="fieldName"
-              name="fieldName"
-              onChange={[Function]}
-              style={
-                Object {
-                  "zIndex": "0",
-                }
-              }
-              type="text"
-            />
-          </FormControl>
-          <div
-            id="after_addon"
-          >
-            after
-          </div>
-        </span>
-      </InputGroup>
-      <HelpBlock
-        bsClass="help-block"
-        style={
-          Object {
-            "minHeight": "6ex",
-          }
+    <FormControl
+      bsClass="form-control"
+      componentClass="input"
+      disabled={false}
+      name="fieldName"
+      onChange={[Function]}
+      style={
+        Object {
+          "zIndex": "0",
         }
-      >
-        <span
-          className="help-block"
-          style={
-            Object {
-              "minHeight": "6ex",
-            }
-          }
-        >
-          The help Text
-        </span>
-      </HelpBlock>
+      }
+      type="text"
+    />
+    <div
+      id="after_addon"
+    >
+      after
     </div>
-  </FormGroup>
-</TextField>
+  </InputGroup>
+  <HelpBlock
+    bsClass="help-block"
+    style={
+      Object {
+        "minHeight": "6ex",
+      }
+    }
+  >
+    The help Text
+  </HelpBlock>
+</FormGroup>
 `;
 
 exports[`The Text Field renders the help message with a break 1`] = `
