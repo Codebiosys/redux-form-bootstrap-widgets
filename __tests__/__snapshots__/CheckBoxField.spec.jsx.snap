@@ -2,9 +2,8 @@
 
 exports[`The Checkbox Field renders 1`] = `
 <CheckBoxField
-  customValidation={null}
   disabled={false}
-  helpText="The help Text"
+  helpText={null}
   inline={false}
   input={
     Object {
@@ -39,6 +38,7 @@ exports[`The Checkbox Field renders 1`] = `
     ]
   }
   required={false}
+  validator={[Function]}
   valueKey="value"
 >
   <FormGroup
@@ -166,7 +166,7 @@ exports[`The Checkbox Field renders 1`] = `
         bsClass="help-block"
         style={
           Object {
-            "minHeight": "6ex",
+            "minHeight": "3ex",
           }
         }
       >
@@ -174,23 +174,88 @@ exports[`The Checkbox Field renders 1`] = `
           className="help-block"
           style={
             Object {
-              "minHeight": "6ex",
+              "minHeight": "3ex",
             }
           }
-        >
-          The help Text
-        </span>
+        />
       </HelpBlock>
     </div>
   </FormGroup>
 </CheckBoxField>
 `;
 
+exports[`The Checkbox Field renders the help message with a break 1`] = `
+<FormGroup
+  bsClass="form-group"
+  controlId="fieldName"
+  validationState={null}
+>
+  <Label
+    label="Checkbox Test"
+    required={false}
+  />
+  <InputGroup
+    bsClass="input-group"
+  >
+    <Checkbox
+      bsClass="checkbox"
+      checked={false}
+      disabled={false}
+      inline={false}
+      name="fieldName_option1"
+      onChange={[Function]}
+      onFocus={[Function]}
+      title=""
+      value="One"
+    >
+      Option 1
+    </Checkbox>
+    <Checkbox
+      bsClass="checkbox"
+      checked={false}
+      disabled={false}
+      inline={false}
+      name="fieldName_option2"
+      onChange={[Function]}
+      onFocus={[Function]}
+      title=""
+      value="Two"
+    >
+      Option 2
+    </Checkbox>
+    <Checkbox
+      bsClass="checkbox"
+      checked={false}
+      disabled={false}
+      inline={false}
+      name="fieldName_option3"
+      onChange={[Function]}
+      onFocus={[Function]}
+      title=""
+      value="Three"
+    >
+      Option 3
+    </Checkbox>
+  </InputGroup>
+  <HelpBlock
+    bsClass="help-block"
+    style={
+      Object {
+        "minHeight": "6ex",
+      }
+    }
+  >
+    There was an error
+    <br />
+    The help Text
+  </HelpBlock>
+</FormGroup>
+`;
+
 exports[`The Checkbox Field renders with custom options 1`] = `
 <CheckBoxField
-  customValidation={null}
   disabled={false}
-  helpText="The help Text"
+  helpText={null}
   inline={false}
   input={
     Object {
@@ -225,6 +290,7 @@ exports[`The Checkbox Field renders with custom options 1`] = `
     ]
   }
   required={false}
+  validator={[Function]}
   valueKey="bar"
 >
   <FormGroup
@@ -352,7 +418,7 @@ exports[`The Checkbox Field renders with custom options 1`] = `
         bsClass="help-block"
         style={
           Object {
-            "minHeight": "6ex",
+            "minHeight": "3ex",
           }
         }
       >
@@ -360,12 +426,10 @@ exports[`The Checkbox Field renders with custom options 1`] = `
           className="help-block"
           style={
             Object {
-              "minHeight": "6ex",
+              "minHeight": "3ex",
             }
           }
-        >
-          The help Text
-        </span>
+        />
       </HelpBlock>
     </div>
   </FormGroup>

@@ -1,7 +1,7 @@
 /* eslint-disable import/first */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { omit } from 'lodash';
 
 import { InputGroup } from 'react-bootstrap';
@@ -21,7 +21,6 @@ const fieldProps = {
   },
   delay: 100,
   label: 'Text Test',
-  helpText: 'The help Text',
   addOnBefore: (<div id="before_addon">before</div>),
   addOnAfter: (<div id="after_addon">after</div>),
 };
@@ -85,7 +84,7 @@ describe('The Debounce Text Field', () => {
     const lodash = require.requireActual('lodash');
     lodash.debounce = jest.fn((event, time) => event); // eslint-disable-line
     const customValidator = jest.fn(() => ({ validationState: null, errorMessage: null }));
-    const validatorProps = { ...fieldProps, customValidation: customValidator };
+    const validatorProps = { ...fieldProps, validator: customValidator };
     const inputWrapperValidated = mount(<TextField {...validatorProps} />);
     inputWrapperValidated.find(`input[name="${fieldProps.input.name}"]`).simulate('change', { target: { value: 'foo' } });
     expect(fieldProps.input.onChange).toHaveBeenCalled();
@@ -99,5 +98,21 @@ describe('The Debounce Text Field', () => {
     const inputWrapperValidated = mount(<TextField {...validatorProps} />);
     inputWrapperValidated.find(`input[name="${fieldProps.input.name}"]`).simulate('change', { target: { value: 'foo' } });
     expect(lodash.debounce).not.toHaveBeenCalled();
+  });
+
+  it('uses a custom validator when new props are added', () => {
+    const customValidator = jest.fn(() => ({ validationState: null, errorMessage: null }));
+    const customProps = { ...fieldProps, validator: customValidator };
+    inputWrapper = shallow(<TextField {...customProps} />);
+    expect(customValidator).toHaveBeenCalledTimes(1); // Constructor
+    inputWrapper.setProps({ label: 'new Label' });
+    expect(customValidator).toHaveBeenCalledTimes(2); // On Prop Change
+  });
+
+  it('renders the help message with a break', () => {
+    const customValidator = jest.fn(() => ({ validationState: null, errorMessage: 'There was an error' }));
+    const customProps = { ...fieldProps, helpText: 'The help Text', validator: customValidator };
+    inputWrapper = shallow(<TextField {...customProps} />);
+    expect(inputWrapper).toMatchSnapshot();
   });
 });

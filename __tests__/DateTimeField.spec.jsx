@@ -1,9 +1,8 @@
 /* eslint-disable import/first */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import moment from 'moment';
-import { omit } from 'lodash';
 import { DateTimeField } from 'index';
 
 const fieldProps = {
@@ -18,7 +17,6 @@ const fieldProps = {
     pristine: false,
   },
   label: 'CheckBox  Test',
-  helpText: 'The help Text',
 };
 
 const selectedFieldProps = { ...fieldProps };
@@ -30,6 +28,10 @@ describe('The Date Time Field', () => {
 
   beforeEach(() => {
     inputWrapper = mount(<DateTimeField {...fieldProps} />);
+  });
+
+  it('renders', () => {
+    expect(inputWrapper).toMatchSnapshot();
   });
 
   it('has a label when there is a label', () => {
@@ -47,12 +49,19 @@ describe('The Date Time Field', () => {
     expect(selectedFieldProps.input.onChange).toHaveBeenCalledWith(null);
   });
 
-  it('calls custom validator when the toogle is toggled', () => {
+  it('calls custom validator when the date changes', () => {
     const customValidator = jest.fn(() => ({ validationState: null, errorMessage: null }));
-    const validatorProps = { ...fieldProps, customValidation: customValidator };
-    const inputWrapperValidated = mount(<DateTimeField {...validatorProps} />);
-
-    inputWrapperValidated.find('.form-control-feedback').simulate('click');
+    const validatorProps = { ...fieldProps, validator: customValidator };
+    const inputWrapperValidated = shallow(<DateTimeField {...validatorProps} />);
     expect(customValidator).toHaveBeenCalledTimes(1);
+    inputWrapperValidated.setProps({ label: 'new Label' });
+    expect(customValidator).toHaveBeenCalledTimes(2); // On Prop Change
+  });
+
+  it('renders the help message with a break', () => {
+    const customValidator = jest.fn(() => ({ validationState: null, errorMessage: 'There was an error' }));
+    const customProps = { ...fieldProps, helpText: 'The help Text', validator: customValidator };
+    inputWrapper = shallow(<DateTimeField {...customProps} />);
+    expect(inputWrapper).toMatchSnapshot();
   });
 });

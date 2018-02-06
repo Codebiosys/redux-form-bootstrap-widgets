@@ -35,7 +35,7 @@ const propTypes = {
   options: PropTypes.arrayOf(
     PropTypes.object,
   ).isRequired,
-  customValidation: PropTypes.func,
+  validator: PropTypes.func,
   /**
   * @ignore
   * Redux Form internal input property. Set when used in a redux 'Field'
@@ -55,7 +55,7 @@ const defaultProps = {
   helpText: null,
   disabled: false,
   inline: false,
-  customValidation: null,
+  validator: validationMessage,
   labelKey: 'label',
   valueKey: 'value',
 };
@@ -66,21 +66,13 @@ class CheckBoxField extends Component {
 
   constructor(props) {
     super(props);
-    const { customValidation, meta } = props;
-    if (customValidation) {
-      this.state = customValidation(meta);
-    } else {
-      this.state = validationMessage(meta);
-    }
+    const { validator, meta } = props;
+    this.state = validator(meta);
   }
 
   componentWillReceiveProps(nextProps) {
-    const { customValidation, meta } = nextProps;
-    if (customValidation) {
-      this.setState(customValidation(meta));
-    } else {
-      this.setState(validationMessage(meta));
-    }
+    const { validator, meta } = nextProps;
+    this.setState({ ...this.state, ...validator(meta) });
   }
 
   checkOptions = () => {
@@ -128,7 +120,7 @@ class CheckBoxField extends Component {
       meta,
       valueKey,
       labelKey,
-      customValidation,
+      validator,
       input: { name, onFocus },
       options,
       inline,

@@ -1,7 +1,7 @@
 /* eslint-disable import/first */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { RadioField } from 'index';
 
 const fieldProps = {
@@ -16,7 +16,6 @@ const fieldProps = {
     pristine: false,
   },
   label: 'Radio Test',
-  helpText: 'The help Text',
   options: [
     { label: 'Option 1', value: 'One' },
     { label: 'Option 2', value: 'Two' },
@@ -80,10 +79,26 @@ describe('The Radio Field', () => {
 
   it('calls custom validator when the toogle is toggled', () => {
     const customValidator = jest.fn(() => ({ validationState: null, errorMessage: null }));
-    const validatorProps = { ...fieldProps, customValidation: customValidator };
+    const validatorProps = { ...fieldProps, validator: customValidator };
     const inputWrapperValidated = mount(<RadioField {...validatorProps} />);
 
     inputWrapperValidated.find('input[value="One"]').simulate('change', { target: { value: 'One' } });
     expect(customValidator).toHaveBeenCalledTimes(1);
+  });
+
+  it('uses a custom validator when new props are added', () => {
+    const customValidator = jest.fn(() => ({ validationState: null, errorMessage: null }));
+    const customProps = { ...fieldProps, validator: customValidator };
+    inputWrapper = shallow(<RadioField {...customProps} />);
+    expect(customValidator).toHaveBeenCalledTimes(1); // Constructor
+    inputWrapper.setProps({ label: 'new Label' });
+    expect(customValidator).toHaveBeenCalledTimes(2); // On Prop Change
+  });
+
+  it('renders the help message with a break', () => {
+    const customValidator = jest.fn(() => ({ validationState: null, errorMessage: 'There was an error' }));
+    const customProps = { ...fieldProps, helpText: 'The help Text', validator: customValidator };
+    inputWrapper = shallow(<RadioField {...customProps} />);
+    expect(inputWrapper).toMatchSnapshot();
   });
 });

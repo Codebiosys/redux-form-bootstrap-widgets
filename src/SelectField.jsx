@@ -25,7 +25,7 @@ const propTypes = {
   /** Additional text that displays below the widget. */
   helpText: PropTypes.string,
   /** Custom validation function */
-  customValidation: PropTypes.func,
+  validator: PropTypes.func,
   /** Either an array of objects that have a shape that includes
       the labelKey and valueKey, or a promise that resolves
       such an array */
@@ -55,7 +55,7 @@ const defaultProps = {
   disabled: false,
   helpText: null,
   multiple: false,
-  customValidation: undefined,
+  validator: validationMessage,
   labelKey: 'label',
   valueKey: 'value',
 };
@@ -66,22 +66,13 @@ class SelectField extends Component {
 
   constructor(props) {
     super(props);
-    const { customValidation, meta } = props;
-
-    if (customValidation) {
-      this.state = customValidation(meta);
-    } else {
-      this.state = validationMessage(meta);
-    }
+    const { validator, meta } = props;
+    this.state = validator(meta);
   }
 
   componentWillReceiveProps(nextProps) {
-    const { customValidation, meta } = nextProps;
-    if (customValidation) {
-      this.setState(customValidation(meta));
-    } else {
-      this.setState(validationMessage(meta));
-    }
+    const { validator, meta } = nextProps;
+    this.setState({ ...this.state, ...validator(meta) });
   }
 
   selectProps = () => {
@@ -138,7 +129,7 @@ class SelectField extends Component {
       multiple,
       labelKey,
       valueKey,
-      customValidation,
+      validator,
       input: { name },
       meta,
       options,

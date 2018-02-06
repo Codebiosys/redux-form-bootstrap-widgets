@@ -3,7 +3,7 @@
 exports[`The Select Field renders 1`] = `
 <SelectField
   disabled={false}
-  helpText="The help Text"
+  helpText={null}
   input={
     Object {
       "name": "fieldName",
@@ -38,6 +38,7 @@ exports[`The Select Field renders 1`] = `
     ]
   }
   required={false}
+  validator={[Function]}
   valueKey="value"
 >
   <FormGroup
@@ -232,7 +233,7 @@ exports[`The Select Field renders 1`] = `
         bsClass="help-block"
         style={
           Object {
-            "minHeight": "6ex",
+            "minHeight": "3ex",
           }
         }
       >
@@ -240,12 +241,10 @@ exports[`The Select Field renders 1`] = `
           className="help-block"
           style={
             Object {
-              "minHeight": "6ex",
+              "minHeight": "3ex",
             }
           }
-        >
-          The help Text
-        </span>
+        />
       </HelpBlock>
     </div>
   </FormGroup>
@@ -255,7 +254,7 @@ exports[`The Select Field renders 1`] = `
 exports[`The Select Field renders allowing multiple selections 1`] = `
 <SelectField
   disabled={false}
-  helpText="The help Text"
+  helpText={null}
   input={
     Object {
       "name": "fieldName",
@@ -290,6 +289,7 @@ exports[`The Select Field renders allowing multiple selections 1`] = `
     ]
   }
   required={false}
+  validator={[Function]}
   valueKey="value"
 >
   <FormGroup
@@ -484,7 +484,7 @@ exports[`The Select Field renders allowing multiple selections 1`] = `
         bsClass="help-block"
         style={
           Object {
-            "minHeight": "6ex",
+            "minHeight": "3ex",
           }
         }
       >
@@ -492,22 +492,109 @@ exports[`The Select Field renders allowing multiple selections 1`] = `
           className="help-block"
           style={
             Object {
-              "minHeight": "6ex",
+              "minHeight": "3ex",
             }
           }
-        >
-          The help Text
-        </span>
+        />
       </HelpBlock>
     </div>
   </FormGroup>
 </SelectField>
 `;
 
+exports[`The Select Field renders the help message with a break 1`] = `
+<FormGroup
+  bsClass="form-group"
+  controlId="fieldName"
+  validationState={null}
+>
+  <Label
+    label="Radio Test"
+    required={false}
+  />
+  <Select
+    addLabelText="Add \\"{label}\\"?"
+    arrowRenderer={[Function]}
+    autoBlur={true}
+    autosize={true}
+    backspaceRemoves={true}
+    backspaceToRemoveMessage="Press backspace to remove {label}"
+    clearAllText="Clear all"
+    clearRenderer={[Function]}
+    clearValueText="Clear value"
+    clearable={true}
+    closeOnSelect={true}
+    deleteRemoves={true}
+    delimiter=","
+    disabled={false}
+    escapeClearsValue={true}
+    filterOptions={[Function]}
+    ignoreAccents={true}
+    ignoreCase={true}
+    inputProps={Object {}}
+    isLoading={false}
+    joinValues={true}
+    labelKey="label"
+    matchPos="any"
+    matchProp="any"
+    menuBuffer={0}
+    menuRenderer={[Function]}
+    multi={false}
+    name="fieldName"
+    noResultsText="No results found"
+    onBlur={[Function]}
+    onBlurResetsInput={true}
+    onChange={[Function]}
+    onCloseResetsInput={true}
+    onFocus={[Function]}
+    onSelectResetsInput={true}
+    openOnClick={true}
+    optionComponent={[Function]}
+    options={
+      Array [
+        Object {
+          "label": "Option 1",
+          "value": "One",
+        },
+        Object {
+          "label": "Option 2",
+          "value": "Two",
+        },
+        Object {
+          "label": "Option 3",
+          "value": "Three",
+        },
+      ]
+    }
+    pageSize={5}
+    placeholder="Select..."
+    required={false}
+    scrollMenuIntoView={true}
+    searchable={true}
+    simpleValue={false}
+    tabSelectsValue={true}
+    valueComponent={[Function]}
+    valueKey="value"
+  />
+  <HelpBlock
+    bsClass="help-block"
+    style={
+      Object {
+        "minHeight": "6ex",
+      }
+    }
+  >
+    There was an error
+    <br />
+    The help Text
+  </HelpBlock>
+</FormGroup>
+`;
+
 exports[`The Select Field renders with async options 1`] = `
 <SelectField
   disabled={false}
-  helpText="The help Text"
+  helpText={null}
   input={
     Object {
       "name": "fieldName",
@@ -527,6 +614,7 @@ exports[`The Select Field renders with async options 1`] = `
   multiple={false}
   options={[Function]}
   required={false}
+  validator={[Function]}
   valueKey="value"
 >
   <FormGroup
@@ -749,7 +837,7 @@ exports[`The Select Field renders with async options 1`] = `
         bsClass="help-block"
         style={
           Object {
-            "minHeight": "6ex",
+            "minHeight": "3ex",
           }
         }
       >
@@ -757,12 +845,10 @@ exports[`The Select Field renders with async options 1`] = `
           className="help-block"
           style={
             Object {
-              "minHeight": "6ex",
+              "minHeight": "3ex",
             }
           }
-        >
-          The help Text
-        </span>
+        />
       </HelpBlock>
     </div>
   </FormGroup>
@@ -772,7 +858,7 @@ exports[`The Select Field renders with async options 1`] = `
 exports[`The Select Field renders with custom options 1`] = `
 <SelectField
   disabled={false}
-  helpText="The help Text"
+  helpText={null}
   input={
     Object {
       "name": "fieldName",
@@ -807,6 +893,7 @@ exports[`The Select Field renders with custom options 1`] = `
     ]
   }
   required={false}
+  validator={[Function]}
   valueKey="bar"
 >
   <FormGroup
@@ -1001,7 +1088,7 @@ exports[`The Select Field renders with custom options 1`] = `
         bsClass="help-block"
         style={
           Object {
-            "minHeight": "6ex",
+            "minHeight": "3ex",
           }
         }
       >
@@ -1009,12 +1096,10 @@ exports[`The Select Field renders with custom options 1`] = `
           className="help-block"
           style={
             Object {
-              "minHeight": "6ex",
+              "minHeight": "3ex",
             }
           }
-        >
-          The help Text
-        </span>
+        />
       </HelpBlock>
     </div>
   </FormGroup>

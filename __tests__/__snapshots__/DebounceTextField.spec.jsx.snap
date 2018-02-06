@@ -16,10 +16,9 @@ exports[`The Debounce Text Field renders 1`] = `
       before
     </div>
   }
-  customValidation={null}
   delay={100}
   disabled={false}
-  helpText="The help Text"
+  helpText={null}
   input={
     Object {
       "name": "fieldName",
@@ -35,6 +34,7 @@ exports[`The Debounce Text Field renders 1`] = `
   }
   required={false}
   type="text"
+  validator={[Function]}
 >
   <FormGroup
     bsClass="form-group"
@@ -110,7 +110,7 @@ exports[`The Debounce Text Field renders 1`] = `
         bsClass="help-block"
         style={
           Object {
-            "minHeight": "6ex",
+            "minHeight": "3ex",
           }
         }
       >
@@ -118,14 +118,65 @@ exports[`The Debounce Text Field renders 1`] = `
           className="help-block"
           style={
             Object {
-              "minHeight": "6ex",
+              "minHeight": "3ex",
             }
           }
-        >
-          The help Text
-        </span>
+        />
       </HelpBlock>
     </div>
   </FormGroup>
 </TextField>
+`;
+
+exports[`The Debounce Text Field renders the help message with a break 1`] = `
+<FormGroup
+  bsClass="form-group"
+  controlId="fieldName"
+  validationState={null}
+>
+  <Label
+    label="Text Test"
+    required={false}
+  />
+  <InputGroup
+    bsClass="input-group"
+    style={Object {}}
+  >
+    <div
+      id="before_addon"
+    >
+      before
+    </div>
+    <FormControl
+      bsClass="form-control"
+      componentClass="input"
+      disabled={false}
+      name="fieldName"
+      onChange={[Function]}
+      style={
+        Object {
+          "zIndex": "0",
+        }
+      }
+      type="text"
+    />
+    <div
+      id="after_addon"
+    >
+      after
+    </div>
+  </InputGroup>
+  <HelpBlock
+    bsClass="help-block"
+    style={
+      Object {
+        "minHeight": "6ex",
+      }
+    }
+  >
+    There was an error
+    <br />
+    The help Text
+  </HelpBlock>
+</FormGroup>
 `;

@@ -1,7 +1,7 @@
 /* eslint-disable import/first */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { camelCase } from 'lodash';
 
 import { CheckBoxField } from 'index';
@@ -18,7 +18,6 @@ const fieldProps = {
     pristine: false,
   },
   label: 'Checkbox Test',
-  helpText: 'The help Text',
   options: [
     { label: 'Option 1', value: 'One' },
     { label: 'Option 2', value: 'Two' },
@@ -80,10 +79,26 @@ describe('The Checkbox Field', () => {
 
   it('calls custom validator when the checkbox is checked', () => {
     const customValidator = jest.fn(() => ({ validationState: null, errorMessage: null }));
-    const validatorProps = { ...fieldProps, customValidation: customValidator };
+    const validatorProps = { ...fieldProps, validator: customValidator };
     const inputWrapperValidated = mount(<CheckBoxField {...validatorProps} />);
 
     inputWrapperValidated.find(`input[name="${fieldProps.input.name}_${camelCase('Option 1')}"]`).simulate('change', { value: 'One', target: { checked: false } });
     expect(customValidator).toHaveBeenCalledTimes(1);
+  });
+
+  it('uses a custom validator when new props are added', () => {
+    const customValidator = jest.fn(() => ({ validationState: null, errorMessage: null }));
+    const customProps = { ...fieldProps, validator: customValidator };
+    inputWrapper = shallow(<CheckBoxField {...customProps} />);
+    expect(customValidator).toHaveBeenCalledTimes(1); // Constructor
+    inputWrapper.setProps({ label: 'new Label' });
+    expect(customValidator).toHaveBeenCalledTimes(2); // On Prop Change
+  });
+
+  it('renders the help message with a break', () => {
+    const customValidator = jest.fn(() => ({ validationState: null, errorMessage: 'There was an error' }));
+    const customProps = { ...fieldProps, helpText: 'The help Text', validator: customValidator };
+    inputWrapper = shallow(<CheckBoxField {...customProps} />);
+    expect(inputWrapper).toMatchSnapshot();
   });
 });

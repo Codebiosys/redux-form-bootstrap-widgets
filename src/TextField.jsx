@@ -32,7 +32,7 @@ const propTypes = {
   /** HTML input type. */
   type: PropTypes.oneOf(['text', 'password', 'number', 'textarea']),
   /** Override the default validation checks. Takes ReduxForm 'meta' as input */
-  customValidation: PropTypes.func,
+  validator: PropTypes.func,
   /** React Boostrap Field addOn, placed before the input */
   addOnBefore: PropTypes.element,
   /** React Boostrap Field addOn, placed after the input */
@@ -53,7 +53,7 @@ const propTypes = {
 const defaultProps = {
   required: false,
   helpText: null,
-  customValidation: null,
+  validator: validationMessage,
   addOnBefore: null,
   addOnAfter: null,
   disabled: false,
@@ -67,24 +67,15 @@ class TextField extends Component {
 
   constructor(props) {
     super(props);
-    const { input: { value }, customValidation, meta } = props;
+    const { input: { value }, validator, meta } = props;
 
-    if (customValidation) {
-      this.state = { value: value || '', ...customValidation(meta) };
-    } else {
-      this.state = { value: value || '', ...validationMessage(meta) };
-    }
-
+    this.state = { value: value || '', ...validator(meta) };
     this.lastPropValue = value || '';
   }
 
   componentWillReceiveProps(nextProps) {
-    const { input: { value }, customValidation, meta } = nextProps;
-    if (customValidation) {
-      this.setState({ ...this.state, value, ...customValidation(meta) });
-    } else {
-      this.setState({ ...this.state, value, ...validationMessage(meta) });
-    }
+    const { input: { value }, validator, meta } = nextProps;
+    this.setState({ ...this.state, value, ...validator(meta) });
   }
 
   getValue() {
@@ -150,7 +141,7 @@ class TextField extends Component {
       label,
       required,
       helpText,
-      customValidation,
+      validator,
       delay,
       disabled,
       input: { name, onChange, ...inputProps },

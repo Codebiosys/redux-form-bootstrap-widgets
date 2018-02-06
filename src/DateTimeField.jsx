@@ -26,7 +26,7 @@ const propTypes = {
   // /** The date format to use: Supports moment */
   dateFormat: PropTypes.string,
   /** The custom validation function */
-  customValidation: PropTypes.func,
+  validator: PropTypes.func,
   /**
   * @ignore
   * Redux Form internal input property. Set when used in a redux 'Field'
@@ -45,7 +45,7 @@ const defaultProps = {
   disabled: false,
   dateFormat: undefined,
   helpText: undefined,
-  customValidation: undefined,
+  validator: validationMessage,
 };
 
 class DateTimeField extends Component {
@@ -54,22 +54,13 @@ class DateTimeField extends Component {
 
   constructor(props) {
     super(props);
-    const { customValidation, meta } = props;
-
-    if (customValidation) {
-      this.state = customValidation(meta);
-    } else {
-      this.state = validationMessage(meta);
-    }
+    const { validator, meta } = props;
+    this.state = validator(meta);
   }
 
   componentWillReceiveProps(nextProps) {
-    const { customValidation, meta } = nextProps;
-    if (customValidation) {
-      this.setState(customValidation(meta));
-    } else {
-      this.setState(validationMessage(meta));
-    }
+    const { validator, meta } = nextProps;
+    this.setState({ ...this.state, ...validator(meta) });
   }
 
   clearContent = () => {

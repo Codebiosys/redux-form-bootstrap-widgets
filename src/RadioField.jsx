@@ -32,7 +32,7 @@ const propTypes = {
   options: PropTypes.arrayOf(
     PropTypes.object,
   ).isRequired,
-  customValidation: PropTypes.func,
+  validator: PropTypes.func,
   /**
   * @ignore
   * Redux Form internal input property. Set when used in a redux 'Field'
@@ -52,7 +52,7 @@ const defaultProps = {
   inline: false,
   labelKey: 'label',
   valueKey: 'value',
-  customValidation: null,
+  validator: validationMessage,
   helpText: null,
 };
 
@@ -62,22 +62,13 @@ class RadioField extends Component {
 
   constructor(props) {
     super(props);
-    const { customValidation, meta } = props;
-
-    if (customValidation) {
-      this.state = customValidation(meta);
-    } else {
-      this.state = validationMessage(meta);
-    }
+    const { validator, meta } = props;
+    this.state = validator(meta);
   }
 
   componentWillReceiveProps(nextProps) {
-    const { customValidation, meta } = nextProps;
-    if (customValidation) {
-      this.setState(customValidation(meta));
-    } else {
-      this.setState(validationMessage(meta));
-    }
+    const { validator, meta } = nextProps;
+    this.setState({ ...this.state, ...validator(meta) });
   }
 
   handleChange = (event) => {
@@ -107,7 +98,7 @@ class RadioField extends Component {
       options,
       inline,
       disabled,
-      customValidation,
+      validator,
       input: { name, onBlur, onChange, value, ...inputProps },
       meta,
       ...props

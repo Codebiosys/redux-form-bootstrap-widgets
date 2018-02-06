@@ -24,7 +24,7 @@ const propTypes = {
   /** Additional text that displays below the widget. */
   helpText: PropTypes.string,
   /** HTML input type. */
-  customValidation: PropTypes.func,
+  validator: PropTypes.func,
   /** React Boostrap Field addOn, placed before the input */
   /**
   * @ignore
@@ -44,7 +44,7 @@ const defaultProps = {
   required: false,
   disabled: false,
   helpText: null,
-  customValidation: undefined,
+  validator: validationMessage,
 };
 
 class ToggleField extends Component {
@@ -53,21 +53,13 @@ class ToggleField extends Component {
 
   constructor(props) {
     super(props);
-    const { customValidation, meta } = props;
-    if (customValidation) {
-      this.state = customValidation(meta);
-    } else {
-      this.state = validationMessage(meta);
-    }
+    const { validator, meta } = props;
+    this.state = validator(meta);
   }
 
   componentWillReceiveProps(nextProps) {
-    const { customValidation, meta } = nextProps;
-    if (customValidation) {
-      this.setState(customValidation(meta));
-    } else {
-      this.setState(validationMessage(meta));
-    }
+    const { validator, meta } = nextProps;
+    this.setState({ ...this.state, ...validator(meta) });
   }
 
   handleChange = (event) => {
@@ -91,7 +83,7 @@ class ToggleField extends Component {
     required,
     helpText,
     disabled,
-    customValidation,
+    validator,
     input: { name, value, onChange, ...inputProps },
     meta,
     ...props

@@ -16,7 +16,6 @@ exports[`The Text Field displays a textarea when the type is textarea 1`] = `
       before
     </div>
   }
-  customValidation={null}
   disabled={false}
   helpText="The help Text"
   input={
@@ -34,6 +33,7 @@ exports[`The Text Field displays a textarea when the type is textarea 1`] = `
   }
   required={false}
   type="textarea"
+  validator={[Function]}
 >
   <FormGroup
     bsClass="form-group"
@@ -141,7 +141,6 @@ exports[`The Text Field renders 1`] = `
       before
     </div>
   }
-  customValidation={null}
   disabled={false}
   helpText="The help Text"
   input={
@@ -159,6 +158,7 @@ exports[`The Text Field renders 1`] = `
   }
   required={false}
   type="text"
+  validator={[Function]}
 >
   <FormGroup
     bsClass="form-group"
@@ -252,4 +252,57 @@ exports[`The Text Field renders 1`] = `
     </div>
   </FormGroup>
 </TextField>
+`;
+
+exports[`The Text Field renders the help message with a break 1`] = `
+<FormGroup
+  bsClass="form-group"
+  controlId="fieldName"
+  validationState={null}
+>
+  <Label
+    label="Text Test"
+    required={false}
+  />
+  <InputGroup
+    bsClass="input-group"
+    style={Object {}}
+  >
+    <div
+      id="before_addon"
+    >
+      before
+    </div>
+    <FormControl
+      bsClass="form-control"
+      componentClass="input"
+      disabled={false}
+      name="fieldName"
+      onChange={[Function]}
+      style={
+        Object {
+          "zIndex": "0",
+        }
+      }
+      type="text"
+    />
+    <div
+      id="after_addon"
+    >
+      after
+    </div>
+  </InputGroup>
+  <HelpBlock
+    bsClass="help-block"
+    style={
+      Object {
+        "minHeight": "6ex",
+      }
+    }
+  >
+    There was an error
+    <br />
+    The help Text
+  </HelpBlock>
+</FormGroup>
 `;
