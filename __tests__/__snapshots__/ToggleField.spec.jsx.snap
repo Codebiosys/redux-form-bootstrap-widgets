@@ -1,142 +1,82 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`The Toggle Field renders 1`] = `
-<ToggleField
-  helpText="The help Text"
-  input={
-    Object {
-      "name": "fieldName",
-      "onBlur": [Function],
-      "onChange": [Function],
-      "onFocus": [Function],
-    }
-  }
-  label="CheckBox  Test"
-  meta={
-    Object {
-      "form": "formName",
-      "pristine": false,
-    }
-  }
+<FormGroup
+  bsClass="form-group"
+  controlId="fieldName"
 >
-  <FormGroup
-    bsClass="form-group"
-    controlId="fieldName"
+  <Label
+    label="CheckBox  Test"
+    required={false}
+  />
+  <InputGroup
+    bsClass="input-group"
   >
-    <div
-      className="form-group"
-    >
-      <Component
-        label="CheckBox  Test"
-      >
-        <ControlLabel
-          bsClass="control-label"
-          srOnly={false}
-        >
-          <label
-            className="control-label"
-            htmlFor="fieldName"
-          >
-            CheckBox  Test
-          </label>
-        </ControlLabel>
-      </Component>
-      <InputGroup
-        bsClass="input-group"
-      >
-        <span
-          className="input-group"
-        >
-          <Toggle
-            checked={false}
-            icons={
-              Object {
-                "checked": <Unknown />,
-                "unchecked": <Unknown />,
-              }
-            }
-            name="fieldName"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-          >
-            <div
-              className="react-toggle"
-              onClick={[Function]}
-              onTouchEnd={[Function]}
-              onTouchMove={[Function]}
-              onTouchStart={[Function]}
-            >
-              <div
-                className="react-toggle-track"
-              >
-                <div
-                  className="react-toggle-track-check"
-                >
-                  <Component>
-                    <svg
-                      height="11"
-                      viewBox="0 0 14 11"
-                      width="14"
-                    >
-                      <title>
-                        switch-check
-                      </title>
-                      <path
-                        d="M11.264 0L5.26 6.004 2.103 2.847 0 4.95l5.26 5.26 8.108-8.107L11.264 0"
-                        fill="#fff"
-                        fillRule="evenodd"
-                      />
-                    </svg>
-                  </Component>
-                </div>
-                <div
-                  className="react-toggle-track-x"
-                >
-                  <Component>
-                    <svg
-                      height="10"
-                      viewBox="0 0 10 10"
-                      width="10"
-                    >
-                      <title>
-                        switch-x
-                      </title>
-                      <path
-                        d="M9.9 2.12L7.78 0 4.95 2.828 2.12 0 0 2.12l2.83 2.83L0 7.776 2.123 9.9 4.95 7.07 7.78 9.9 9.9 7.776 7.072 4.95 9.9 2.12"
-                        fill="#fff"
-                        fillRule="evenodd"
-                      />
-                    </svg>
-                  </Component>
-                </div>
-              </div>
-              <div
-                className="react-toggle-thumb"
-              />
-              <input
-                checked={false}
-                className="react-toggle-screenreader-only"
-                name="fieldName"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                type="checkbox"
-              />
-            </div>
-          </Toggle>
-        </span>
-      </InputGroup>
-      <HelpBlock
-        bsClass="help-block"
-      >
-        <span
-          className="help-block"
-        >
-          The help Text
-        </span>
-      </HelpBlock>
-    </div>
-  </FormGroup>
-</ToggleField>
+    <Toggle
+      checked={false}
+      disabled={false}
+      icons={
+        Object {
+          "checked": <Component />,
+          "unchecked": <Component />,
+        }
+      }
+      name="fieldName"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+    />
+  </InputGroup>
+  <HelpBlock
+    bsClass="help-block"
+    style={
+      Object {
+        "minHeight": "3ex",
+      }
+    }
+  />
+</FormGroup>
+`;
+
+exports[`The Toggle Field renders the help message with a break 1`] = `
+<FormGroup
+  bsClass="form-group"
+  controlId="fieldName"
+  validationState={null}
+>
+  <Label
+    label="CheckBox  Test"
+    required={false}
+  />
+  <InputGroup
+    bsClass="input-group"
+  >
+    <Toggle
+      checked={false}
+      disabled={false}
+      icons={
+        Object {
+          "checked": <Component />,
+          "unchecked": <Component />,
+        }
+      }
+      name="fieldName"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+    />
+  </InputGroup>
+  <HelpBlock
+    bsClass="help-block"
+    style={
+      Object {
+        "minHeight": "6ex",
+      }
+    }
+  >
+    There was an error
+    <br />
+    The help Text
+  </HelpBlock>
+</FormGroup>
 `;

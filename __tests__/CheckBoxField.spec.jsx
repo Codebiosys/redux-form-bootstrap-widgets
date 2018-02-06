@@ -1,8 +1,8 @@
 /* eslint-disable import/first */
 
 import React from 'react';
-import { mount } from 'enzyme';
-import { omit } from 'lodash';
+import { mount, shallow } from 'enzyme';
+import { camelCase } from 'lodash';
 
 import { CheckBoxField } from 'index';
 
@@ -18,7 +18,6 @@ const fieldProps = {
     pristine: false,
   },
   label: 'Checkbox Test',
-  helpText: 'The help Text',
   options: [
     { label: 'Option 1', value: 'One' },
     { label: 'Option 2', value: 'Two' },
@@ -46,30 +45,25 @@ describe('The Checkbox Field', () => {
   });
 
   it('renders', () => {
-    expect(inputWrapper).toMatchSnapshot();
+    const shallowField = shallow(<CheckBoxField {...fieldProps} />);
+    expect(shallowField).toMatchSnapshot();
   });
 
   it('has a label when there is a label', () => {
     expect(inputWrapper.find('ControlLabel').text()).toEqual(fieldProps.label);
   });
 
-  it('does not have a label when there is no label', () => {
-    const noLabelFieldProps = omit(fieldProps, ['label']);
-    const inputWrapperNoLabel = mount(<CheckBoxField {...noLabelFieldProps} />);
-    expect(inputWrapperNoLabel.find('Label').exists()).toBe(false);
-  });
-
   it('renders with custom options', () => {
-    inputWrapper = mount(<CheckBoxField {...customOptionFieldProps} />);
-    expect(inputWrapper).toMatchSnapshot();
+    const shallowField = shallow(<CheckBoxField {...customOptionFieldProps} />);
+    expect(shallowField).toMatchSnapshot();
   });
   it('triggers the focus when focused', () => {
-    inputWrapper.find(`input[name="${fieldProps.input.name}_0"]`).simulate('focus');
+    inputWrapper.find(`input[name="${fieldProps.input.name}_${camelCase('Option 1')}"]`).simulate('focus');
     expect(fieldProps.input.onFocus).toHaveBeenCalledTimes(1);
   });
 
   it('calls onChange and onBlur when the checkbox is selected', () => {
-    inputWrapper.find(`input[name="${fieldProps.input.name}_0"]`).simulate('change', { target: { checked: true } });
+    inputWrapper.find(`input[name="${fieldProps.input.name}_${camelCase('Option 1')}"]`).simulate('change', { target: { value: 'One', checked: true } });
     expect(fieldProps.input.onChange).toHaveBeenCalledTimes(1);
     expect(fieldProps.input.onBlur).toHaveBeenCalledTimes(1);
     expect(fieldProps.input.onChange).toHaveBeenCalledWith(['One']);
@@ -78,18 +72,34 @@ describe('The Checkbox Field', () => {
   it('calls onChange and onBlur when the checkbox is deselected', () => {
     inputWrapper = mount(<CheckBoxField {...selectedFieldProps} />);
 
-    inputWrapper.find(`input[name="${fieldProps.input.name}_0"]`).simulate('change', { target: { checked: false } });
+    inputWrapper.find(`input[name="${fieldProps.input.name}_${camelCase('Option 1')}"]`).simulate('change', { target: { value: 'One', checked: false } });
     expect(fieldProps.input.onChange).toHaveBeenCalledTimes(1);
     expect(fieldProps.input.onBlur).toHaveBeenCalledTimes(1);
     expect(fieldProps.input.onChange).toHaveBeenCalledWith(null);
   });
 
-  it('calls custom validator when the toogle is toggled', () => {
+  it('calls custom validator when the checkbox is checked', () => {
     const customValidator = jest.fn(() => ({ validationState: null, errorMessage: null }));
-    const validatorProps = { ...fieldProps, customValidation: customValidator };
+    const validatorProps = { ...fieldProps, validator: customValidator };
     const inputWrapperValidated = mount(<CheckBoxField {...validatorProps} />);
 
-    inputWrapperValidated.find(`input[name="${fieldProps.input.name}_0"]`).simulate('change', { target: { checked: false } });
+    inputWrapperValidated.find(`input[name="${fieldProps.input.name}_${camelCase('Option 1')}"]`).simulate('change', { value: 'One', target: { checked: false } });
     expect(customValidator).toHaveBeenCalledTimes(1);
+  });
+
+  it('uses a custom validator when new props are added', () => {
+    const customValidator = jest.fn(() => ({ validationState: null, errorMessage: null }));
+    const customProps = { ...fieldProps, validator: customValidator };
+    inputWrapper = shallow(<CheckBoxField {...customProps} />);
+    expect(customValidator).toHaveBeenCalledTimes(1); // Constructor
+    inputWrapper.setProps({ label: 'new Label' });
+    expect(customValidator).toHaveBeenCalledTimes(2); // On Prop Change
+  });
+
+  it('renders the help message with a break', () => {
+    const customValidator = jest.fn(() => ({ validationState: null, errorMessage: 'There was an error' }));
+    const customProps = { ...fieldProps, helpText: 'The help Text', validator: customValidator };
+    inputWrapper = shallow(<CheckBoxField {...customProps} />);
+    expect(inputWrapper).toMatchSnapshot();
   });
 });

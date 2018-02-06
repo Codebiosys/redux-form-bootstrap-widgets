@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Date Time Field renders 1`] = `
+<FormGroup
+  bsClass="form-group"
+  controlId="fieldName"
+>
+  <Label
+    label="CheckBox  Test"
+    required={false}
+  />
+  <Component
+    className=""
+    closeOnSelect={true}
+    closeOnTab={true}
+    dateFormat={true}
+    defaultValue=""
+    id="formName-fieldName"
+    input={true}
+    inputProps={Object {}}
+    name="fieldName"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    onViewModeChange={[Function]}
+    renderInput={[Function]}
+    strictParsing={true}
+    timeConstraints={Object {}}
+    timeFormat={true}
+    utc={false}
+    validator={[Function]}
+  />
+  <HelpBlock
+    bsClass="help-block"
+    style={
+      Object {
+        "minHeight": "3ex",
+      }
+    }
+  />
+</FormGroup>
+`;
+
+exports[`The Date Time Field renders the help message with a break 1`] = `
+<FormGroup
+  bsClass="form-group"
+  controlId="fieldName"
+  validationState={null}
+>
+  <Label
+    label="CheckBox  Test"
+    required={false}
+  />
+  <Component
+    className=""
+    closeOnSelect={true}
+    closeOnTab={true}
+    dateFormat={true}
+    defaultValue=""
+    id="formName-fieldName"
+    input={true}
+    inputProps={Object {}}
+    name="fieldName"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    onViewModeChange={[Function]}
+    renderInput={[Function]}
+    strictParsing={true}
+    timeConstraints={Object {}}
+    timeFormat={true}
+    utc={false}
+    validator={[Function]}
+  />
+  <HelpBlock
+    bsClass="help-block"
+    style={
+      Object {
+        "minHeight": "6ex",
+      }
+    }
+  >
+    There was an error
+    <br />
+    The help Text
+  </HelpBlock>
+</FormGroup>
+`;

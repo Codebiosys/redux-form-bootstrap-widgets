@@ -1,112 +1,102 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`The Debounce Text Field renders 1`] = `
-<DebounceTextField
-  addOnAfter={
-    <div
-      id="after_addon"
-    >
-      after
-    </div>
-  }
-  addOnBefore={
+<FormGroup
+  bsClass="form-group"
+  controlId="fieldName"
+>
+  <Label
+    label="Text Test"
+    required={false}
+  />
+  <InputGroup
+    bsClass="input-group"
+    style={Object {}}
+  >
     <div
       id="before_addon"
     >
       before
     </div>
-  }
-  delay={100}
-  helpText="The help Text"
-  input={
-    Object {
-      "name": "fieldName",
-      "onChange": [Function],
+    <FormControl
+      bsClass="form-control"
+      componentClass="input"
+      disabled={false}
+      name="fieldName"
+      onChange={[Function]}
+      style={
+        Object {
+          "zIndex": "0",
+        }
+      }
+      type="text"
+    />
+    <div
+      id="after_addon"
+    >
+      after
+    </div>
+  </InputGroup>
+  <HelpBlock
+    bsClass="help-block"
+    style={
+      Object {
+        "minHeight": "3ex",
+      }
     }
-  }
-  label="Text Test"
-  meta={
-    Object {
-      "form": "formName",
-      "pristine": false,
-    }
-  }
+  />
+</FormGroup>
+`;
+
+exports[`The Debounce Text Field renders the help message with a break 1`] = `
+<FormGroup
+  bsClass="form-group"
+  controlId="fieldName"
+  validationState={null}
 >
-  <FormGroup
-    bsClass="form-group"
-    controlId="fieldName"
+  <Label
+    label="Text Test"
+    required={false}
+  />
+  <InputGroup
+    bsClass="input-group"
+    style={Object {}}
   >
     <div
-      className="form-group"
+      id="before_addon"
     >
-      <Component
-        label="Text Test"
-      >
-        <ControlLabel
-          bsClass="control-label"
-          srOnly={false}
-        >
-          <label
-            className="control-label"
-            htmlFor="fieldName"
-          >
-            Text Test
-          </label>
-        </ControlLabel>
-      </Component>
-      <InputGroup
-        bsClass="input-group"
-        style={Object {}}
-      >
-        <span
-          className="input-group"
-          style={Object {}}
-        >
-          <div
-            id="before_addon"
-          >
-            before
-          </div>
-          <FormControl
-            bsClass="form-control"
-            componentClass="input"
-            name="fieldName"
-            onChange={[Function]}
-            style={
-              Object {
-                "zIndex": "0",
-              }
-            }
-          >
-            <input
-              className="form-control"
-              id="fieldName"
-              name="fieldName"
-              onChange={[Function]}
-              style={
-                Object {
-                  "zIndex": "0",
-                }
-              }
-            />
-          </FormControl>
-          <div
-            id="after_addon"
-          >
-            after
-          </div>
-        </span>
-      </InputGroup>
-      <HelpBlock
-        bsClass="help-block"
-      >
-        <span
-          className="help-block"
-        >
-          The help Text
-        </span>
-      </HelpBlock>
+      before
     </div>
-  </FormGroup>
-</DebounceTextField>
+    <FormControl
+      bsClass="form-control"
+      componentClass="input"
+      disabled={false}
+      name="fieldName"
+      onChange={[Function]}
+      style={
+        Object {
+          "zIndex": "0",
+        }
+      }
+      type="text"
+    />
+    <div
+      id="after_addon"
+    >
+      after
+    </div>
+  </InputGroup>
+  <HelpBlock
+    bsClass="help-block"
+    style={
+      Object {
+        "minHeight": "6ex",
+      }
+    }
+  >
+    There was an error
+    <br />
+    The help Text
+  </HelpBlock>
+</FormGroup>
 `;

@@ -1,8 +1,7 @@
 /* eslint-disable import/first */
 
 import React from 'react';
-import { mount } from 'enzyme';
-import { omit } from 'lodash';
+import { mount, shallow } from 'enzyme';
 import Select from 'react-select';
 import { SelectField } from 'index';
 
@@ -18,7 +17,6 @@ const fieldProps = {
     pristine: false,
   },
   label: 'Radio Test',
-  helpText: 'The help Text',
   options: [
     { label: 'Option 1', value: 'One' },
     { label: 'Option 2', value: 'Two' },
@@ -47,8 +45,7 @@ multiValueFieldProps.input = { ...multipleFieldProps.input };
 multiValueFieldProps.input.value = ['One', 'Two'];
 
 const asyncFieldProps = { ...fieldProps };
-delete asyncFieldProps.options;
-asyncFieldProps.loadOptions = input => Promise.resolve({
+asyncFieldProps.options = input => Promise.resolve({ // eslint-disable-line no-unused-vars
   options: [
           { label: 'one', value: 1 },
           { label: 'two', value: 2 },
@@ -68,7 +65,8 @@ describe('The Select Field', () => {
   });
 
   it('renders', () => {
-    expect(inputWrapper).toMatchSnapshot();
+    const shallowField = shallow(<SelectField {...fieldProps} />);
+    expect(shallowField).toMatchSnapshot();
   });
 
 
@@ -76,23 +74,19 @@ describe('The Select Field', () => {
     expect(inputWrapper.find('ControlLabel').text()).toEqual(fieldProps.label);
   });
 
-  it('does not have a label when there is no label', () => {
-    const noLabelFieldProps = omit(fieldProps, ['label']);
-    const inputWrapperNoLabel = mount(<SelectField {...noLabelFieldProps} />);
-    expect(inputWrapperNoLabel.find('Label').exists()).toBe(false);
-  });
-
   it('renders with custom options', () => {
-    inputWrapper = mount(<SelectField {...customOptionFieldProps} />);
+    inputWrapper = shallow(<SelectField {...customOptionFieldProps} />);
     expect(inputWrapper).toMatchSnapshot();
   });
 
   it('renders with async options', () => {
-    expect(asyncWrapper).toMatchSnapshot();
+    const shallowField = shallow(<SelectField {...asyncFieldProps} />);
+    expect(shallowField).toMatchSnapshot();
   });
 
   it('renders allowing multiple selections', () => {
-    expect(multipleWrapper).toMatchSnapshot();
+    const shallowField = shallow(<SelectField {...multipleFieldProps} />);
+    expect(shallowField).toMatchSnapshot();
   });
   it('triggers the focus when focused', () => {
     inputWrapper.find('.Select-input input').simulate('focus');
@@ -145,10 +139,26 @@ describe('The Select Field', () => {
 
   it('calls custom validator when the toogle is toggled', () => {
     const customValidator = jest.fn(() => ({ validationState: null, errorMessage: null }));
-    const validatorProps = { ...fieldProps, customValidation: customValidator };
+    const validatorProps = { ...fieldProps, validator: customValidator };
     const inputWrapperValidated = mount(<SelectField {...validatorProps} />);
 
     inputWrapperValidated.find(`input[name="${fieldProps.input.name}"]`).simulate('change', { target: { value: 'Three' } });
     expect(customValidator).toHaveBeenCalledTimes(1);
+  });
+
+  it('uses a custom validator when new props are added', () => {
+    const customValidator = jest.fn(() => ({ validationState: null, errorMessage: null }));
+    const customProps = { ...fieldProps, validator: customValidator };
+    inputWrapper = shallow(<SelectField {...customProps} />);
+    expect(customValidator).toHaveBeenCalledTimes(1); // Constructor
+    inputWrapper.setProps({ label: 'new Label' });
+    expect(customValidator).toHaveBeenCalledTimes(2); // On Prop Change
+  });
+
+  it('renders the help message with a break', () => {
+    const customValidator = jest.fn(() => ({ validationState: null, errorMessage: 'There was an error' }));
+    const customProps = { ...fieldProps, helpText: 'The help Text', validator: customValidator };
+    inputWrapper = shallow(<SelectField {...customProps} />);
+    expect(inputWrapper).toMatchSnapshot();
   });
 });

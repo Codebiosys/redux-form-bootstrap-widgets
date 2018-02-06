@@ -1,8 +1,7 @@
 /* eslint-disable import/first */
 
 import React from 'react';
-import { mount } from 'enzyme';
-import { omit } from 'lodash';
+import { mount, shallow } from 'enzyme';
 
 import { InputGroup } from 'react-bootstrap';
 
@@ -42,19 +41,13 @@ describe('The Text Field', () => {
   });
 
   it('renders', () => {
-    expect(inputWrapper).toMatchSnapshot();
+    const shallowField = shallow(<TextField {...fieldProps} />);
+    expect(shallowField).toMatchSnapshot();
   });
 
   it('has a label when there is a label', () => {
     expect(inputWrapper.find('ControlLabel').text()).toEqual(fieldProps.label);
   });
-
-  it('does not have a label when there is no label', () => {
-    const noLabelFieldProps = omit(fieldProps, ['label']);
-    const inputWrapperNoLabel = mount(<TextField {...noLabelFieldProps} />);
-    expect(inputWrapperNoLabel.find('Label').exists()).toBe(false);
-  });
-
 
   it('displays the add ons and clear button for text input', () => {
     expect(inputWrapper.find('#before_addon').exists()).toBe(true);
@@ -74,11 +67,20 @@ describe('The Text Field', () => {
     expect(valueFieldProps.input.onChange).toHaveBeenCalledWith(null);
   });
 
-  it('displays a textarea when the type is textarea', () => {
-    expect(textAreaWrapper).toMatchSnapshot();
-    expect(textAreaWrapper.find('textarea').exists()).toBe(true);
+  it('does not clear the value when the clear button is pressed and the field is disabled', () => {
+    const disabledValueWrapper = mount(<TextField {...valueFieldProps} disabled />);
+    disabledValueWrapper.find('.form-control-feedback').simulate('click');
+    expect(valueFieldProps.input.onChange).not.toHaveBeenCalled();
   });
 
+  it('renders a textarea when the type is textarea', () => {
+    const shallowField = shallow(<TextField {...fieldProps} />);
+    expect(shallowField).toMatchSnapshot();
+  });
+
+  it('displays a textarea when the type is textarea', () => {
+    expect(textAreaWrapper.find('textarea').exists()).toBe(true);
+  });
   it('displays full width when the type is textarea', () => {
     expect(textAreaWrapper.find(InputGroup).prop('style')).toEqual({ width: '100%' });
   });
@@ -97,10 +99,26 @@ describe('The Text Field', () => {
 
   it('calls custom validator when the toogle is toggled', () => {
     const customValidator = jest.fn(() => ({ validationState: null, errorMessage: null }));
-    const validatorProps = { ...fieldProps, customValidation: customValidator };
+    const validatorProps = { ...fieldProps, validator: customValidator };
     const inputWrapperValidated = mount(<TextField {...validatorProps} />);
 
     inputWrapperValidated.find(`input[name="${fieldProps.input.name}"]`).simulate('change', { target: { value: 'foo' } });
     expect(customValidator).toHaveBeenCalledTimes(1);
+  });
+
+  it('uses a custom validator when new props are added', () => {
+    const customValidator = jest.fn(() => ({ validationState: null, errorMessage: null }));
+    const customProps = { ...fieldProps, validator: customValidator };
+    inputWrapper = shallow(<TextField {...customProps} />);
+    expect(customValidator).toHaveBeenCalledTimes(1); // Constructor
+    inputWrapper.setProps({ label: 'new Label' });
+    expect(customValidator).toHaveBeenCalledTimes(2); // On Prop Change
+  });
+
+  it('renders the help message with a break', () => {
+    const customValidator = jest.fn(() => ({ validationState: null, errorMessage: 'There was an error' }));
+    const customProps = { ...fieldProps, helpText: 'The help Text', validator: customValidator };
+    inputWrapper = shallow(<TextField {...customProps} />);
+    expect(inputWrapper).toMatchSnapshot();
   });
 });
