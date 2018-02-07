@@ -128,7 +128,7 @@ storiesOf('TextField', module)
         disabled={boolean('Disabled', false)}
         helpText={text('Help Text', 'Help text for the widget')}
         type="text"
-        delay={500}
+        delay={350}
       />
     ),
   storyConfig);
