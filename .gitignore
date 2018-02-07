@@ -38,9 +38,7 @@ node_modules/
 jspm_packages/
 
 # build directories
-dist
-lib
-es
+
 
 # Typescript v1 declaration files
 typings/
