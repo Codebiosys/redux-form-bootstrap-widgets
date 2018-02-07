@@ -48,7 +48,7 @@ var propTypes = _extends({}, _reactBootstrap.FormControl.propTypes, {
   /** Whether or not the field is disabled */
   disabled: _propTypes2.default.bool,
   /** Additional text that displays below the widget. */
-  // delay: PropTypes.int,
+  delay: _propTypes2.default.number,
   /** Additional text that displays below the widget. */
   helpText: _propTypes2.default.string,
   /** HTML input type. */
@@ -91,25 +91,22 @@ var TextField = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (TextField.__proto__ || Object.getPrototypeOf(TextField)).call(this, props));
 
-    _this.debouncedOnChange = function () {
-      var _this$props = _this.props,
-          onChange = _this$props.input.onChange,
-          delay = _this$props.delay;
-
-      if (delay) {
-        return (0, _lodash.debounce)(function (event) {
-          onChange(event);
-        }, delay, {
-          leading: false,
-          trailing: true });
-      }
-      return onChange;
-    };
+    _this.debouncedOnChange = (0, _lodash.debounce)(function (event) {
+      _this.props.input.onChange(event.target.value);
+    }, _this.props.delay);
 
     _this.handleChange = function (event) {
+      var _this$props = _this.props,
+          delay = _this$props.delay,
+          onChange = _this$props.input.onChange;
+
       event.persist();
       _this.setState({ value: event.target.value });
-      _this.debouncedOnChange()(event);
+      if (delay) {
+        _this.debouncedOnChange(event);
+      } else {
+        onChange(event.target.value);
+      }
     };
 
     _this.clearContent = function () {

@@ -1,8 +1,7 @@
 import React from 'react';
 import { Field } from 'redux-form';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { withKnobs, text, boolean, number, select } from '@storybook/addon-knobs/react';
+import { withKnobs, text, boolean } from '@storybook/addon-knobs/react';
 import { FormControl, Button, InputGroup } from 'react-bootstrap';
 import TextField from '../src/TextField';
 import ReduxFormWrapper from '../.storybook/ReduxForm';
@@ -86,7 +85,24 @@ storiesOf('TextField', module)
         type="text"
       />
     ),
+  storyConfig)
+  .addWithInfo('with debounce delay',
+  'A Description',
+    () => (
+      <Field
+        name="fieldName"
+        component={TextField}
+        label={text('Label', 'Text Field Label')}
+        required
+        validate={value => (value ? undefined : 'Required')}
+        disabled={boolean('Disabled', false)}
+        helpText={text('Help Text', 'Help text for the widget')}
+        type="text"
+        delay={500}
+      />
+    ),
   storyConfig);
+
 
 storiesOf('TextField', module)
     .addDecorator(withKnobs)

@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import { omit } from 'lodash';
 
 import { InputGroup } from 'react-bootstrap';
 
@@ -90,15 +89,6 @@ describe('The Debounce Text Field', () => {
     inputWrapperValidated.find(`input[name="${fieldProps.input.name}"]`).simulate('change', { target: { value: 'foo' } });
     expect(fieldProps.input.onChange).toHaveBeenCalled();
     expect(customValidator).toHaveBeenCalled();
-  });
-
-  it('uses does not debounce when there is no delay', () => {
-    const lodash = require.requireActual('lodash');
-    lodash.debounce = jest.fn((event, time) => event); // eslint-disable-line
-    const validatorProps = omit(fieldProps, 'delay');
-    const inputWrapperValidated = mount(<TextField {...validatorProps} />);
-    inputWrapperValidated.find(`input[name="${fieldProps.input.name}"]`).simulate('change', { target: { value: 'foo' } });
-    expect(lodash.debounce).not.toHaveBeenCalled();
   });
 
   it('uses a custom validator when new props are added', () => {
