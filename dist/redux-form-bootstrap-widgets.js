@@ -78426,7 +78426,9 @@ var TextField = _wrapComponent('TextField')((_temp = _class = function (_Compone
           onChange = _this$props.input.onChange;
 
       event.persist();
-      _this.setState({ value: event.target.value });
+      var lastPropValue = _this.state.value;
+
+      _this.setState(_extends({}, _this.state, { lastPropValue: lastPropValue, value: event.target.value }));
       if (delay) {
         _this.debouncedOnChange(event);
       } else {
@@ -78440,7 +78442,7 @@ var TextField = _wrapComponent('TextField')((_temp = _class = function (_Compone
           onChange = _this$props2.input.onChange;
 
       if (!disabled) {
-        _this.setState({ value: '' });
+        _this.setState(_extends({}, _this.state, { lastPropValue: '', value: '' }));
         onChange(null);
       }
     };
@@ -78478,9 +78480,7 @@ var TextField = _wrapComponent('TextField')((_temp = _class = function (_Compone
         validator = props.validator,
         meta = props.meta;
 
-
     _this.state = _extends({ value: value || '' }, validator(meta));
-    _this.lastPropValue = value || '';
     return _this;
   }
 
@@ -78496,31 +78496,34 @@ var TextField = _wrapComponent('TextField')((_temp = _class = function (_Compone
   }, {
     key: 'getValue',
     value: function getValue() {
-      var value = this.props.input.value;
+      var _props = this.props,
+          delay = _props.delay,
+          value = _props.input.value;
 
-      var componentValue = value !== this.lastPropValue ? value : this.state.value;
-      this.lastPropValue = componentValue;
-      return componentValue;
+      if (!delay) {
+        return value;
+      }
+      return this.state.value;
     }
   }, {
     key: 'render',
     value: function render() {
-      var _props = this.props,
-          label = _props.label,
-          required = _props.required,
-          helpText = _props.helpText,
-          validator = _props.validator,
-          delay = _props.delay,
-          disabled = _props.disabled,
-          _props$input = _props.input,
-          name = _props$input.name,
-          onChange = _props$input.onChange,
-          inputProps = _objectWithoutProperties(_props$input, ['name', 'onChange']),
-          meta = _props.meta,
-          addOnBefore = _props.addOnBefore,
-          addOnAfter = _props.addOnAfter,
-          type = _props.type,
-          rest = _objectWithoutProperties(_props, ['label', 'required', 'helpText', 'validator', 'delay', 'disabled', 'input', 'meta', 'addOnBefore', 'addOnAfter', 'type']);
+      var _props2 = this.props,
+          label = _props2.label,
+          required = _props2.required,
+          helpText = _props2.helpText,
+          validator = _props2.validator,
+          delay = _props2.delay,
+          disabled = _props2.disabled,
+          _props2$input = _props2.input,
+          name = _props2$input.name,
+          onChange = _props2$input.onChange,
+          inputProps = _objectWithoutProperties(_props2$input, ['name', 'onChange']),
+          meta = _props2.meta,
+          addOnBefore = _props2.addOnBefore,
+          addOnAfter = _props2.addOnAfter,
+          type = _props2.type,
+          rest = _objectWithoutProperties(_props2, ['label', 'required', 'helpText', 'validator', 'delay', 'disabled', 'input', 'meta', 'addOnBefore', 'addOnAfter', 'type']);
 
       var typeConfig = {};
       var inputStyle = { zIndex: '0' };
@@ -93210,13 +93213,13 @@ var RadioField = _wrapComponent('RadioField')((_temp = _class = function (_Compo
 }(_react2.Component), _class.propTypes = propTypes, _class.defaultProps = defaultProps, _initialiseProps = function _initialiseProps() {
   var _this3 = this;
 
-  this.handleChange = function (event) {
+  this.handleChange = function (event, targetValue) {
     var _props$input = _this3.props.input,
         onChange = _props$input.onChange,
         onBlur = _props$input.onBlur,
         value = _props$input.value;
 
-    var changeValue = event.target.value === value ? null : event.target.value;
+    var changeValue = targetValue === value ? null : targetValue;
     onChange(changeValue);
     onBlur(changeValue);
   };
@@ -93265,7 +93268,9 @@ var RadioField = _wrapComponent('RadioField')((_temp = _class = function (_Compo
         onBlur: function onBlur() {
           return _onBlur();
         },
-        onChange: _this3.handleChange,
+        onChange: function onChange(event) {
+          return _this3.handleChange(event, option[valueKey]);
+        },
         inline: inline,
         disabled: disabled
       }, props),

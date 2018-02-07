@@ -101,7 +101,9 @@ var TextField = function (_Component) {
           onChange = _this$props.input.onChange;
 
       event.persist();
-      _this.setState({ value: event.target.value });
+      var lastPropValue = _this.state.value;
+
+      _this.setState(_extends({}, _this.state, { lastPropValue: lastPropValue, value: event.target.value }));
       if (delay) {
         _this.debouncedOnChange(event);
       } else {
@@ -115,7 +117,7 @@ var TextField = function (_Component) {
           onChange = _this$props2.input.onChange;
 
       if (!disabled) {
-        _this.setState({ value: '' });
+        _this.setState(_extends({}, _this.state, { lastPropValue: '', value: '' }));
         onChange(null);
       }
     };
@@ -153,9 +155,7 @@ var TextField = function (_Component) {
         validator = props.validator,
         meta = props.meta;
 
-
     _this.state = _extends({ value: value || '' }, validator(meta));
-    _this.lastPropValue = value || '';
     return _this;
   }
 
@@ -171,11 +171,14 @@ var TextField = function (_Component) {
   }, {
     key: 'getValue',
     value: function getValue() {
-      var value = this.props.input.value;
+      var _props2 = this.props,
+          delay = _props2.delay,
+          value = _props2.input.value;
 
-      var componentValue = value !== this.lastPropValue ? value : this.state.value;
-      this.lastPropValue = componentValue;
-      return componentValue;
+      if (!delay) {
+        return value;
+      }
+      return this.state.value;
     }
   }, {
     key: 'render',

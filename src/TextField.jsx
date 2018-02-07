@@ -68,9 +68,7 @@ class TextField extends Component {
   constructor(props) {
     super(props);
     const { input: { value }, validator, meta } = props;
-
     this.state = { value: value || '', ...validator(meta) };
-    this.lastPropValue = value || '';
   }
 
   componentWillReceiveProps(nextProps) {
@@ -78,11 +76,13 @@ class TextField extends Component {
     this.setState({ ...this.state, value, ...validator(meta) });
   }
 
+
   getValue() {
-    const { input: { value } } = this.props;
-    const componentValue = value !== this.lastPropValue ? value : this.state.value;
-    this.lastPropValue = componentValue;
-    return componentValue;
+    const { delay, input: { value } } = this.props;
+    if (!delay) {
+      return value;
+    }
+    return this.state.value;
   }
 
   debouncedOnChange = debounce((event) => {
@@ -92,7 +92,9 @@ class TextField extends Component {
   handleChange = (event) => {
     const { delay, input: { onChange } } = this.props;
     event.persist();
-    this.setState({ value: event.target.value });
+    const lastPropValue = this.state.value;
+
+    this.setState({ ...this.state, lastPropValue, value: event.target.value });
     if (delay) {
       this.debouncedOnChange(event);
     } else {
@@ -103,7 +105,7 @@ class TextField extends Component {
   clearContent = () => {
     const { disabled, input: { onChange } } = this.props;
     if (!disabled) {
-      this.setState({ value: '' });
+      this.setState({ ...this.state, lastPropValue: '', value: '' });
       onChange(null);
     }
   }

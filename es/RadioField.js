@@ -145,13 +145,13 @@ RadioField.defaultProps = defaultProps;
 var _initialiseProps = function _initialiseProps() {
   var _this3 = this;
 
-  this.handleChange = function (event) {
+  this.handleChange = function (event, targetValue) {
     var _props$input = _this3.props.input,
         onChange = _props$input.onChange,
         onBlur = _props$input.onBlur,
         value = _props$input.value;
 
-    var changeValue = event.target.value === value ? null : event.target.value;
+    var changeValue = targetValue === value ? null : targetValue;
     onChange(changeValue);
     onBlur(changeValue);
   };
@@ -200,7 +200,9 @@ var _initialiseProps = function _initialiseProps() {
         onBlur: function () {
           return onBlur();
         },
-        onChange: _this3.handleChange,
+        onChange: function (event) {
+          return _this3.handleChange(event, option[valueKey]);
+        },
         inline: inline,
         disabled: disabled
       }, props),

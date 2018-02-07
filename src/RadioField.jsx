@@ -71,9 +71,9 @@ class RadioField extends Component {
     this.setState({ ...this.state, ...validator(meta) });
   }
 
-  handleChange = (event) => {
+  handleChange = (event, targetValue) => {
     const { input: { onChange, onBlur, value } } = this.props;
-    const changeValue = event.target.value === value ? null : event.target.value;
+    const changeValue = targetValue === value ? null : targetValue;
     onChange(changeValue);
     onBlur(changeValue);
   }
@@ -110,7 +110,7 @@ class RadioField extends Component {
       checked={`${option[valueKey]}` === `${value}`}
       value={option[valueKey]}
       onBlur={() => onBlur()}
-      onChange={this.handleChange}
+      onChange={event => this.handleChange(event, option[valueKey])}
       inline={inline}
       disabled={disabled}
       {...props}
