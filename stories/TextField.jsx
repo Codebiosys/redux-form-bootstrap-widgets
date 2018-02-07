@@ -1,15 +1,44 @@
 import React from 'react';
 import { Field } from 'redux-form';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { withKnobs, text, boolean, number, select } from '@storybook/addon-knobs/react';
+import { withKnobs, text, boolean } from '@storybook/addon-knobs/react';
 import { FormControl, Button, InputGroup } from 'react-bootstrap';
+
+import { join, tail, head, split } from 'lodash';
+
 import TextField from '../src/TextField';
 import ReduxFormWrapper from '../.storybook/ReduxForm';
 
 const storyConfig = {
   propTables: [TextField],
   propTablesExclude: [FormControl, Field],
+};
+
+const phoneFormatter = (value) => {
+  if (!value) {
+    return value;
+  }
+  const onlyNums = value.replace(/[^\dx]/g, '');
+  const numAndExtension = split(onlyNums, 'x');
+  const number = head(numAndExtension);
+  let extension;
+  if (numAndExtension.length > 1) {
+    extension = join(tail(numAndExtension), 'x');
+  }
+  let retnum;
+  if (value[0] === '+') {
+    retnum = `+${number}`;
+  } else if (number.length <= 3) {
+    retnum = number;
+  } else if (number.length <= 7) {
+    retnum = `${number.slice(0, 3)}-${number.slice(3)}`;
+  } else {
+    retnum = `${number.slice(0, 3)}-${number.slice(3, 6)}-${number.slice(6, 10)}`;
+  }
+  if (numAndExtension.length > 1) {
+    return `${retnum}x${extension}`;
+  }
+  return retnum;
 };
 
 storiesOf('TextField', module)
@@ -86,7 +115,24 @@ storiesOf('TextField', module)
         type="text"
       />
     ),
+  storyConfig)
+  .addWithInfo('with debounce delay',
+  'A Description',
+    () => (
+      <Field
+        name="fieldName"
+        component={TextField}
+        label={text('Label', 'Text Field Label')}
+        required
+        validate={value => (value ? undefined : 'Required')}
+        disabled={boolean('Disabled', false)}
+        helpText={text('Help Text', 'Help text for the widget')}
+        type="text"
+        delay={500}
+      />
+    ),
   storyConfig);
+
 
 storiesOf('TextField', module)
     .addDecorator(withKnobs)
@@ -111,3 +157,27 @@ storiesOf('TextField', module)
         />
       ),
     storyConfig);
+
+
+storiesOf('TextField', module)
+        .addDecorator(withKnobs)
+        .addDecorator(
+          ReduxFormWrapper(
+            'TextFieldAddOns',
+          ))
+        .addWithInfo('Text Field With normalizer',
+        'A Description',
+          () => (
+            <Field
+              name="fieldName"
+              component={TextField}
+              label={text('Label', 'Text Field Label')}
+              required={boolean('Required', false)}
+              disabled={boolean('Disabled', false)}
+              helpText={text('Help Text', 'Help text for the widget')}
+              normalize={phoneFormatter}
+              type="text"
+
+            />
+          ),
+        storyConfig);

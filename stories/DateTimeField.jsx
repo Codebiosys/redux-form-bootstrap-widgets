@@ -8,9 +8,12 @@ import ReduxFormWrapper from '../.storybook/ReduxForm';
 import DateTimeField from '../src/DateTimeField';
 
 const required = value => (value ? undefined : 'Required');
-const dateNormalizeFactory = (validFormats, finalFormat) => (value) => {
+const dateNormalizeFactory = validFormats => (value) => {
+  if (moment.isMoment(value)) {
+    return value;
+  }
   if (moment(value, validFormats, true).isValid()) {
-    return moment(value).format(finalFormat);
+    return moment(value);
   }
   if (!value) {
     return value;
@@ -43,7 +46,6 @@ storiesOf('DateTimeField', module)
        timeFormat={false}
        normalize={dateNormalizeFactory(
          ['DD/MMM/YYYY', 'MM/DD/YYYY', 'YYYY-MM-DD'],
-         'DD/MMM/YYYY',
        )}
      />
   ),

@@ -7,6 +7,7 @@ import {
   HelpBlock,
   Glyphicon } from 'react-bootstrap';
 import DateTime from 'react-datetime';
+import moment from 'moment';
 
 import Label from 'Label';
 import validationMessage from 'utils';
@@ -88,7 +89,7 @@ class DateTimeField extends Component {
     );
   }
 
-  renderInput = ({ onChange, value: dtValue, ...inputProps }) => {
+  renderInput = ({ ...inputProps }) => {
     const { dateFormat, input: { value }, disabled } = this.props;
     return (
       <InputGroup>
@@ -96,8 +97,11 @@ class DateTimeField extends Component {
           {...inputProps}
           autoComplete="off"
           disabled={disabled}
-          onChange={onChange}
-          value={dateFormat ? dtValue : value}
+          value={
+            dateFormat && moment.isMoment(value) ?
+             value.format(dateFormat) :
+             value
+           }
         />
         {this.controlFeedback()}
       </InputGroup>);
@@ -126,7 +130,6 @@ class DateTimeField extends Component {
           renderInput={this.renderInput}
           {...inputProps}
           {...props}
-          value={value}
         />
         <HelpBlock style={{ minHeight: helpText ? '6ex' : '3ex' }}>
           {this.state.errorMessage}

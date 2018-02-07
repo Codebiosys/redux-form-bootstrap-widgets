@@ -46,7 +46,7 @@ describe('The Date Time Field', () => {
 
   it('displays a formatted string when the date can be convered', () => {
     const formatWrapper = mount(<DateTimeField {...selectedFieldProps} dateFormat="DD/MMM/YYYY" />);
-    expect(formatWrapper.find('FormControl').prop('value')).toEqual('01/Jan/2017 12:00 AM');
+    expect(formatWrapper.find('FormControl').prop('value')).toEqual('01/Jan/2017');
   });
 
   it('clears the value when the clear button is pressed', () => {

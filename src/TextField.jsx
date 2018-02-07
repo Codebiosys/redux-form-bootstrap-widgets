@@ -26,7 +26,7 @@ const propTypes = {
   /** Whether or not the field is disabled */
   disabled: PropTypes.bool,
   /** Additional text that displays below the widget. */
-  // delay: PropTypes.int,
+  delay: PropTypes.number,
   /** Additional text that displays below the widget. */
   helpText: PropTypes.string,
   /** HTML input type. */
@@ -68,9 +68,7 @@ class TextField extends Component {
   constructor(props) {
     super(props);
     const { input: { value }, validator, meta } = props;
-
     this.state = { value: value || '', ...validator(meta) };
-    this.lastPropValue = value || '';
   }
 
   componentWillReceiveProps(nextProps) {
@@ -78,35 +76,36 @@ class TextField extends Component {
     this.setState({ ...this.state, value, ...validator(meta) });
   }
 
+
   getValue() {
-    const { input: { value } } = this.props;
-    const componentValue = value !== this.lastPropValue ? value : this.state.value;
-    this.lastPropValue = componentValue;
-    return componentValue;
+    const { delay, input: { value } } = this.props;
+    if (!delay) {
+      return value;
+    }
+    return this.state.value;
   }
 
-  debouncedOnChange = () => {
-    const { input: { onChange }, delay } = this.props;
-    if (delay) {
-      return debounce((event) => {
-        onChange(event);
-      }, delay, {
-        leading: false,
-        trailing: true });
-    }
-    return onChange;
-  }
+  debouncedOnChange = debounce((event) => {
+    this.props.input.onChange(event.target.value);
+  }, this.props.delay);
 
   handleChange = (event) => {
+    const { delay, input: { onChange } } = this.props;
     event.persist();
-    this.setState({ value: event.target.value });
-    this.debouncedOnChange()(event);
+    const lastPropValue = this.state.value;
+
+    this.setState({ ...this.state, lastPropValue, value: event.target.value });
+    if (delay) {
+      this.debouncedOnChange(event);
+    } else {
+      onChange(event.target.value);
+    }
   }
 
   clearContent = () => {
     const { disabled, input: { onChange } } = this.props;
     if (!disabled) {
-      this.setState({ value: '' });
+      this.setState({ ...this.state, lastPropValue: '', value: '' });
       onChange(null);
     }
   }

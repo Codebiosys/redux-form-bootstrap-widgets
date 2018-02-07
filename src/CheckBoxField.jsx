@@ -78,22 +78,22 @@ class CheckBoxField extends Component {
   checkOptions = () => {
     const { labelKey, valueKey, options, input: { value } } = this.props;
     const valueList = toArray(value);
-
-    return options.map(({ [labelKey]: checkLabel, [valueKey]: checkValue }) => ({
+    const theOptions = options.map(({ [labelKey]: checkLabel, [valueKey]: checkValue }) => ({
       label: checkLabel,
       value: checkValue,
-      checked: valueList.includes(String(checkValue)),
+      checked: valueList.includes(checkValue),
     }));
+    return theOptions;
   }
 
-  handleChange = (event) => {
+  handleChange = (event, eventValue) => {
     const { input: { value, onChange, onBlur } } = this.props;
-    const { value: checkValue, checked } = event.target;
+    const { checked } = event.target;
     let valueList = castArray(value);
     if (checked) {
-      valueList = union(value, [checkValue]);
+      valueList = union(value, [eventValue]);
     } else {
-      valueList = filter(valueList, val => val !== checkValue);
+      valueList = filter(valueList, val => val !== eventValue);
     }
     valueList = valueList.length ? valueList : null;
     onBlur();
@@ -127,12 +127,13 @@ class CheckBoxField extends Component {
       ...props
     } = this.props;
     const { value, label, checked } = checkBoxProps;
+
     return (<Checkbox
       key={`${name}_${camelCase(label)}`} // eslint-disable-line
       name={`${name}_${camelCase(label)}`}
       value={value}
       checked={checked}
-      onChange={this.handleChange}
+      onChange={event => this.handleChange(event, value)}
       onFocus={onFocus}
       disabled={disabled}
       inline={inline}

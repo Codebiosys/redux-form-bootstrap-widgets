@@ -30,6 +30,7 @@ exports[`The Debounce Text Field renders 1`] = `
         }
       }
       type="text"
+      value=""
     />
     <div
       id="after_addon"
@@ -79,6 +80,7 @@ exports[`The Debounce Text Field renders the help message with a break 1`] = `
         }
       }
       type="text"
+      value=""
     />
     <div
       id="after_addon"
