@@ -90387,6 +90387,10 @@ var _reactDatetime = __webpack_require__(834);
 
 var _reactDatetime2 = _interopRequireDefault(_reactDatetime);
 
+var _moment = __webpack_require__(1);
+
+var _moment2 = _interopRequireDefault(_moment);
+
 var _Label = __webpack_require__(71);
 
 var _Label2 = _interopRequireDefault(_Label);
@@ -90524,7 +90528,7 @@ var DateTimeField = _wrapComponent('DateTimeField')((_temp = _class = function (
           autoComplete: 'off',
           disabled: disabled,
           onChange: onChange,
-          value: dateFormat ? dtValue : value
+          value: dateFormat && _moment2.default.isMoment(value) ? value.format(dateFormat) : value
         })),
         _this.controlFeedback()
       );
@@ -90572,9 +90576,7 @@ var DateTimeField = _wrapComponent('DateTimeField')((_temp = _class = function (
           id: form + '-' + name,
           closeOnSelect: true,
           renderInput: this.renderInput
-        }, inputProps, props, {
-          value: value
-        })),
+        }, inputProps, props)),
         _react3.default.createElement(
           _reactBootstrap.HelpBlock,
           { style: { minHeight: helpText ? '6ex' : '3ex' } },
