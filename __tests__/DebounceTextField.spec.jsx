@@ -82,7 +82,7 @@ describe('The Debounce Text Field', () => {
 
   it('calls custom validator and onChange when the content changes', () => {
     const lodash = require.requireActual('lodash');
-    lodash.debounce = jest.fn((event, time) => event); // eslint-disable-line
+    lodash.debounce = jest.fn((event, time) => {event.cancel= jest.fn(); return event}); // eslint-disable-line
     const customValidator = jest.fn(() => ({ validationState: null, errorMessage: null }));
     const validatorProps = { ...fieldProps, validator: customValidator };
     const inputWrapperValidated = mount(<TextField {...validatorProps} />);
@@ -105,5 +105,14 @@ describe('The Debounce Text Field', () => {
     const customProps = { ...fieldProps, helpText: 'The help Text', validator: customValidator };
     inputWrapper = shallow(<TextField {...customProps} />);
     expect(inputWrapper).toMatchSnapshot();
+  });
+
+  it('manages internal state', () => {
+    inputWrapper = shallow(<TextField {...fieldProps} />);
+    inputWrapper.setProps({ ...fieldProps, input: { ...fieldProps.input, value: 'A Value' } });
+    expect(inputWrapper.state('value')).toEqual('A Value');
+    inputWrapper.setState({ ...inputWrapper.state, value: 'New Value' });
+    inputWrapper.setProps({ ...fieldProps, input: { ...fieldProps.input, value: 'A Value' } });
+    expect(inputWrapper.state('value')).toEqual('New Value');
   });
 });

@@ -68,14 +68,35 @@ class TextField extends Component {
   constructor(props) {
     super(props);
     const { input: { value }, validator, meta } = props;
-    this.state = { value: value || '', ...validator(meta) };
+    this.state = { value: value || '', lastPropValue: value || '', ...validator(meta) };
+
+    this.onChange = this.onChange.bind(this);
+
+    this.debouncedOnChange = debounce((event) => {
+      this.onChange(event);
+    }, this.props.delay, {
+      leading: false,
+      trailing: true,
+    });
   }
 
   componentWillReceiveProps(nextProps) {
     const { input: { value }, validator, meta } = nextProps;
-    this.setState({ ...this.state, value, ...validator(meta) });
+    const localValue = value !== this.state.lastPropValue ?
+        value :
+        this.state.value;
+    this.setState({
+      ...this.state,
+      value: localValue,
+      lastPropValue: value,
+      ...validator(meta) });
   }
 
+  onChange = (event) => {
+    // Required function for debounce binding.
+    const { input: { onChange } } = this.props;
+    onChange(event);
+  }
 
   getValue() {
     const { delay, input: { value } } = this.props;
@@ -85,28 +106,23 @@ class TextField extends Component {
     return this.state.value;
   }
 
-  debouncedOnChange = debounce((event) => {
-    this.props.input.onChange(event.target.value);
-  }, this.props.delay);
-
   handleChange = (event) => {
-    const { delay, input: { onChange } } = this.props;
+    const { delay } = this.props;
     event.persist();
-    const lastPropValue = this.state.value;
-
-    this.setState({ ...this.state, lastPropValue, value: event.target.value });
+    this.setState({ ...this.state, value: event.target.value });
     if (delay) {
+      this.debouncedOnChange.cancel();
       this.debouncedOnChange(event);
     } else {
-      onChange(event.target.value);
+      this.onChange(event);
     }
   }
 
   clearContent = () => {
-    const { disabled, input: { onChange } } = this.props;
+    const { disabled } = this.props;
     if (!disabled) {
       this.setState({ ...this.state, lastPropValue: '', value: '' });
-      onChange(null);
+      this.onChange(null);
     }
   }
 
