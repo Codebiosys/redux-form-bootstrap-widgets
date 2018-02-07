@@ -90142,33 +90142,31 @@ var CheckBoxField = _wrapComponent('CheckBoxField')((_temp = _class = function (
         value = _props2.input.value;
 
     var valueList = (0, _lodash.toArray)(value);
-
-    return options.map(function (_ref) {
+    var theOptions = options.map(function (_ref) {
       var checkLabel = _ref[labelKey],
           checkValue = _ref[valueKey];
       return {
         label: checkLabel,
         value: checkValue,
-        checked: valueList.includes(String(checkValue))
+        checked: valueList.includes(checkValue)
       };
     });
+    return theOptions;
   };
 
-  this.handleChange = function (event) {
+  this.handleChange = function (event, eventValue) {
     var _props$input = _this2.props.input,
         value = _props$input.value,
         onChange = _props$input.onChange,
         onBlur = _props$input.onBlur;
-    var _event$target = event.target,
-        checkValue = _event$target.value,
-        checked = _event$target.checked;
+    var checked = event.target.checked;
 
     var valueList = (0, _lodash.castArray)(value);
     if (checked) {
-      valueList = (0, _lodash.union)(value, [checkValue]);
+      valueList = (0, _lodash.union)(value, [eventValue]);
     } else {
       valueList = (0, _lodash.filter)(valueList, function (val) {
-        return val !== checkValue;
+        return val !== eventValue;
       });
     }
     valueList = valueList.length ? valueList : null;
@@ -90210,6 +90208,7 @@ var CheckBoxField = _wrapComponent('CheckBoxField')((_temp = _class = function (
         label = checkBoxProps.label,
         checked = checkBoxProps.checked;
 
+
     return _react3.default.createElement(
       _reactBootstrap.Checkbox,
       _extends({
@@ -90217,7 +90216,9 @@ var CheckBoxField = _wrapComponent('CheckBoxField')((_temp = _class = function (
         , name: name + '_' + (0, _lodash.camelCase)(label),
         value: value,
         checked: checked,
-        onChange: _this2.handleChange,
+        onChange: function onChange(event) {
+          return _this2.handleChange(event, value);
+        },
         onFocus: onFocus,
         disabled: disabled,
         inline: inline
@@ -90512,9 +90513,7 @@ var DateTimeField = _wrapComponent('DateTimeField')((_temp = _class = function (
     };
 
     _this.renderInput = function (_ref) {
-      var onChange = _ref.onChange,
-          dtValue = _ref.value,
-          inputProps = _objectWithoutProperties(_ref, ['onChange', 'value']);
+      var inputProps = _objectWithoutProperties(_ref, []);
 
       var _this$props2 = _this.props,
           dateFormat = _this$props2.dateFormat,
@@ -90527,7 +90526,6 @@ var DateTimeField = _wrapComponent('DateTimeField')((_temp = _class = function (
         _react3.default.createElement(_reactBootstrap.FormControl, _extends({}, inputProps, {
           autoComplete: 'off',
           disabled: disabled,
-          onChange: onChange,
           value: dateFormat && _moment2.default.isMoment(value) ? value.format(dateFormat) : value
         })),
         _this.controlFeedback()

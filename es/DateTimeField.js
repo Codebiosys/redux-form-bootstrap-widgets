@@ -121,9 +121,7 @@ var DateTimeField = function (_Component) {
     };
 
     _this.renderInput = function (_ref) {
-      var onChange = _ref.onChange,
-          dtValue = _ref.value,
-          inputProps = _objectWithoutProperties(_ref, ['onChange', 'value']);
+      var inputProps = _objectWithoutProperties(_ref, []);
 
       var _this$props2 = _this.props,
           dateFormat = _this$props2.dateFormat,
@@ -136,7 +134,6 @@ var DateTimeField = function (_Component) {
         React.createElement(_reactBootstrap.FormControl, _extends({}, inputProps, {
           autoComplete: 'off',
           disabled: disabled,
-          onChange: onChange,
           value: dateFormat && _moment2.default.isMoment(value) ? value.format(dateFormat) : value
         })),
         _this.controlFeedback()

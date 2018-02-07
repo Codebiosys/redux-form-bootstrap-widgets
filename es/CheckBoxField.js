@@ -149,33 +149,31 @@ var _initialiseProps = function _initialiseProps() {
         value = _props3.input.value;
 
     var valueList = (0, _lodash.toArray)(value);
-
-    return options.map(function (_ref) {
+    var theOptions = options.map(function (_ref) {
       var checkLabel = _ref[labelKey],
           checkValue = _ref[valueKey];
       return {
         label: checkLabel,
         value: checkValue,
-        checked: valueList.includes(String(checkValue))
+        checked: valueList.includes(checkValue)
       };
     });
+    return theOptions;
   };
 
-  this.handleChange = function (event) {
+  this.handleChange = function (event, eventValue) {
     var _props$input = _this2.props.input,
         value = _props$input.value,
         onChange = _props$input.onChange,
         onBlur = _props$input.onBlur;
-    var _event$target = event.target,
-        checkValue = _event$target.value,
-        checked = _event$target.checked;
+    var checked = event.target.checked;
 
     var valueList = (0, _lodash.castArray)(value);
     if (checked) {
-      valueList = (0, _lodash.union)(value, [checkValue]);
+      valueList = (0, _lodash.union)(value, [eventValue]);
     } else {
       valueList = (0, _lodash.filter)(valueList, function (val) {
-        return val !== checkValue;
+        return val !== eventValue;
       });
     }
     valueList = valueList.length ? valueList : null;
@@ -217,6 +215,7 @@ var _initialiseProps = function _initialiseProps() {
         label = checkBoxProps.label,
         checked = checkBoxProps.checked;
 
+
     return React.createElement(
       _reactBootstrap.Checkbox,
       _extends({
@@ -224,7 +223,9 @@ var _initialiseProps = function _initialiseProps() {
         , name: name + '_' + (0, _lodash.camelCase)(label),
         value: value,
         checked: checked,
-        onChange: _this2.handleChange,
+        onChange: function (event) {
+          return _this2.handleChange(event, value);
+        },
         onFocus: onFocus,
         disabled: disabled,
         inline: inline

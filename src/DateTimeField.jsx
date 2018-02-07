@@ -89,7 +89,7 @@ class DateTimeField extends Component {
     );
   }
 
-  renderInput = ({ onChange, value: dtValue, ...inputProps }) => {
+  renderInput = ({ ...inputProps }) => {
     const { dateFormat, input: { value }, disabled } = this.props;
     return (
       <InputGroup>
@@ -97,7 +97,6 @@ class DateTimeField extends Component {
           {...inputProps}
           autoComplete="off"
           disabled={disabled}
-          onChange={onChange}
           value={
             dateFormat && moment.isMoment(value) ?
              value.format(dateFormat) :
