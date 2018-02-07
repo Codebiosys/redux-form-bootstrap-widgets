@@ -9,8 +9,11 @@ import DateTimeField from '../src/DateTimeField';
 
 const required = value => (value ? undefined : 'Required');
 const dateNormalizeFactory = (validFormats, finalFormat) => (value) => {
+  if (moment.isMoment(value)) {
+    return value;
+  }
   if (moment(value, validFormats, true).isValid()) {
-    return moment(value).format(finalFormat);
+    return moment(value);
   }
   if (!value) {
     return value;
