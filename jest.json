@@ -27,7 +27,7 @@
     "src/**/*.{js,jsx}",
     "!**/node_modules/**"
   ],
-  "coverageDirectory": "./__coverage__",
+  "coverageDirectory": "./coverage",
   "mapCoverage": true,
   "notify": true,
   "roots": [
