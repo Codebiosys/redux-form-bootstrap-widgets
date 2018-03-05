@@ -64,3 +64,9 @@ typings/
 # next.js build output
 .next
 
+### Custom additions
+
+coverage
+dist
+es
+lib
