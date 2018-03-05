@@ -2,11 +2,9 @@
   "presets": ["env", "es2015", "stage-0", "react"],
   "env": {
     "test": {
-      "presets": ["env", "es2015", "stage-0", "react", "jest"],
       "plugins": ["transform-es2015-modules-commonjs", "transform-class-properties"]
     },
     "development": {
-      "presets": ["env", "es2015", "stage-0", "react", "react-hmre"],
       "plugins": ["react-docgen"]
     },
     "production": {
