@@ -32,13 +32,13 @@ require('bootstrap/dist/css/bootstrap.css');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 var propTypes = _extends({}, _reactBootstrap.FormControl.propTypes, {
   /** Form label. */
@@ -126,13 +126,13 @@ var TextField = function (_Component) {
       if (type === 'textarea' || !_this.getValue()) {
         return undefined;
       }
-      return React.createElement(
+      return _react2.default.createElement(
         _reactBootstrap.FormControl.Feedback,
         {
           onClick: _this.clearContent,
           style: { pointerEvents: 'all' }
         },
-        React.createElement(_reactBootstrap.Glyphicon, { glyph: 'remove' })
+        _react2.default.createElement(_reactBootstrap.Glyphicon, { glyph: 'remove' })
       );
     };
 
@@ -140,11 +140,11 @@ var TextField = function (_Component) {
       var helpText = _this.props.helpText;
 
       var errorMessage = _this.state.errorMessage;
-      return React.createElement(
+      return _react2.default.createElement(
         _reactBootstrap.HelpBlock,
         { style: { minHeight: helpText ? '6ex' : '3ex' } },
         errorMessage,
-        errorMessage && helpText ? React.createElement('br', null) : '',
+        errorMessage && helpText ? _react2.default.createElement('br', null) : '',
         helpText
       );
     };
@@ -182,9 +182,9 @@ var TextField = function (_Component) {
   }, {
     key: 'getValue',
     value: function getValue() {
-      var _props2 = this.props,
-          delay = _props2.delay,
-          value = _props2.input.value;
+      var _props = this.props,
+          delay = _props.delay,
+          value = _props.input.value;
 
       if (!delay) {
         return value;
@@ -194,22 +194,22 @@ var TextField = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _props = this.props,
-          label = _props.label,
-          required = _props.required,
-          helpText = _props.helpText,
-          validator = _props.validator,
-          delay = _props.delay,
-          disabled = _props.disabled,
-          _props$input = _props.input,
-          name = _props$input.name,
-          onChange = _props$input.onChange,
-          meta = _props.meta,
-          addOnBefore = _props.addOnBefore,
-          addOnAfter = _props.addOnAfter,
-          type = _props.type,
-          inputProps = _objectWithoutProperties(_props.input, ['name', 'onChange']),
-          rest = _objectWithoutProperties(_props, ['label', 'required', 'helpText', 'validator', 'delay', 'disabled', 'input', 'meta', 'addOnBefore', 'addOnAfter', 'type']);
+      var _props2 = this.props,
+          label = _props2.label,
+          required = _props2.required,
+          helpText = _props2.helpText,
+          validator = _props2.validator,
+          delay = _props2.delay,
+          disabled = _props2.disabled,
+          _props2$input = _props2.input,
+          name = _props2$input.name,
+          onChange = _props2$input.onChange,
+          inputProps = _objectWithoutProperties(_props2$input, ['name', 'onChange']),
+          meta = _props2.meta,
+          addOnBefore = _props2.addOnBefore,
+          addOnAfter = _props2.addOnAfter,
+          type = _props2.type,
+          rest = _objectWithoutProperties(_props2, ['label', 'required', 'helpText', 'validator', 'delay', 'disabled', 'input', 'meta', 'addOnBefore', 'addOnAfter', 'type']);
 
       var typeConfig = {};
       var inputStyle = { zIndex: '0' };
@@ -222,18 +222,18 @@ var TextField = function (_Component) {
         typeConfig.type = type;
       }
 
-      return React.createElement(
+      return _react2.default.createElement(
         _reactBootstrap.FormGroup,
         {
           controlId: name,
           validationState: this.state.validationState
         },
-        React.createElement(_Label2.default, { label: label, required: required }),
-        React.createElement(
+        _react2.default.createElement(_Label2.default, { label: label, required: required }),
+        _react2.default.createElement(
           _reactBootstrap.InputGroup,
           { style: groupStyle },
           typeConfig.componentClass === 'textarea' ? '' : addOnBefore,
-          React.createElement(_reactBootstrap.FormControl, _extends({
+          _react2.default.createElement(_reactBootstrap.FormControl, _extends({
             name: name,
             onChange: this.handleChange,
             style: inputStyle

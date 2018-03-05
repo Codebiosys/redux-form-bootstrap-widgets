@@ -4,9 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -40,13 +40,13 @@ require('./selectFieldStyle.css');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 var propTypes = {
   /** Form label. */
@@ -101,17 +101,17 @@ var SelectField = function (_Component) {
     var _this = _possibleConstructorReturn(this, (SelectField.__proto__ || Object.getPrototypeOf(SelectField)).call(this, props));
 
     _this.selectProps = function () {
-      var _props = _this.props,
-          multiple = _props.multiple,
-          labelKey = _props.labelKey,
-          valueKey = _props.valueKey,
-          _props$input = _props.input,
-          name = _props$input.name,
-          onChange = _props$input.onChange,
-          onFocus = _props$input.onFocus,
-          _onBlur = _props$input.onBlur,
-          value = _props$input.value,
-          inputProps = _objectWithoutProperties(_props.input, ['name', 'onChange', 'onFocus', 'onBlur', 'value']);
+      var _this$props = _this.props,
+          multiple = _this$props.multiple,
+          labelKey = _this$props.labelKey,
+          valueKey = _this$props.valueKey,
+          _this$props$input = _this$props.input,
+          name = _this$props$input.name,
+          onChange = _this$props$input.onChange,
+          onFocus = _this$props$input.onFocus,
+          _onBlur = _this$props$input.onBlur,
+          value = _this$props$input.value,
+          inputProps = _objectWithoutProperties(_this$props$input, ['name', 'onChange', 'onFocus', 'onBlur', 'value']);
 
       return {
         name: name,
@@ -131,10 +131,10 @@ var SelectField = function (_Component) {
     };
 
     _this.handleChange = function (selected) {
-      var _this$props = _this.props,
-          multiple = _this$props.multiple,
-          valueKey = _this$props.valueKey,
-          onChange = _this$props.input.onChange;
+      var _this$props2 = _this.props,
+          multiple = _this$props2.multiple,
+          valueKey = _this$props2.valueKey,
+          onChange = _this$props2.input.onChange;
 
       var selectedList = (0, _lodash.castArray)(selected);
       var selectedVals = (0, _lodash.map)(selectedList, function (opt) {
@@ -153,11 +153,11 @@ var SelectField = function (_Component) {
       var helpText = _this.props.helpText;
 
       var errorMessage = _this.state.errorMessage;
-      return React.createElement(
+      return _react2.default.createElement(
         _reactBootstrap.HelpBlock,
         { style: { minHeight: helpText ? '6ex' : '3ex' } },
         errorMessage,
-        errorMessage && helpText ? React.createElement('br', null) : '',
+        errorMessage && helpText ? _react2.default.createElement('br', null) : '',
         helpText
       );
     };
@@ -180,30 +180,30 @@ var SelectField = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _props2 = this.props,
-          label = _props2.label,
-          required = _props2.required,
-          helpText = _props2.helpText,
-          multiple = _props2.multiple,
-          labelKey = _props2.labelKey,
-          valueKey = _props2.valueKey,
-          validator = _props2.validator,
-          name = _props2.input.name,
-          meta = _props2.meta,
-          options = _props2.options,
-          props = _objectWithoutProperties(_props2, ['label', 'required', 'helpText', 'multiple', 'labelKey', 'valueKey', 'validator', 'input', 'meta', 'options']);
+      var _props = this.props,
+          label = _props.label,
+          required = _props.required,
+          helpText = _props.helpText,
+          multiple = _props.multiple,
+          labelKey = _props.labelKey,
+          valueKey = _props.valueKey,
+          validator = _props.validator,
+          name = _props.input.name,
+          meta = _props.meta,
+          options = _props.options,
+          props = _objectWithoutProperties(_props, ['label', 'required', 'helpText', 'multiple', 'labelKey', 'valueKey', 'validator', 'input', 'meta', 'options']);
 
       var isAsync = (0, _lodash.isFunction)(options);
-      return React.createElement(
+      return _react2.default.createElement(
         _reactBootstrap.FormGroup,
         {
           controlId: name,
           validationState: this.state.validationState
         },
-        React.createElement(_Label2.default, { label: label, required: required }),
-        !isAsync ? React.createElement(_reactSelect2.default, _extends({}, this.selectProps(), {
+        _react2.default.createElement(_Label2.default, { label: label, required: required }),
+        !isAsync ? _react2.default.createElement(_reactSelect2.default, _extends({}, this.selectProps(), {
           options: options
-        }, props)) : React.createElement(_reactSelect2.default.Async, _extends({}, this.selectProps(), {
+        }, props)) : _react2.default.createElement(_reactSelect2.default.Async, _extends({}, this.selectProps(), {
           loadOptions: options
         }, props)),
         this.renderHelpMessage()

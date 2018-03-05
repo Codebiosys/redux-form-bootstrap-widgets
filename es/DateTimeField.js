@@ -4,9 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -40,13 +40,13 @@ require('react-datetime/css/react-datetime.css');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 var propTypes = {
   /** Field label. */
@@ -104,19 +104,19 @@ var DateTimeField = function (_Component) {
       var value = _this.props.input.value;
 
       if (value) {
-        return React.createElement(
+        return _react2.default.createElement(
           _reactBootstrap.FormControl.Feedback,
           {
             onClick: _this.clearContent,
             style: { pointerEvents: 'all' }
           },
-          React.createElement(_reactBootstrap.Glyphicon, { glyph: 'remove' })
+          _react2.default.createElement(_reactBootstrap.Glyphicon, { glyph: 'remove' })
         );
       }
-      return React.createElement(
+      return _react2.default.createElement(
         _reactBootstrap.FormControl.Feedback,
         { style: { pointerEvents: 'none' } },
-        React.createElement(_reactBootstrap.Glyphicon, { glyph: 'calendar' })
+        _react2.default.createElement(_reactBootstrap.Glyphicon, { glyph: 'calendar' })
       );
     };
 
@@ -128,10 +128,10 @@ var DateTimeField = function (_Component) {
           value = _this$props2.input.value,
           disabled = _this$props2.disabled;
 
-      return React.createElement(
+      return _react2.default.createElement(
         _reactBootstrap.InputGroup,
         null,
-        React.createElement(_reactBootstrap.FormControl, _extends({}, inputProps, {
+        _react2.default.createElement(_reactBootstrap.FormControl, _extends({}, inputProps, {
           autoComplete: 'off',
           disabled: disabled,
           value: dateFormat && _moment2.default.isMoment(value) ? value.format(dateFormat) : value
@@ -166,28 +166,28 @@ var DateTimeField = function (_Component) {
           _props$input = _props.input,
           name = _props$input.name,
           value = _props$input.value,
+          inputProps = _objectWithoutProperties(_props$input, ['name', 'value']),
           form = _props.meta.form,
-          inputProps = _objectWithoutProperties(_props.input, ['name', 'value']),
           props = _objectWithoutProperties(_props, ['label', 'required', 'helpText', 'disabled', 'input', 'meta']);
 
-      return React.createElement(
+      return _react2.default.createElement(
         _reactBootstrap.FormGroup,
         {
           controlId: name,
           validationState: this.state.validationState
         },
-        React.createElement(_Label2.default, { label: label, required: required }),
-        React.createElement(_reactDatetime2.default, _extends({
+        _react2.default.createElement(_Label2.default, { label: label, required: required }),
+        _react2.default.createElement(_reactDatetime2.default, _extends({
           name: name,
           id: form + '-' + name,
           closeOnSelect: true,
           renderInput: this.renderInput
         }, inputProps, props)),
-        React.createElement(
+        _react2.default.createElement(
           _reactBootstrap.HelpBlock,
           { style: { minHeight: helpText ? '6ex' : '3ex' } },
           this.state.errorMessage,
-          this.state.errorMessage && helpText ? React.createElement('br', null) : '',
+          this.state.errorMessage && helpText ? _react2.default.createElement('br', null) : '',
           helpText
         )
       );

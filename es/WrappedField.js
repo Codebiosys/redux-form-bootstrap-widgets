@@ -26,11 +26,11 @@ var reduxFormConfig = {
 };
 
 var ReduxField = function ReduxField(props) {
-  return React.createElement(_reduxForm.Field, (0, _lodash.omit)(props, [].concat(_toConsumableArray((0, _lodash.keys)(_reduxForm.propTypes)), ['clearSubmitErrors', 'clearFields'])));
+  return _react2.default.createElement(_reduxForm.Field, (0, _lodash.omit)(props, [].concat(_toConsumableArray((0, _lodash.keys)(_reduxForm.propTypes)), ['clearSubmitErrors', 'clearFields'])));
 };
 
 var ReduxFields = function ReduxFields(props) {
-  return React.createElement(_reduxForm.Fields, (0, _lodash.omit)(props, [].concat(_toConsumableArray((0, _lodash.keys)(_reduxForm.propTypes)), ['clearSubmitErrors', 'clearFields'])));
+  return _react2.default.createElement(_reduxForm.Fields, (0, _lodash.omit)(props, [].concat(_toConsumableArray((0, _lodash.keys)(_reduxForm.propTypes)), ['clearSubmitErrors', 'clearFields'])));
 };
 
 var WrappedField = exports.WrappedField = (0, _redux.compose)((0, _reactRedux.connect)(function (state, props) {

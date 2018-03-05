@@ -4,9 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -32,13 +32,13 @@ require('bootstrap/dist/css/bootstrap.css');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 var propTypes = {
   /** Field label. */
@@ -111,20 +111,20 @@ var RadioField = function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      var _props2 = this.props,
-          label = _props2.label,
-          required = _props2.required,
-          options = _props2.options,
-          name = _props2.input.name;
+      var _props = this.props,
+          label = _props.label,
+          required = _props.required,
+          options = _props.options,
+          name = _props.input.name;
 
-      return React.createElement(
+      return _react2.default.createElement(
         _reactBootstrap.FormGroup,
         {
           controlId: name,
           validationState: this.state.validationState
         },
-        React.createElement(_Label2.default, { label: label, required: required }),
-        React.createElement(
+        _react2.default.createElement(_Label2.default, { label: label, required: required }),
+        _react2.default.createElement(
           _reactBootstrap.InputGroup,
           null,
           (0, _lodash.map)(options, function (option) {
@@ -160,36 +160,36 @@ var _initialiseProps = function _initialiseProps() {
     var helpText = _this3.props.helpText;
 
     var errorMessage = _this3.state.errorMessage;
-    return React.createElement(
+    return _react2.default.createElement(
       _reactBootstrap.HelpBlock,
       { style: { minHeight: helpText ? '6ex' : '3ex' } },
       errorMessage,
-      errorMessage && helpText ? React.createElement('br', null) : '',
+      errorMessage && helpText ? _react2.default.createElement('br', null) : '',
       helpText
     );
   };
 
   this.renderOption = function (option) {
-    var _props = _this3.props,
-        label = _props.label,
-        required = _props.required,
-        helpText = _props.helpText,
-        valueKey = _props.valueKey,
-        labelKey = _props.labelKey,
-        options = _props.options,
-        inline = _props.inline,
-        disabled = _props.disabled,
-        validator = _props.validator,
-        _props$input2 = _props.input,
-        name = _props$input2.name,
-        onBlur = _props$input2.onBlur,
-        onChange = _props$input2.onChange,
-        value = _props$input2.value,
-        meta = _props.meta,
-        inputProps = _objectWithoutProperties(_props.input, ['name', 'onBlur', 'onChange', 'value']),
-        props = _objectWithoutProperties(_props, ['label', 'required', 'helpText', 'valueKey', 'labelKey', 'options', 'inline', 'disabled', 'validator', 'input', 'meta']);
+    var _props2 = _this3.props,
+        label = _props2.label,
+        required = _props2.required,
+        helpText = _props2.helpText,
+        valueKey = _props2.valueKey,
+        labelKey = _props2.labelKey,
+        options = _props2.options,
+        inline = _props2.inline,
+        disabled = _props2.disabled,
+        validator = _props2.validator,
+        _props2$input = _props2.input,
+        name = _props2$input.name,
+        _onBlur = _props2$input.onBlur,
+        onChange = _props2$input.onChange,
+        value = _props2$input.value,
+        inputProps = _objectWithoutProperties(_props2$input, ['name', 'onBlur', 'onChange', 'value']),
+        meta = _props2.meta,
+        props = _objectWithoutProperties(_props2, ['label', 'required', 'helpText', 'valueKey', 'labelKey', 'options', 'inline', 'disabled', 'validator', 'input', 'meta']);
 
-    return React.createElement(
+    return _react2.default.createElement(
       _reactBootstrap.Radio,
       _extends({
         key: name + '_' + option[valueKey],
@@ -197,10 +197,10 @@ var _initialiseProps = function _initialiseProps() {
       }, inputProps, {
         checked: '' + option[valueKey] === '' + value,
         value: option[valueKey],
-        onBlur: function () {
-          return onBlur();
+        onBlur: function onBlur() {
+          return _onBlur();
         },
-        onChange: function (event) {
+        onChange: function onChange(event) {
           return _this3.handleChange(event, option[valueKey]);
         },
         inline: inline,

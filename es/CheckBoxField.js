@@ -4,9 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -32,13 +32,13 @@ require('bootstrap/dist/css/bootstrap.css');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 var propTypes = {
   /** Field label. */
@@ -109,20 +109,20 @@ var CheckBoxField = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _props2 = this.props,
-          label = _props2.label,
-          required = _props2.required,
-          name = _props2.input.name;
+      var _props = this.props,
+          label = _props.label,
+          required = _props.required,
+          name = _props.input.name;
 
 
-      return React.createElement(
+      return _react2.default.createElement(
         _reactBootstrap.FormGroup,
         {
           controlId: name,
           validationState: this.state.validationState
         },
-        React.createElement(_Label2.default, { label: label, required: required }),
-        React.createElement(
+        _react2.default.createElement(_Label2.default, { label: label, required: required }),
+        _react2.default.createElement(
           _reactBootstrap.InputGroup,
           null,
           this.checkOptions().map(this.renderInput)
@@ -142,11 +142,11 @@ var _initialiseProps = function _initialiseProps() {
   var _this2 = this;
 
   this.checkOptions = function () {
-    var _props3 = _this2.props,
-        labelKey = _props3.labelKey,
-        valueKey = _props3.valueKey,
-        options = _props3.options,
-        value = _props3.input.value;
+    var _props2 = _this2.props,
+        labelKey = _props2.labelKey,
+        valueKey = _props2.valueKey,
+        options = _props2.options,
+        value = _props2.input.value;
 
     var valueList = (0, _lodash.toArray)(value);
     var theOptions = options.map(function (_ref) {
@@ -185,45 +185,45 @@ var _initialiseProps = function _initialiseProps() {
     var helpText = _this2.props.helpText;
 
     var errorMessage = _this2.state.errorMessage;
-    return React.createElement(
+    return _react2.default.createElement(
       _reactBootstrap.HelpBlock,
       { style: { minHeight: helpText ? '6ex' : '3ex' } },
       errorMessage,
-      errorMessage && helpText ? React.createElement('br', null) : '',
+      errorMessage && helpText ? _react2.default.createElement('br', null) : '',
       helpText
     );
   };
 
   this.renderInput = function (checkBoxProps) {
-    var _props = _this2.props,
-        widgetLabel = _props.label,
-        required = _props.required,
-        helpText = _props.helpText,
-        disabled = _props.disabled,
-        meta = _props.meta,
-        valueKey = _props.valueKey,
-        labelKey = _props.labelKey,
-        validator = _props.validator,
-        _props$input2 = _props.input,
-        name = _props$input2.name,
-        onFocus = _props$input2.onFocus,
-        options = _props.options,
-        inline = _props.inline,
-        props = _objectWithoutProperties(_props, ['label', 'required', 'helpText', 'disabled', 'meta', 'valueKey', 'labelKey', 'validator', 'input', 'options', 'inline']);
+    var _props3 = _this2.props,
+        widgetLabel = _props3.label,
+        required = _props3.required,
+        helpText = _props3.helpText,
+        disabled = _props3.disabled,
+        meta = _props3.meta,
+        valueKey = _props3.valueKey,
+        labelKey = _props3.labelKey,
+        validator = _props3.validator,
+        _props3$input = _props3.input,
+        name = _props3$input.name,
+        onFocus = _props3$input.onFocus,
+        options = _props3.options,
+        inline = _props3.inline,
+        props = _objectWithoutProperties(_props3, ['label', 'required', 'helpText', 'disabled', 'meta', 'valueKey', 'labelKey', 'validator', 'input', 'options', 'inline']);
 
     var value = checkBoxProps.value,
         label = checkBoxProps.label,
         checked = checkBoxProps.checked;
 
 
-    return React.createElement(
+    return _react2.default.createElement(
       _reactBootstrap.Checkbox,
       _extends({
         key: name + '_' + (0, _lodash.camelCase)(label) // eslint-disable-line
         , name: name + '_' + (0, _lodash.camelCase)(label),
         value: value,
         checked: checked,
-        onChange: function (event) {
+        onChange: function onChange(event) {
           return _this2.handleChange(event, value);
         },
         onFocus: onFocus,

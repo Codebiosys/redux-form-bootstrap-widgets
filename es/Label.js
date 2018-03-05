@@ -23,19 +23,19 @@ var Label = function Label(_ref) {
       required = _ref.required;
 
   if (label && required) {
-    return React.createElement(
+    return _react2.default.createElement(
       _reactBootstrap.ControlLabel,
       null,
       label,
       '\xA0',
-      React.createElement(
+      _react2.default.createElement(
         'small',
         null,
-        React.createElement(_reactBootstrap.Glyphicon, { glyph: 'asterisk', style: { color: '#a94442' } })
+        _react2.default.createElement(_reactBootstrap.Glyphicon, { glyph: 'asterisk', style: { color: '#a94442' } })
       )
     );
   } else if (label) {
-    return React.createElement(
+    return _react2.default.createElement(
       _reactBootstrap.ControlLabel,
       null,
       label

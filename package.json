@@ -86,7 +86,7 @@
   "scripts": {
     "build": "npm run build:lib && npm run build:es && npm run build:umd && npm run build:umd:min",
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
-    "build:lib": "babel src --out-dir lib",
+    "build:lib": "cross-env BABEL_ENV=production babel src --out-dir lib",
     "build:umd": "cross-env NODE_ENV=development webpack src/index.js dist/redux-form-bootstrap-widgets.js",
     "build:umd:min": "cross-env NODE_ENV=production webpack src/index.js dist/redux-form-bootstrap-widgets.min.js",
     "clean": "rimraf dist es lib",
