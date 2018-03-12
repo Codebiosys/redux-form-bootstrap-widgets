@@ -18,11 +18,11 @@ or
 ```
 
 Please note that redux-form-boostrap-widgets has many peer dependencies, including
-redux, react, bootstrap, and their dependencies.
+Redux, React, Bootstrap, and their dependencies.
 
-This package relies heavily on the shoulders of others, including
-- [react-select](http://jedwatson.github.io/react-select/) for the select widgets,
-- [react-toggle](http://aaronshaf.github.io/react-toggle/) for the toggle widget,
+This package relies heavily on the work of others, including:
+- [react-select](http://jedwatson.github.io/react-select/) for the select widgets.
+- [react-toggle](http://aaronshaf.github.io/react-toggle/) for the toggle widget.
 - [react-datetime](https://github.com/YouCanBookMe/react-datetime) for date/time widgets.
 
 
