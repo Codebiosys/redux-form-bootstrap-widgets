@@ -19,9 +19,9 @@ exports[`The Date Time Field renders 1`] = `
     input={true}
     inputProps={Object {}}
     name="fieldName"
-    onBlur={[Function]}
-    onChange={[Function]}
-    onFocus={[Function]}
+    onBlur={[MockFunction]}
+    onChange={[MockFunction]}
+    onFocus={[MockFunction]}
     onViewModeChange={[Function]}
     renderInput={[Function]}
     strictParsing={true}
@@ -61,16 +61,27 @@ exports[`The Date Time Field renders the help message with a break 1`] = `
     input={true}
     inputProps={Object {}}
     name="fieldName"
-    onBlur={[Function]}
-    onChange={[Function]}
-    onFocus={[Function]}
+    onBlur={[MockFunction]}
+    onChange={[MockFunction]}
+    onFocus={[MockFunction]}
     onViewModeChange={[Function]}
     renderInput={[Function]}
     strictParsing={true}
     timeConstraints={Object {}}
     timeFormat={true}
     utc={false}
-    validator={[Function]}
+    validator={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            Object {
+              "form": "formName",
+              "pristine": false,
+            },
+          ],
+        ],
+      }
+    }
   />
   <HelpBlock
     bsClass="help-block"

@@ -17,14 +17,14 @@ exports[`The Toggle Field renders 1`] = `
       disabled={false}
       icons={
         Object {
-          "checked": <Component />,
-          "unchecked": <Component />,
+          "checked": <Unknown />,
+          "unchecked": <Unknown />,
         }
       }
       name="fieldName"
-      onBlur={[Function]}
+      onBlur={[MockFunction]}
       onChange={[Function]}
-      onFocus={[Function]}
+      onFocus={[MockFunction]}
     />
   </InputGroup>
   <HelpBlock
@@ -56,14 +56,14 @@ exports[`The Toggle Field renders the help message with a break 1`] = `
       disabled={false}
       icons={
         Object {
-          "checked": <Component />,
-          "unchecked": <Component />,
+          "checked": <Unknown />,
+          "unchecked": <Unknown />,
         }
       }
       name="fieldName"
-      onBlur={[Function]}
+      onBlur={[MockFunction]}
       onChange={[Function]}
-      onFocus={[Function]}
+      onFocus={[MockFunction]}
     />
   </InputGroup>
   <HelpBlock

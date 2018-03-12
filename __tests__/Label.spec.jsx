@@ -14,7 +14,7 @@ const requiredFieldProps = {
   required: true,
 };
 
-describe('The Field Set', () => {
+describe('The Label', () => {
   let inputWrapper;
 
   beforeEach(() => {
@@ -36,6 +36,6 @@ describe('The Field Set', () => {
 
   it('is empty when there is no label', () => {
     const emptywrapper = shallow(<Label />);
-    expect(emptywrapper.node).toBe(null);
+    expect(emptywrapper.getElement()).toBe(null);
   });
 });

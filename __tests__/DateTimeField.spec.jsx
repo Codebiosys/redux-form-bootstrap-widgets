@@ -4,6 +4,7 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import moment from 'moment';
 import { DateTimeField } from 'index';
+import { trim } from 'lodash';
 
 const fieldProps = {
   input: {
@@ -51,13 +52,13 @@ describe('The Date Time Field', () => {
 
   it('clears the value when the clear button is pressed', () => {
     inputWrapper = mount(<DateTimeField {...selectedFieldProps} />);
-    inputWrapper.find('.form-control-feedback').simulate('click');
+    inputWrapper.find('.form-control-feedback.glyphicon').simulate('click');
     expect(selectedFieldProps.input.onChange).toHaveBeenCalledWith(null);
   });
 
   it('does not clear the value when the clear button is pressed and the field is disabled', () => {
     const disabledInputWrapper = mount(<DateTimeField {...selectedFieldProps} disabled />);
-    disabledInputWrapper.find('.form-control-feedback').simulate('click');
+    disabledInputWrapper.find('.form-control-feedback.glyphicon').simulate('click');
     expect(selectedFieldProps.input.onChange).not.toHaveBeenCalled();
   });
 
