@@ -11,6 +11,7 @@ const fieldProps = {
   input: {
     name: 'fieldName',
     onChange: jest.fn(),
+    onBlur: jest.fn(),
   },
   meta: {
     form: 'formName',
@@ -63,13 +64,13 @@ describe('The Text Field', () => {
   });
 
   it('clears the value when the clear button is pressed', () => {
-    valueWrapper.find('.form-control-feedback').simulate('click');
+    valueWrapper.find('.form-control-feedback.glyphicon').simulate('click');
     expect(valueFieldProps.input.onChange).toHaveBeenCalledWith(null);
   });
 
   it('does not clear the value when the clear button is pressed and the field is disabled', () => {
     const disabledValueWrapper = mount(<TextField {...valueFieldProps} disabled />);
-    disabledValueWrapper.find('.form-control-feedback').simulate('click');
+    disabledValueWrapper.find('.form-control-feedback.glyphicon').simulate('click');
     expect(valueFieldProps.input.onChange).not.toHaveBeenCalled();
   });
 
@@ -97,13 +98,20 @@ describe('The Text Field', () => {
     expect(passwordWrapper.find('input').prop('type')).toEqual('password');
   });
 
-  it('calls custom validator when the toogle is toggled', () => {
+  it('calls custom validator when the text is changed', () => {
     const customValidator = jest.fn(() => ({ validationState: null, errorMessage: null }));
     const validatorProps = { ...fieldProps, validator: customValidator };
     const inputWrapperValidated = mount(<TextField {...validatorProps} />);
 
     inputWrapperValidated.find(`input[name="${fieldProps.input.name}"]`).simulate('change', { target: { value: 'foo' } });
     expect(customValidator).toHaveBeenCalledTimes(1);
+  });
+
+  it('calls custom blur when the field is blurred', () => {
+    const validatorProps = { ...fieldProps, value: '  Spaces  ' };
+    const inputWrapperBlurrable = mount(<TextField {...validatorProps} />);
+    inputWrapperBlurrable.find(`input[name="${fieldProps.input.name}"]`).simulate('blur', { target: { value: '  Spaces  ' } });
+    expect(fieldProps.input.onBlur).toHaveBeenCalledWith('Spaces');
   });
 
   it('uses a custom validator when new props are added', () => {

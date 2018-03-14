@@ -5,6 +5,8 @@
   "transform": {
     ".*": "babel-jest"
   },
+  "setupFiles": ["./jest.setup.js"],
+  "setupTestFrameworkScriptFile": "./jest.setuptest.js",
   "snapshotSerializers": [
     "enzyme-to-json/serializer"
   ],
@@ -28,7 +30,6 @@
     "!**/node_modules/**"
   ],
   "coverageDirectory": "./coverage",
-  "mapCoverage": true,
   "notify": true,
   "roots": [
     "__tests__/"

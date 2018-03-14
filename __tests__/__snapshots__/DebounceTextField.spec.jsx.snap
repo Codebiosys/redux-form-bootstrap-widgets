@@ -23,6 +23,7 @@ exports[`The Debounce Text Field renders 1`] = `
       componentClass="input"
       disabled={false}
       name="fieldName"
+      onBlur={[Function]}
       onChange={[Function]}
       style={
         Object {
@@ -73,6 +74,7 @@ exports[`The Debounce Text Field renders the help message with a break 1`] = `
       componentClass="input"
       disabled={false}
       name="fieldName"
+      onBlur={[Function]}
       onChange={[Function]}
       style={
         Object {

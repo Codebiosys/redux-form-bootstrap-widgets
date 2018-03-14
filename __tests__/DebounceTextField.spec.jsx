@@ -65,7 +65,7 @@ describe('The Debounce Text Field', () => {
   });
 
   it('clears the value when the clear button is pressed', () => {
-    valueWrapper.find('.form-control-feedback').simulate('click');
+    valueWrapper.find('.form-control-feedback.glyphicon').simulate('click');
     expect(valueFieldProps.input.onChange).toHaveBeenCalledWith(null);
   });
 

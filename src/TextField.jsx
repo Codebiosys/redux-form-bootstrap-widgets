@@ -8,7 +8,7 @@ import {
   InputGroup,
   Glyphicon } from 'react-bootstrap';
 
-import { debounce } from 'lodash';
+import { debounce, trim } from 'lodash';
 
 import Label from 'Label';
 
@@ -33,6 +33,8 @@ const propTypes = {
   type: PropTypes.oneOf(['text', 'password', 'number', 'textarea']),
   /** Override the default validation checks. Takes ReduxForm 'meta' as input */
   validator: PropTypes.func,
+  /** normalize field after blur * */
+  normalizeOnBlur: PropTypes.func,
   /** React Boostrap Field addOn, placed before the input */
   addOnBefore: PropTypes.element,
   /** React Boostrap Field addOn, placed after the input */
@@ -59,6 +61,7 @@ const defaultProps = {
   disabled: false,
   type: 'text',
   delay: undefined,
+  normalizeOnBlur: value => (trim(value)),
 };
 
 class TextField extends Component {
@@ -118,6 +121,11 @@ class TextField extends Component {
     }
   }
 
+  handleBlur = (event) => {
+    const { normalizeOnBlur, input: { onBlur } } = this.props;
+    onBlur(normalizeOnBlur(event.target.value));
+  }
+
   clearContent = () => {
     const { disabled } = this.props;
     if (!disabled) {
@@ -157,9 +165,10 @@ class TextField extends Component {
       required,
       helpText,
       validator,
+      normalizeOnBlur,
       delay,
       disabled,
-      input: { name, onChange, ...inputProps },
+      input: { name, onChange, onBlur, ...inputProps },
       meta,
       addOnBefore,
       addOnAfter,
@@ -177,7 +186,6 @@ class TextField extends Component {
     } else {
       typeConfig.type = type;
     }
-
     return (
       <FormGroup
         controlId={name}
@@ -189,6 +197,7 @@ class TextField extends Component {
           <FormControl
             name={name}
             onChange={this.handleChange}
+            onBlur={this.handleBlur}
             style={inputStyle}
             {...typeConfig}
             {...inputProps}

@@ -23,6 +23,7 @@ exports[`The Text Field renders 1`] = `
       componentClass="input"
       disabled={false}
       name="fieldName"
+      onBlur={[Function]}
       onChange={[Function]}
       style={
         Object {
@@ -73,6 +74,7 @@ exports[`The Text Field renders a textarea when the type is textarea 1`] = `
       componentClass="input"
       disabled={false}
       name="fieldName"
+      onBlur={[Function]}
       onChange={[Function]}
       style={
         Object {
@@ -124,6 +126,7 @@ exports[`The Text Field renders the help message with a break 1`] = `
       componentClass="input"
       disabled={false}
       name="fieldName"
+      onBlur={[Function]}
       onChange={[Function]}
       style={
         Object {
