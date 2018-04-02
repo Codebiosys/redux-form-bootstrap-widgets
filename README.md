@@ -36,7 +36,21 @@ install with yarn or npm.
 > yarn install
 ```
 
-Then, use [storybook](https://storybook.js.org/) to view the widgets in action.
+
+To run the tests:
+
+```
+> yarn test
+```
+
+
+To run the linter:
+
+```
+> yarn lint
+```
+
+Use [storybook](https://storybook.js.org/) to view the widgets in action.
 
 ```
 yarn storybook
