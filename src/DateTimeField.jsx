@@ -90,13 +90,14 @@ class DateTimeField extends Component {
   }
 
   renderInput = ({ ...inputProps }) => {
-    const { dateFormat, input: { value }, disabled } = this.props;
+    const { dateFormat, input: { value, onFocus }, disabled } = this.props;
     return (
       <InputGroup>
         <FormControl
           {...inputProps}
           autoComplete="off"
           disabled={disabled}
+          onFocus={onFocus}
           value={
             dateFormat && moment.isMoment(value) ?
              value.format(dateFormat) :
@@ -113,7 +114,7 @@ class DateTimeField extends Component {
         required,
         helpText,
         disabled,
-        input: { name, value, ...inputProps },
+        input: { name, value, onFocus, onBlur, ...inputProps },
         meta: { form },
         ...props
       } = this.props;
@@ -129,6 +130,7 @@ class DateTimeField extends Component {
           closeOnSelect
           renderInput={this.renderInput}
           {...inputProps}
+          onBlur={() => { onBlur(); }}
           {...props}
         />
         <HelpBlock style={{ minHeight: helpText ? '6ex' : '3ex' }}>
