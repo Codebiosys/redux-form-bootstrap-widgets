@@ -97,6 +97,9 @@ class DateTimeField extends Component {
           {...inputProps}
           autoComplete="off"
           disabled={disabled}
+          // Pass in the redux onFocus instead of the DateTime onFocus so that
+          // Focus is not called multiple times, which causes the date picker
+          // to not open in some circumstances
           onFocus={onFocus}
           value={
             dateFormat && moment.isMoment(value) ?
@@ -130,6 +133,8 @@ class DateTimeField extends Component {
           closeOnSelect
           renderInput={this.renderInput}
           {...inputProps}
+          // Ignore event value on blur, because this overrides
+          // Redux format handlers.
           onBlur={() => { onBlur(); }}
           {...props}
         />
