@@ -39,6 +39,8 @@ const propTypes = {
   * Redux Form internal meta property. Set when used in a redux 'Field'
   */
   meta: PropTypes.object.isRequired,
+
+  helpTextStyle: PropTypes.object,
 };
 
 const defaultProps = {
@@ -47,6 +49,7 @@ const defaultProps = {
   dateFormat: undefined,
   helpText: undefined,
   validator: validationMessage,
+  helpTextStyle: undefined,
 };
 
 class DateTimeField extends Component {
@@ -87,6 +90,24 @@ class DateTimeField extends Component {
         <Glyphicon glyph="calendar" />
       </FormControl.Feedback>
     );
+  }
+
+  helpTextStyle = () => {
+    const { helpText, helpTextStyle } = this.props;
+    if (!helpTextStyle) {
+      return { minHeight: helpText ? '6ex' : '3ex' };
+    }
+    return helpTextStyle;
+  }
+
+  renderHelpMessage = () => {
+    const { helpText } = this.props;
+    const errorMessage = this.state.errorMessage;
+    return (<HelpBlock style={this.helpTextStyle()}>
+      {errorMessage}
+      {(errorMessage && helpText) ? <br /> : ''}
+      {helpText}
+    </HelpBlock>);
   }
 
   renderInput = ({ ...inputProps }) => {
@@ -138,10 +159,7 @@ class DateTimeField extends Component {
           onBlur={() => { onBlur(); }}
           {...props}
         />
-        <HelpBlock style={{ minHeight: helpText ? '6ex' : '3ex' }}>
-          {this.state.errorMessage}
-          {(this.state.errorMessage && helpText) ? <br /> : ''}
-          {helpText}</HelpBlock>
+        {this.renderHelpMessage()}
       </FormGroup>
     );
   }

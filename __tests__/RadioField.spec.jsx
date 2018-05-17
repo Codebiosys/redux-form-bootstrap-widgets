@@ -98,7 +98,7 @@ describe('The Radio Field', () => {
 
   it('renders the help message with a break', () => {
     const customValidator = jest.fn(() => ({ validationState: null, errorMessage: 'There was an error' }));
-    const customProps = { ...fieldProps, helpText: 'The help Text', validator: customValidator };
+    const customProps = { ...fieldProps, helpText: 'The help Text', helpTextStyle: { fontWeight: 'bold' }, validator: customValidator };
     inputWrapper = shallow(<RadioField {...customProps} />);
     expect(inputWrapper).toMatchSnapshot();
   });

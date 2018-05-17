@@ -57,6 +57,11 @@ exports[`The Date Time Field renders the help message with a break 1`] = `
     closeOnTab={true}
     dateFormat={true}
     defaultValue=""
+    helpTextStyle={
+      Object {
+        "fontWeight": "bold",
+      }
+    }
     id="formName-fieldName"
     input={true}
     inputProps={Object {}}
@@ -87,7 +92,7 @@ exports[`The Date Time Field renders the help message with a break 1`] = `
     bsClass="help-block"
     style={
       Object {
-        "minHeight": "6ex",
+        "fontWeight": "bold",
       }
     }
   >

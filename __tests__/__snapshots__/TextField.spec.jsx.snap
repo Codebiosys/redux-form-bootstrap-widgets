@@ -37,6 +37,10 @@ exports[`The Text Field renders 1`] = `
     >
       after
     </div>
+    <FormControlFeedback
+      bsClass="form-control-feedback"
+      bsRole="feedback"
+    />
   </InputGroup>
   <HelpBlock
     bsClass="help-block"
@@ -88,6 +92,10 @@ exports[`The Text Field renders a textarea when the type is textarea 1`] = `
     >
       after
     </div>
+    <FormControlFeedback
+      bsClass="form-control-feedback"
+      bsRole="feedback"
+    />
   </InputGroup>
   <HelpBlock
     bsClass="help-block"
@@ -125,6 +133,11 @@ exports[`The Text Field renders the help message with a break 1`] = `
       bsClass="form-control"
       componentClass="input"
       disabled={false}
+      helpTextStyle={
+        Object {
+          "fontWeight": "bold",
+        }
+      }
       name="fieldName"
       onBlur={[Function]}
       onChange={[Function]}
@@ -140,12 +153,16 @@ exports[`The Text Field renders the help message with a break 1`] = `
     >
       after
     </div>
+    <FormControlFeedback
+      bsClass="form-control-feedback"
+      bsRole="feedback"
+    />
   </InputGroup>
   <HelpBlock
     bsClass="help-block"
     style={
       Object {
-        "minHeight": "6ex",
+        "fontWeight": "bold",
       }
     }
   >

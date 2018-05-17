@@ -47,6 +47,8 @@ const propTypes = {
   * Redux Form internal meta property. Set when used in a redux 'Field'
   */
   meta: PropTypes.object.isRequired,
+
+  helpTextStyle: PropTypes.object,
 };
 
 
@@ -58,6 +60,7 @@ const defaultProps = {
   validator: validationMessage,
   labelKey: 'label',
   valueKey: 'value',
+  helpTextStyle: undefined,
 };
 
 class CheckBoxField extends Component {
@@ -100,11 +103,18 @@ class CheckBoxField extends Component {
     onChange(valueList);
   };
 
+  helpTextStyle = () => {
+    const { helpText, helpTextStyle } = this.props;
+    if (!helpTextStyle) {
+      return { minHeight: helpText ? '6ex' : '3ex' };
+    }
+    return helpTextStyle;
+  }
 
   renderHelpMessage = () => {
     const { helpText } = this.props;
     const errorMessage = this.state.errorMessage;
-    return (<HelpBlock style={{ minHeight: helpText ? '6ex' : '3ex' }}>
+    return (<HelpBlock style={this.helpTextStyle()}>
       {errorMessage}
       {(errorMessage && helpText) ? <br /> : ''}
       {helpText}

@@ -38,6 +38,7 @@ const propTypes = {
   */
   meta: PropTypes.object.isRequired,
 
+  helpTextStyle: PropTypes.object,
 };
 
 const defaultProps = {
@@ -45,6 +46,7 @@ const defaultProps = {
   disabled: false,
   helpText: null,
   validator: validationMessage,
+  helpTextStyle: undefined,
 };
 
 class ToggleField extends Component {
@@ -67,10 +69,18 @@ class ToggleField extends Component {
     onChange(!!event.target.checked);
   }
 
+  helpTextStyle = () => {
+    const { helpText, helpTextStyle } = this.props;
+    if (!helpTextStyle) {
+      return { minHeight: helpText ? '6ex' : '3ex' };
+    }
+    return helpTextStyle;
+  }
+
   renderHelpMessage = () => {
     const { helpText } = this.props;
     const errorMessage = this.state.errorMessage;
-    return (<HelpBlock style={{ minHeight: helpText ? '6ex' : '3ex' }}>
+    return (<HelpBlock style={this.helpTextStyle()}>
       {errorMessage}
       {(errorMessage && helpText) ? <br /> : ''}
       {helpText}

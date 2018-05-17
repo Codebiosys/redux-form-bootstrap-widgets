@@ -4,7 +4,6 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import moment from 'moment';
 import { DateTimeField } from 'index';
-import { trim } from 'lodash';
 
 const fieldProps = {
   input: {
@@ -74,7 +73,7 @@ describe('The Date Time Field', () => {
 
   it('renders the help message with a break', () => {
     const customValidator = jest.fn(() => ({ validationState: null, errorMessage: 'There was an error' }));
-    const customProps = { ...fieldProps, helpText: 'The help Text', validator: customValidator };
+    const customProps = { ...fieldProps, helpText: 'The help Text', helpTextStyle: { fontWeight: 'bold' }, validator: customValidator };
     inputWrapper = shallow(<DateTimeField {...customProps} />);
     expect(inputWrapper).toMatchSnapshot();
   });
