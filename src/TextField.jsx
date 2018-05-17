@@ -50,6 +50,7 @@ const propTypes = {
   * Redux Form internal meta property. Set when used in a redux 'Field'
   */
   meta: PropTypes.object.isRequired,
+  helpTextStyle: PropTypes.object,
 };
 
 const defaultProps = {
@@ -62,6 +63,7 @@ const defaultProps = {
   type: 'text',
   delay: undefined,
   normalizeOnBlur: value => (trim(value)),
+  helpTextStyle: undefined,
 };
 
 class TextField extends Component {
@@ -134,10 +136,22 @@ class TextField extends Component {
     }
   }
 
+  helpTextStyle = () => {
+    const { helpText, helpTextStyle } = this.props;
+    if (!helpTextStyle) {
+      return { minHeight: helpText ? '6ex' : '3ex' };
+    }
+    return helpTextStyle;
+  }
+
   renderClearButton = () => {
     const { type } = this.props;
-    if (type === 'textarea' || !this.getValue()) {
+    if (type === 'textarea') {
       return undefined;
+    } else if (!this.getValue()) {
+      return (
+        <FormControl.Feedback />
+      );
     }
     return (
       <FormControl.Feedback
@@ -152,7 +166,7 @@ class TextField extends Component {
   renderHelpMessage = () => {
     const { helpText } = this.props;
     const errorMessage = this.state.errorMessage;
-    return (<HelpBlock style={{ minHeight: helpText ? '6ex' : '3ex' }}>
+    return (<HelpBlock style={this.helpTextStyle()}>
       {errorMessage}
       {(errorMessage && helpText) ? <br /> : ''}
       {helpText}
