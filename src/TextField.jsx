@@ -178,6 +178,7 @@ class TextField extends Component {
       label,
       required,
       helpText,
+      helpTextStyle,
       validator,
       normalizeOnBlur,
       delay,

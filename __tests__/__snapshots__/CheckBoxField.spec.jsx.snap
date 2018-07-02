@@ -83,11 +83,6 @@ exports[`The Checkbox Field renders the help message with a break 1`] = `
       bsClass="checkbox"
       checked={false}
       disabled={false}
-      helpTextStyle={
-        Object {
-          "fontWeight": "bold",
-        }
-      }
       inline={false}
       key="fieldName_option1"
       name="fieldName_option1"
@@ -102,11 +97,6 @@ exports[`The Checkbox Field renders the help message with a break 1`] = `
       bsClass="checkbox"
       checked={false}
       disabled={false}
-      helpTextStyle={
-        Object {
-          "fontWeight": "bold",
-        }
-      }
       inline={false}
       key="fieldName_option2"
       name="fieldName_option2"
@@ -121,11 +111,6 @@ exports[`The Checkbox Field renders the help message with a break 1`] = `
       bsClass="checkbox"
       checked={false}
       disabled={false}
-      helpTextStyle={
-        Object {
-          "fontWeight": "bold",
-        }
-      }
       inline={false}
       key="fieldName_option3"
       name="fieldName_option3"

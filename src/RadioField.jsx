@@ -104,6 +104,7 @@ class RadioField extends Component {
       label,
       required,
       helpText,
+      helpTextStyle,
       valueKey,
       labelKey,
       options,

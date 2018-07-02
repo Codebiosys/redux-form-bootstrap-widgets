@@ -137,6 +137,7 @@ class SelectField extends Component {
     const {
       label,
       required,
+      helpTextStyle,
       helpText,
       multiple,
       labelKey,

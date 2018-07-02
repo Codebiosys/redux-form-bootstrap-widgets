@@ -86,11 +86,6 @@ exports[`The Radio Field renders the help message with a break 1`] = `
       bsClass="radio"
       checked={false}
       disabled={false}
-      helpTextStyle={
-        Object {
-          "fontWeight": "bold",
-        }
-      }
       inline={false}
       key="fieldName_One"
       name="fieldName"
@@ -106,11 +101,6 @@ exports[`The Radio Field renders the help message with a break 1`] = `
       bsClass="radio"
       checked={false}
       disabled={false}
-      helpTextStyle={
-        Object {
-          "fontWeight": "bold",
-        }
-      }
       inline={false}
       key="fieldName_Two"
       name="fieldName"
@@ -126,11 +116,6 @@ exports[`The Radio Field renders the help message with a break 1`] = `
       bsClass="radio"
       checked={false}
       disabled={false}
-      helpTextStyle={
-        Object {
-          "fontWeight": "bold",
-        }
-      }
       inline={false}
       key="fieldName_Three"
       name="fieldName"

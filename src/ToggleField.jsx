@@ -92,6 +92,7 @@ class ToggleField extends Component {
     label,
     required,
     helpText,
+    helpTextStyle,
     disabled,
     validator,
     input: { name, value, onChange, ...inputProps },

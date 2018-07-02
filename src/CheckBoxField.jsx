@@ -126,6 +126,7 @@ class CheckBoxField extends Component {
       label: widgetLabel,
       required,
       helpText,
+      helpTextStyle,
       disabled,
       meta,
       valueKey,

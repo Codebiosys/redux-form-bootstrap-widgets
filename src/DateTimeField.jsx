@@ -137,6 +137,7 @@ class DateTimeField extends Component {
         label,
         required,
         helpText,
+        helpTextStyle,
         disabled,
         input: { name, value, onFocus, onBlur, ...inputProps },
         meta: { form },

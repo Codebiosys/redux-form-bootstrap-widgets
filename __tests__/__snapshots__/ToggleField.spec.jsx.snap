@@ -54,11 +54,6 @@ exports[`The Toggle Field renders the help message with a break 1`] = `
     <Toggle
       checked={false}
       disabled={false}
-      helpTextStyle={
-        Object {
-          "fontWeight": "bold",
-        }
-      }
       icons={
         Object {
           "checked": <Unknown />,

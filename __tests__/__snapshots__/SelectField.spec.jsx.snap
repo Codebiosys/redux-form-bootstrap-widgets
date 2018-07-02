@@ -198,11 +198,6 @@ exports[`The Select Field renders the help message with a break 1`] = `
     disabled={false}
     escapeClearsValue={true}
     filterOptions={[Function]}
-    helpTextStyle={
-      Object {
-        "fontWeight": "bold",
-      }
-    }
     ignoreAccents={true}
     ignoreCase={true}
     inputProps={Object {}}
