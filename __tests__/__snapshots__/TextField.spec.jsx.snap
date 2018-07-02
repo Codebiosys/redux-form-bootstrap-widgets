@@ -133,11 +133,6 @@ exports[`The Text Field renders the help message with a break 1`] = `
       bsClass="form-control"
       componentClass="input"
       disabled={false}
-      helpTextStyle={
-        Object {
-          "fontWeight": "bold",
-        }
-      }
       name="fieldName"
       onBlur={[Function]}
       onChange={[Function]}
