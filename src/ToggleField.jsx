@@ -8,10 +8,10 @@ import {
 
 import Toggle from 'react-toggle';
 
-import Label from 'Label';
-import validationMessage from 'utils';
-
 import 'react-toggle/style.css';
+
+import Label from './Label';
+import validationMessage from './validationMessage';
 
 const propTypes = {
   /** Form label. */

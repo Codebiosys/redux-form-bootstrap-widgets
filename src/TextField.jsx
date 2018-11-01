@@ -10,9 +10,9 @@ import {
 
 import { debounce, trim } from 'lodash';
 
-import Label from 'Label';
+import Label from './Label';
 
-import validationMessage from 'utils';
+import validationMessage from './validationMessage';
 
 const propTypes = {
   /** additional Props that can be passed to Form Control */

@@ -8,8 +8,8 @@ import {
   InputGroup,
   Radio } from 'react-bootstrap';
 
-import Label from 'Label';
-import validationMessage from 'utils';
+import Label from './Label';
+import validationMessage from './validationMessage';
 
 const propTypes = {
   /** Field label. */
