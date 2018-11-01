@@ -1,6 +1,6 @@
-
 {
   "verbose": true,
+  "testURL": "http://localhost/",
   "clearMocks": true,
   "transform": {
     ".*": "babel-jest"
@@ -30,7 +30,7 @@
     "!**/node_modules/**"
   ],
   "coverageDirectory": "./coverage",
-  "notify": true,
+  "notify": false,
   "roots": [
     "__tests__/"
   ],

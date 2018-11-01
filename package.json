@@ -1,10 +1,19 @@
 {
   "name": "redux-form-bootstrap-widgets",
   "version": "1.0.8",
-  "private": true,
-  "main": "./dist/redux-form-bootstrap-widgets.min.js",
+  "private": false,
+  "main": "./lib/index.html",
   "config": {
     "builddir": "./dist"
+  },
+  "scripts": {
+    "build": "yarn run build:lib",
+    "build:lib": "cross-env BABEL_ENV=production babel src --out-dir lib",
+    "clean": "rimraf lib",
+    "prepublish": " yarn run clean && yarn run build",
+    "test": "cross-env NODE_ENV=test jest --config=jest.json --coverage",
+    "lint": "eslint -c ./.eslintrc.yml --ext .jsx,.js src",
+    "storybook": "start-storybook -p 9001 -c .storybook"
   },
   "dependencies": {
     "lodash": "^4.17.5",
@@ -84,26 +93,5 @@
     "style-loader": "^0.18.2",
     "url-loader": "^0.5.9",
     "webpack": "^3.3.0"
-  },
-  "scripts": {
-    "build": "yarn run build:lib && yarn run build:es && yarn run build:umd && yarn run build:umd:min",
-    "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
-    "build:lib": "cross-env BABEL_ENV=production babel src --out-dir lib",
-    "build:umd": "cross-env NODE_ENV=development webpack src/index.js dist/redux-form-bootstrap-widgets.js",
-    "build:umd:min": "cross-env NODE_ENV=production webpack src/index.js dist/redux-form-bootstrap-widgets.min.js",
-    "clean": "rimraf dist es lib",
-    "prepublish": " yarn run clean && yarn run build",
-    "test": "cross-env NODE_ENV=test jest --config=jest.json --coverage",
-    "lint": "eslint -c ./.eslintrc.yml --ext .jsx,.js src",
-    "storybook": "start-storybook -p 9001 -c .storybook"
-  },
-  "npmName": "redux-form-bootstrap-widgets",
-  "npmFileMap": [
-    {
-      "basePath": "/dist/",
-      "files": [
-        "*.js"
-      ]
-    }
-  ]
+  }
 }
