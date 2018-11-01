@@ -1,6 +1,7 @@
 
 {
   "verbose": true,
+  "testURL": "http://localhost/",
   "clearMocks": true,
   "transform": {
     ".*": "babel-jest"
