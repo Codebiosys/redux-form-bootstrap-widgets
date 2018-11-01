@@ -8,3 +8,4 @@ export { default as RadioField } from './RadioField';
 export { default as SelectField } from './SelectField';
 export { default as ToggleField } from './ToggleField';
 export { default as Label } from './Label';
+export { default as validationMessage } from './validationMessage';

@@ -10,9 +10,9 @@ import { Checkbox,
 
 import { castArray, camelCase, union, filter, toArray } from 'lodash';
 
-import Label from 'Label';
+import Label from './Label';
 
-import validationMessage from 'utils';
+import validationMessage from './validationMessage';
 
 const propTypes = {
   /** Field label. */

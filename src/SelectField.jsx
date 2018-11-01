@@ -6,11 +6,11 @@ import { castArray, map, get, head, isFunction } from 'lodash';
 import { FormGroup, HelpBlock } from 'react-bootstrap';
 import Select from 'react-select';
 
-import Label from 'Label';
-import validationMessage from 'utils';
-
 import 'react-select/dist/react-select.css';
 import './selectFieldStyle.css';
+
+import Label from './Label';
+import validationMessage from './validationMessage';
 
 const propTypes = {
   /** Form label. */

@@ -9,10 +9,10 @@ import {
 import DateTime from 'react-datetime';
 import moment from 'moment';
 
-import Label from 'Label';
-import validationMessage from 'utils';
-
 import 'react-datetime/css/react-datetime.css';
+
+import Label from './Label';
+import validationMessage from './validationMessage';
 
 const propTypes = {
   /** Field label. */
