@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 
 import { ControlLabel, Glyphicon } from 'react-bootstrap';
 
-import 'bootstrap/dist/css/bootstrap.css';
-
 const Label = ({ label, required }) => {
   if (label && required) {
     return (<ControlLabel>{label}&nbsp;<small><Glyphicon glyph="asterisk" style={{ color: '#a94442' }} /></small></ControlLabel>);

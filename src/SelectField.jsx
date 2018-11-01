@@ -9,7 +9,6 @@ import Select from 'react-select';
 import Label from 'Label';
 import validationMessage from 'utils';
 
-import 'bootstrap/dist/css/bootstrap.css';
 import 'react-select/dist/react-select.css';
 import './selectFieldStyle.css';
 
