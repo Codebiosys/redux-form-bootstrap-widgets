@@ -2,7 +2,7 @@
   "name": "redux-form-bootstrap-widgets",
   "version": "1.0.9",
   "private": false,
-  "main": "./lib/index.html",
+  "main": "./lib/index.js",
   "config": {
     "builddir": "./dist"
   },
