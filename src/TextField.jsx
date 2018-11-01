@@ -14,8 +14,6 @@ import Label from 'Label';
 
 import validationMessage from 'utils';
 
-import 'bootstrap/dist/css/bootstrap.css';
-
 const propTypes = {
   /** additional Props that can be passed to Form Control */
   ...FormControl.propTypes,

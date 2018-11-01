@@ -1785,9 +1785,10 @@ boom@5.x.x:
   dependencies:
     hoek "4.x.x"
 
-bootstrap@^3.3.7:
+bootstrap-css-only@^3.3.7:
   version "3.3.7"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.3.7.tgz#5a389394549f23330875a3b150656574f8a9eb71"
+  resolved "https://registry.yarnpkg.com/bootstrap-css-only/-/bootstrap-css-only-3.3.7.tgz#68a15925aa7b9b0fc0feb73ff85d8b8c3989c16d"
+  integrity sha1-aKFZJap7mw/A/rc/+F2LjDmJwW0=
 
 bowser@^1.0.0, bowser@^1.7.3:
   version "1.9.3"

@@ -12,7 +12,6 @@ import moment from 'moment';
 import Label from 'Label';
 import validationMessage from 'utils';
 
-import 'bootstrap/dist/css/bootstrap.css';
 import 'react-datetime/css/react-datetime.css';
 
 const propTypes = {

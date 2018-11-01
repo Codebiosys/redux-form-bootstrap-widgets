@@ -11,7 +11,6 @@ import Toggle from 'react-toggle';
 import Label from 'Label';
 import validationMessage from 'utils';
 
-import 'bootstrap/dist/css/bootstrap.css';
 import 'react-toggle/style.css';
 
 const propTypes = {

@@ -11,7 +11,7 @@
     "moment": "^2.20.1"
   },
   "peerDependencies": {
-    "bootstrap": "^3.3.7",
+    "bootstrap-css-only": "^3.3.7",
     "react": "v16.2.0",
     "react-bootstrap": "^0.31.3",
     "react-datetime": "2.14.0",
@@ -41,7 +41,6 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.24.1",
-    "bootstrap": "^3.3.7",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.4",
     "enzyme": "3.3.0",
